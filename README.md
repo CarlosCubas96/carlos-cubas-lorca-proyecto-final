@@ -31,20 +31,16 @@ El objetivo principal de la aplicación es proporcionar una solución convenient
 3. **¿Qué problema concreto va a resolver?**: La aplicación aborda el problema de la dificultad para acceder a bicicletas de calidad de manera rentable y conveniente. Muchas personas desean utilizar bicicletas para sus desplazamientos diarios o para paseos recreativos, pero pueden encontrar obstáculos al comprar una bicicleta nueva o alquilar una de una empresa de alquiler tradicional. Esta aplicación proporciona una solución al permitir que los usuarios alquilen bicicletas directamente entre ellos, evitando intermediarios y reduciendo los costos.
 
 4. **¿Qué necesidad va a cubrir?**: La aplicación cubrirá la necesidad de movilidad sostenible y accesible al proporcionar una plataforma donde los usuarios puedan encontrar y alquilar bicicletas fácilmente. Además, la aplicación también satisfará la necesidad de una experiencia de alquiler más personalizada y flexible al permitir que los usuarios establezcan sus propios términos y condiciones de alquiler directamente con otros usuarios.
-5. 
+
 ## Estructura del Proyecto
 
 El repositorio del proyecto se organizará de la siguiente manera:
 
-- **src-api** En este directorio se alojará el backend de la aplicación, que gestionará la lógica de la tienda en línea, incluyendo la gestión de productos, carritos de compra y procesamiento de pedidos.
+- **src-api** En este directorio se alojará el backend de la aplicación de alquiler de bicicletas. Aquí se gestionará toda la lógica relacionada con el sistema de alquiler, incluyendo la gestión de usuarios, publicaciones de bicicletas, alquileres y autenticación.
 
-- **src-frontend**: Aquí se encuentra el frontend de la tienda en línea, donde los clientes pueden explorar los productos, realizar compras y acceder a información sobre los ingredientes y beneficios de los jabones.
+- **src-frontend**: Este directorio contendrá el frontend de la aplicación de alquiler de bicicletas. Aquí los usuarios podrán explorar las bicicletas disponibles para alquilar, realizar búsquedas, ver detalles de las bicicletas y realizar reservas.
   
-- **docs**
-
-  - **Manual de despliegue**:
-  - **Documentación del proyecto**:  
-
+- **docs**:  Este directorio contendrá toda la documentación relacionada con el proyecto de alquiler de bicicletas, incluyendo manuales de usuario, guías de instalación y cualquier otra información relevante para los desarrolladores y usuarios.
 
 - **README.md**: Este archivo actuará como el punto central de información sobre el proyecto, proporcionando una descripción más detallada, la estructura del repositorio y enlaces a recursos adicionales.
 
