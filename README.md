@@ -90,15 +90,13 @@ La adición de [changelog.md](CHANGELOG.md) en la estructura te permite llevar u
 ```bash
 Proyecto Final de Grado
 ├── docs
-│   └── Herramientas de Proyecto
-│      ├── 
-│      └── 
-├── src
-│   ├── api
-│   └── frontend
-│
-├── README.md
-└── CHANGELOG.md
+│   ├── Manuales de Usuario
+│   ├── Guías de Instalación
+│   └── Otros documentos
+├── src-api
+│   └── Backend de la aplicación de alquiler de bicicletas
+└── src-frontend
+    └── Frontend de la aplicación de alquiler de bicicletas
 ```
 
 ## Contribuciones
