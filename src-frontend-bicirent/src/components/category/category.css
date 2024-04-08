@@ -1,0 +1,393 @@
+.category-container {
+    width: 100%;
+    height: 480px;
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .category-containersectioncategories {
+    gap: 40px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    padding: 40px 16px;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .category-containercategoriestitle {
+    gap: 24px;
+    width: 928px;
+    height: 107px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .category-containercategoriestitleh1 {
+    width: 720px;
+    height: 45px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .category-text {
+    color: rgba(20, 20, 20, 1);
+    height: auto;
+    font-size: 36px;
+    font-style: ExtraBold;
+    text-align: left;
+    font-family: Plus Jakarta Sans;
+    font-weight: 800;
+    line-height: 45px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .category-containercategoriessubtitle {
+    width: 720px;
+    height: 24px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .category-text02 {
+    color: rgba(20, 20, 20, 1);
+    height: auto;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Plus Jakarta Sans;
+    font-weight: 400;
+    line-height: 24px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .category-containercategorieslist {
+    gap: 12px;
+    display: flex;
+    align-items: flex-start;
+  }
+  .category-depth5-frame0 {
+    gap: 12px;
+    width: 223px;
+    height: 223px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .category-depth6-frame0 {
+    width: 223px;
+    height: 223px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .category-depth7-frame0 {
+    width: 223px;
+    height: 223px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    align-items: flex-start;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background-size: cover;
+    background-image: url("https://play.teleporthq.io/static/svg/default-img.svg");
+  }
+  .category-depth6-frame1 {
+    width: 168.1875px;
+    height: 57px;
+    display: flex;
+    padding: 0 0 12px;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .category-depth7-frame01 {
+    width: 168.1875px;
+    height: 24px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .category-text04 {
+    color: rgba(17, 20, 22, 1);
+    height: auto;
+    font-size: 16px;
+    align-self: stretch;
+    font-style: Medium;
+    text-align: left;
+    font-family: Plus Jakarta Sans;
+    font-weight: 500;
+    line-height: 24px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .category-depth7-frame1 {
+    width: 168.1875px;
+    height: 21px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .category-text06 {
+    color: rgba(99, 119, 135, 1);
+    height: auto;
+    font-size: 14px;
+    align-self: stretch;
+    font-style: Regular;
+    text-align: left;
+    font-family: Plus Jakarta Sans;
+    font-weight: 400;
+    line-height: 21px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .category-depth5-frame1 {
+    gap: 12px;
+    width: 223px;
+    height: 223px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .category-depth6-frame01 {
+    width: 223px;
+    height: 223px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .category-depth7-frame02 {
+    width: 223px;
+    height: 223px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    align-items: flex-start;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background-size: cover;
+    background-image: url("https://play.teleporthq.io/static/svg/default-img.svg");
+  }
+  .category-depth6-frame11 {
+    width: 168.1875px;
+    height: 57px;
+    display: flex;
+    padding: 0 0 12px;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .category-depth7-frame03 {
+    width: 168.1875px;
+    height: 24px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .category-text08 {
+    color: rgba(17, 20, 22, 1);
+    height: auto;
+    font-size: 16px;
+    align-self: stretch;
+    font-style: Medium;
+    text-align: left;
+    font-family: Plus Jakarta Sans;
+    font-weight: 500;
+    line-height: 24px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .category-depth7-frame11 {
+    width: 168.1875px;
+    height: 21px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .category-text10 {
+    color: rgba(99, 119, 135, 1);
+    height: auto;
+    font-size: 14px;
+    align-self: stretch;
+    font-style: Regular;
+    text-align: left;
+    font-family: Plus Jakarta Sans;
+    font-weight: 400;
+    line-height: 21px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .category-depth5-frame2 {
+    gap: 12px;
+    width: 223px;
+    height: 223px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .category-depth6-frame02 {
+    width: 223px;
+    height: 223px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .category-depth7-frame04 {
+    width: 223px;
+    height: 223px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    align-items: flex-start;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background-size: cover;
+    background-image: url("https://play.teleporthq.io/static/svg/default-img.svg");
+  }
+  .category-depth6-frame12 {
+    width: 168.1875px;
+    height: 57px;
+    display: flex;
+    padding: 0 0 12px;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .category-depth7-frame05 {
+    width: 168.1875px;
+    height: 24px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .category-text12 {
+    color: rgba(17, 20, 22, 1);
+    height: auto;
+    font-size: 16px;
+    align-self: stretch;
+    font-style: Medium;
+    text-align: left;
+    font-family: Plus Jakarta Sans;
+    font-weight: 500;
+    line-height: 24px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .category-depth7-frame12 {
+    width: 168.1875px;
+    height: 21px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .category-text14 {
+    color: rgba(99, 119, 135, 1);
+    height: auto;
+    font-size: 14px;
+    align-self: stretch;
+    font-style: Regular;
+    text-align: left;
+    font-family: Plus Jakarta Sans;
+    font-weight: 400;
+    line-height: 21px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .category-depth5-frame3 {
+    gap: 12px;
+    width: 223px;
+    height: 223px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .category-depth6-frame03 {
+    width: 223px;
+    height: 223px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .category-depth7-frame06 {
+    width: 223px;
+    height: 223px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    align-items: flex-start;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background-size: cover;
+    background-image: url("https://play.teleporthq.io/static/svg/default-img.svg");
+  }
+  .category-depth6-frame13 {
+    width: 168.1875px;
+    height: 57px;
+    display: flex;
+    padding: 0 0 12px;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .category-depth7-frame07 {
+    width: 168.1875px;
+    height: 24px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .category-text16 {
+    color: rgba(17, 20, 22, 1);
+    height: auto;
+    font-size: 16px;
+    align-self: stretch;
+    font-style: Medium;
+    text-align: left;
+    font-family: Plus Jakarta Sans;
+    font-weight: 500;
+    line-height: 24px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .category-depth7-frame13 {
+    width: 168.1875px;
+    height: 21px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .category-text18 {
+    color: rgba(99, 119, 135, 1);
+    height: auto;
+    font-size: 14px;
+    align-self: stretch;
+    font-style: Regular;
+    text-align: left;
+    font-family: Plus Jakarta Sans;
+    font-weight: 400;
+    line-height: 21px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  

@@ -1,0 +1,117 @@
+.feautre-container {
+  width: 100%;
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.feautre-containersectionfeaure {
+  width: 100%;
+  height: 427px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+.feautre-containerfeautreimg {
+  top: 16px;
+  left: 15px;
+  width: 445px;
+  height: 395px;
+  display: flex;
+  overflow: hidden;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background-size: cover;
+  background-image: url("https://play.teleporthq.io/static/svg/default-img.svg");
+}
+.feautre-containerfeautreinfo {
+  top: 0px;
+  left: 460px;
+  width: 510px;
+  height: 410px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+.feautre-containerinfomain {
+  gap: 11px;
+  width: 510px;
+  height: 410px;
+  display: flex;
+  padding: 29px 16px 18px 40px;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+.feautre-text {
+  color: rgba(20, 20, 20, 1);
+  width: 337px;
+  height: auto;
+  font-size: 24px;
+  font-style: ExtraBold;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 800;
+  line-height: 30px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.feautre-text2 {
+  color: rgba(20, 20, 20, 1);
+  width: 443px;
+  height: auto;
+  font-size: 16px;
+  font-style: Regular;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 400;
+  line-height: 24px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.feautre-depth11-frame0 {
+  width: 96.0625px;
+  height: 48px;
+  display: flex;
+  padding: 0 20px;
+  overflow: hidden;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 12px;
+  justify-content: center;
+  background-color: rgba(56, 224, 119, 1);
+}
+.feautre-depth12-frame0 {
+  width: 56.0625px;
+  height: 24px;
+  display: flex;
+  overflow: hidden;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+  background-color: rgba(56, 224, 119, 1);
+}
+.feautre-depth13-frame0 {
+  display: flex;
+  align-self: stretch;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.feautre-text4 {
+  color: rgba(20, 20, 20, 1);
+  height: auto;
+  font-size: 16px;
+  font-style: Bold;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 700;
+  line-height: 24px;
+  font-stretch: normal;
+  text-decoration: none;
+}

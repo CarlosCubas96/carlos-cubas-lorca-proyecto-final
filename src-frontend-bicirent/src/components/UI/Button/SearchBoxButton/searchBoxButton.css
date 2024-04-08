@@ -1,0 +1,30 @@
+.searchBoxButton {
+  width: 96.0625px;
+  height: 48px;
+  display: flex;
+  padding: 0 20px;
+  overflow: hidden;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 12px;
+  justify-content: center;
+  background-color: rgba(56, 224, 119, 1);
+  text-decoration: none;
+}
+
+
+.searchBoxButton:hover {
+  background-color: rgb(46, 182, 98);
+  text-decoration: none;
+}
+
+.searchBoxButton:focus {
+  outline: none;
+}
+
+.searchBoxButton-text {
+  color: rgba(20, 20, 20, 1);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+}

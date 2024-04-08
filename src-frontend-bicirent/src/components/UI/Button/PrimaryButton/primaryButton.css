@@ -1,0 +1,29 @@
+.primaryButton {
+    width: 101px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none; 
+    border-radius: 12px;
+    background-color: rgba(56, 224, 119, 1);
+    text-decoration: none; 
+  }
+  
+  .primaryButton:hover {
+    background-color: rgb(46, 182, 98);
+    text-decoration: none; 
+    
+  }
+  
+  .primaryButton:focus {
+    outline: none; 
+  }
+  
+  .primaryButton-text {
+    color: rgba(20, 20, 20, 1);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+  }
+  

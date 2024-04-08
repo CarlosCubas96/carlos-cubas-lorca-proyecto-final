@@ -1,0 +1,28 @@
+.navButton {
+    width: 120px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none; 
+    border-radius: 12px;
+    background-color: #F5F5F5;
+    text-decoration: none;
+  }
+  
+  .navButton:hover {
+    background-color: rgba(56, 224, 119, 1);
+    text-decoration: none; 
+  }
+  
+  .navButton:focus {
+    outline: none; 
+  }
+  
+  .navButton-text {
+    color: rgba(20, 20, 20, 1);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+  }
+  

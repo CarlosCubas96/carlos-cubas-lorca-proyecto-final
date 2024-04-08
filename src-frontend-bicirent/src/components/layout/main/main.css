@@ -1,0 +1,20 @@
+.main-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.main-containermain {
+  display: flex;
+  padding: 20px 160px;
+  align-items: flex-start;
+  flex-shrink: 0;
+  justify-content: center;
+}
+.main-containermainsecction {
+  gap: 68px;
+  width: 960px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
