@@ -1,17 +1,34 @@
 
 import './App.css';
-import Footer from './components/layout/footer/footer';
-import Header from './components/layout/header/header';
-import Main from './components/layout/main/main';
+import { Routes, Route} from "react-router-dom";
+
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import '@popperjs/core';
+
+
+import Login from './components/common/login/login';
+import Home from './pages/home/home';
+import HomeAdmin from './pages/homeAdmin/HomeAdmin';
+import HomeUser from './pages/homeUser/homeUser';
+
+
 
 function App() {
+  
   return (
-    <>
-      <Header />
-      <Main/>
-      <Footer />
+    <> 
+    <div className="container mt-3">
+    <Routes>
+      <Route path="/home" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/admin" element={<HomeAdmin />} />
+      <Route path="/user" element={<HomeUser />} />
+    </Routes>
+  </div>
     </>
+  
+
   );
 }
 

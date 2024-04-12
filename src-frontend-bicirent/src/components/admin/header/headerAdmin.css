@@ -1,0 +1,41 @@
+.header-container {
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 40px;
+  align-items: center;
+}
+
+.header-container__logo {
+  width: 136px;
+  height: 59px;
+  display: flex;
+  align-items: center;
+}
+
+.header-logo {
+  transition: transform 0.15s ease-in-out;
+  width: 129px;
+  height: 46px;
+}
+
+.header-logo:hover {
+  transform: scale(1.2);
+}
+
+.header-container__nav {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+}
+
+.header-container__nav-items {
+  display: flex;
+  align-items: center;
+  margin-right: 2%;
+}
+
+.header-container__nav-buttons {
+  display: flex;
+}

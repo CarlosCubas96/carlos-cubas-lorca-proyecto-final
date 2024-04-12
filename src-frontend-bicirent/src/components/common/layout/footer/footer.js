@@ -1,10 +1,10 @@
 import React from 'react'
 
 import './footer.css'
-import NavLinkButton from '../../UI/Button/NavLinkButton/navLinkButton'
-import facebookIcon from '../../../assets/images/icons/facebook.svg'
-import twitterIcon from '../../../assets/images/icons/twitter.svg'
-import instagramIcon from '../../../assets/images/icons/instagram.svg'
+import NavLinkButton from '../../../UI/Button/NavLinkButton/navLinkButton'
+import facebookIcon from '../../../../assets/images/icons/facebook.svg'
+import twitterIcon from '../../../../assets/images/icons/twitter.svg'
+import instagramIcon from '../../../../assets/images/icons/instagram.svg'
 import { Link } from 'react-router-dom'
 
 const Footer = () => {

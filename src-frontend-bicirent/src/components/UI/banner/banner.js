@@ -1,9 +1,9 @@
 import React from 'react'
 
 import './banner.css'
-import SearchBoxButton from '../UI/Button/SearchBoxButton/searchBoxButton'
+import SearchBoxButton from '../Button/SearchBoxButton/searchBoxButton'
 
-const Banner = (props) => {
+const Banner = () => {
   return (
     <div className="banner-containerbannermain">
       <div className="banner-containerbannerbackground">
