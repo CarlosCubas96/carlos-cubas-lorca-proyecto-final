@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-import Header from "../../components/common/layout/header/header"
+import Header from "../../../components/common/layout/header/header";
+import authService from "../../../services/auth/auth.service";
+import AdminDashboardUsers from "../../../components/admin/main/adminUsersContent/adminUsersContent";
 
-
-import authService from "../../services/auth/auth.service";
-import AdminDashboardMain from "../../components/admin/main/adminMainContent/adminMainContent";
-
-
-export default class HomeAdmin extends Component {
+export default class UsersPanel extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -16,7 +13,7 @@ export default class HomeAdmin extends Component {
 
     componentDidMount() {
         const user = authService.getCurrentUser();
-        if (user) {
+        if (user && user.roles.includes('ROLE_ADMIN')) {
             this.setState({
                 currentUser: user,
             });
@@ -27,10 +24,9 @@ export default class HomeAdmin extends Component {
         const { currentUser } = this.state;
 
         return (
-
             <div>
                 <Header currentUser={currentUser} />
-                <AdminDashboardMain />
+                <AdminDashboardUsers/>    
             </div>
         );
     }

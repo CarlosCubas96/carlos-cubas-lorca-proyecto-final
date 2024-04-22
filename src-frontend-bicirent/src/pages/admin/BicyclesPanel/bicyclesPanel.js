@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import Header from "../../components/common/layout/header/header"
+import Header from "../../../components/common/layout/header/header"
 
 
-import authService from "../../services/auth/auth.service";
-import AdminDashboardMain from "../../components/admin/main/adminMainContent/adminMainContent";
+import authService from "../../../services/auth/auth.service";
 
 
-export default class HomeAdmin extends Component {
+export default class BicyclesPanel extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -30,7 +29,10 @@ export default class HomeAdmin extends Component {
 
             <div>
                 <Header currentUser={currentUser} />
-                <AdminDashboardMain />
+                <div>
+                    <h2>Bicicletas</h2>
+                    <p>Aquí va el contenido del panel de bicicletas...</p>
+                </div>
             </div>
         );
     }

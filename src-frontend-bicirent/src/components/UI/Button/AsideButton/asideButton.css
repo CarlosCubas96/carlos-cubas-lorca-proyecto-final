@@ -1,0 +1,17 @@
+.containersidebarsection-text {
+  color: rgba(20, 20, 20, 1);
+  height: auto;
+  font-size: 14px;
+  font-style: Medium;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 500;
+  line-height: 21px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.containersidebarsection-text.active {
+  /* Estilos específicos para el botón activo */
+  background-color: #f0f0f0; /* Cambia esto según tu diseño */
+}

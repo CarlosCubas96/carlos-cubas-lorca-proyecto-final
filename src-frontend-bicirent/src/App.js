@@ -9,8 +9,13 @@ import '@popperjs/core';
 
 import Login from './components/common/login/login';
 import Home from './pages/home/home';
-import HomeAdmin from './pages/homeAdmin/HomeAdmin';
-import HomeUser from './pages/homeUser/homeUser';
+import Lista from './pages/lista/lista';
+import UsersPanel from './pages/admin/UsersPanel/usersPanel';
+import HomeAdmin from './pages/homeAdmin/homeAdmin';
+import BicyclesPanel from './pages/admin/BicyclesPanel/bicyclesPanel';
+import RentalsPanel from './pages/admin/RentalsPanel/rentalsPanel';
+import PostsPanel from './pages/admin/PostsPanel/postsPanel';
+
 
 
 
@@ -20,10 +25,14 @@ function App() {
     <> 
     <div className="container mt-3">
     <Routes>
-      <Route path="/home" element={<Home />} />
+      <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/lista" element={<Lista />} />
       <Route path="/admin" element={<HomeAdmin />} />
-      <Route path="/user" element={<HomeUser />} />
+      <Route path="/admin/usuarios" element={<UsersPanel/>} />
+      <Route path="/admin/bicicletas" element={<BicyclesPanel/>} />
+      <Route path="/admin/alquileres" element={<RentalsPanel/>} />
+      <Route path="/admin/publicaciones" element={<PostsPanel/>} />
     </Routes>
   </div>
     </>

@@ -37,6 +37,7 @@ public class InitializationData implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		
 		// Verificar si hay roles existentes
 		if (roleRepository.count() == 0) {
 			// Crear roles si no existen
