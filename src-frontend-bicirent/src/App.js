@@ -9,12 +9,12 @@ import '@popperjs/core';
 
 import Login from './components/common/login/login';
 import Home from './pages/home/home';
-import Lista from './pages/lista/lista';
 import UsersPanel from './pages/admin/UsersPanel/usersPanel';
-import HomeAdmin from './pages/homeAdmin/homeAdmin';
+import HomeAdmin from './pages/homeAdmin/HomeAdmin';
 import BicyclesPanel from './pages/admin/BicyclesPanel/bicyclesPanel';
 import RentalsPanel from './pages/admin/RentalsPanel/rentalsPanel';
 import PostsPanel from './pages/admin/PostsPanel/postsPanel';
+import Register from './components/common/register/register';
 
 
 
@@ -27,7 +27,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/lista" element={<Lista />} />
+      <Route path="/register" element={<Register />} />
       <Route path="/admin" element={<HomeAdmin />} />
       <Route path="/admin/usuarios" element={<UsersPanel/>} />
       <Route path="/admin/bicicletas" element={<BicyclesPanel/>} />

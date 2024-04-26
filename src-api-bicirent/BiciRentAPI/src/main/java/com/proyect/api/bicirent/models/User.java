@@ -50,6 +50,14 @@ public class User {
 	public User() {
 	}
 
+	public User(String username, String email, String password, String firstName, String lastName) {
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.firstname = firstName;
+		this.lastname = lastName;
+	}
+
 	public String getFirstname() {
 		return firstname;
 	}
@@ -64,12 +72,6 @@ public class User {
 
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
-	}
-
-	public User(String username, String email, String password) {
-		this.username = username;
-		this.email = email;
-		this.password = password;
 	}
 
 	public Long getId() {
@@ -111,4 +113,5 @@ public class User {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
+
 }

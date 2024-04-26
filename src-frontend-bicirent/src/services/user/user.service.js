@@ -1,28 +1,54 @@
-import axios from 'axios';
-import authHeader from '../auth/auth.header';
+import AxiosService from '../../common/axios-service';
 
-const API_URL = 'http://localhost:8081/api/test/';
+const UserService = {
+  getAllUsers: (searchQuery, pageNumber, pageSize) => {
+    const url = searchQuery ? `users?searchTerm=${searchQuery}&pageNumber=${pageNumber}&pageSize=${pageSize}` : `users?pageNumber=${pageNumber}&pageSize=${pageSize}`;
+    return AxiosService.get(url)
+      .then(response => response.data)
+      .catch(error => {
+        throw error;
+      });
+  },
 
-class UserService {
-  getPublicContent() {
-    return axios.get(API_URL + 'all');
+  getUserById: (id) => {
+    return AxiosService.get(`users/${id}`)
+      .then(response => response.data)
+      .catch(error => {
+        throw error;
+      });
+  },
+
+  createUser: (userData) => {
+    return AxiosService.post('users', userData)
+      .then(response => response.data)
+      .catch(error => {
+        throw error;
+      });
+  },
+
+  updateUser: (id, userData) => {
+    return AxiosService.put(`users/${id}`, userData)
+      .then(response => response.data)
+      .catch(error => {
+        throw error;
+      });
+  },
+
+  deleteUser: (id) => {
+    return AxiosService.delete(`users/${id}`)
+      .then(() => true)
+      .catch(error => {
+        throw error;
+      });
+  },
+
+  searchUserByName: (searchQuery) => {
+    return AxiosService.get(`users/search?query=${searchQuery}`)
+      .then(response => response.data)
+      .catch(error => {
+        throw error;
+      });
   }
+};
 
-  getUserBoard() {
-    return axios.get(API_URL + 'user', { headers: authHeader() });
-  }
-
-  getModeratorBoard() {
-    return axios.get(API_URL + 'mod', { headers: authHeader() });
-  }
-
-  getAdminBoard() {
-    return axios.get(API_URL + 'admin', { headers: authHeader() });
-  }
-}
-
-const userService = new UserService();
-
-
-
-export default userService;
+export default UserService;

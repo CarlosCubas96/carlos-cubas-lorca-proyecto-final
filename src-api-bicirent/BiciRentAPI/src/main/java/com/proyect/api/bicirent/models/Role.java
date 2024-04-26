@@ -7,11 +7,11 @@ import jakarta.persistence.*;
 public class Role {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ROL_ID") 
-	private Integer id; 
+	@Column(name = "ROL_ID")
+	private Integer id;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "ROL_NAME", length = 20) 
+	@Column(name = "ROL_NAME", length = 20)
 	private ERole name;
 
 	public Role() {
@@ -37,4 +37,10 @@ public class Role {
 	public void setName(ERole name) {
 		this.name = name;
 	}
+
+	@Override
+	public String toString() {
+		return "Role [getId()=" + getId() + ", getName()=" + getName() + "]";
+	}
+
 }

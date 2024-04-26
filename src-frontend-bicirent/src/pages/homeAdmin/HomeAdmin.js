@@ -28,10 +28,10 @@ export default class HomeAdmin extends Component {
 
         return (
 
-            <div>
+            <>
                 <Header currentUser={currentUser} />
                 <AdminDashboardMain />
-            </div>
+            </>
         );
     }
 }

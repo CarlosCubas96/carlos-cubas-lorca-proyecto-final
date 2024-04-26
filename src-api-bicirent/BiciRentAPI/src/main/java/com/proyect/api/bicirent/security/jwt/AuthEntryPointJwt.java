@@ -20,24 +20,40 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Component
 public class AuthEntryPointJwt implements AuthenticationEntryPoint {
 
-  private static final Logger logger = LoggerFactory.getLogger(AuthEntryPointJwt.class);
+	private static final Logger logger = LoggerFactory.getLogger(AuthEntryPointJwt.class);
 
-  @Override
-  public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)
-      throws IOException, ServletException {
-    logger.error("Unauthorized error: {}", authException.getMessage());
+	@Override
+	public void commence(HttpServletRequest request, HttpServletResponse response,
+			AuthenticationException authException) throws IOException, ServletException {
+		logger.error("Error de autenticación: {}", authException.getMessage());
 
-    response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+		response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 
-    final Map<String, Object> body = new HashMap<>();
-    body.put("status", HttpServletResponse.SC_UNAUTHORIZED);
-    body.put("error", "Unauthorized");
-    body.put("message", authException.getMessage());
-    body.put("path", request.getServletPath());
+		final Map<String, Object> body = new HashMap<>();
+		body.put("status", HttpServletResponse.SC_UNAUTHORIZED);
+		body.put("error", "No autorizado");
 
-    final ObjectMapper mapper = new ObjectMapper();
-    mapper.writeValue(response.getOutputStream(), body);
-  }
+		// Traducción del mensaje según el tipo de excepción
+		String mensajeTraducido = "";
+		String mensajeOriginal = authException.getMessage();
 
+		if (mensajeOriginal.contains("Bad credentials")) {
+			mensajeTraducido = "Credenciales inválidas";
+		} else if (mensajeOriginal.contains("Access denied")) {
+			mensajeTraducido = "Acceso denegado";
+		} else if (mensajeOriginal.contains("Session expired")) {
+			mensajeTraducido = "Sesión caducada";
+		} else if (mensajeOriginal.contains("User blocked")) {
+			mensajeTraducido = "Usuario bloqueado";
+		} else {
+			mensajeTraducido = "Error de autenticación";
+		}
+
+		body.put("message", mensajeTraducido);
+		body.put("path", request.getServletPath());
+
+		final ObjectMapper mapper = new ObjectMapper();
+		mapper.writeValue(response.getOutputStream(), body);
+	}
 }

@@ -1,0 +1,56 @@
+.login-containerbuttom1 {
+    width: 512px;
+    height: 40px;
+    display: flex;
+    padding: 0 16px;
+    overflow: hidden;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 12px;
+    justify-content: center;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    background-color: rgba(56, 224, 119, 1);
+}
+
+.login-containerbuttom1:hover {
+    background-color: rgb(46, 182, 98);
+}
+
+
+.login-containerbuttom2 {
+    width: 512px;
+    height: 40px;
+    display: flex;
+    padding: 0 16px;
+    overflow: hidden;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 12px;
+    justify-content: center;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    background-color: #DBE0E5;
+}
+
+.login-containerbuttom2:hover {
+    background-color: #637587;
+}
+
+
+.login-text14 {
+    color: rgba(17, 20, 22, 1);
+    height: auto;
+    font-size: 14px;
+    font-style: Bold;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: 21px;
+    margin-right: 10px;
+    font-stretch: normal;
+    text-decoration: none;
+    outline: none;
+}

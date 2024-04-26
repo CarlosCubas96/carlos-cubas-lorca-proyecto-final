@@ -37,7 +37,7 @@ public class InitializationData implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		
+
 		// Verificar si hay roles existentes
 		if (roleRepository.count() == 0) {
 			// Crear roles si no existen
@@ -47,6 +47,12 @@ public class InitializationData implements CommandLineRunner {
 			// Crear usuarios
 			createUser("user", "Carlos", "Cubas", "carloscubaf12@gmail.com", userPassword, userRole);
 			createUser("admin", "Pablo", "Jimenez", "pabloj32@gmail.com", adminPassword, adminRole);
+
+			// Agregar 20 usuarios más de ejemplo
+			for (int i = 1; i <= 20; i++) {
+				createUser("user" + i, "FirstName" + i, "LastName" + i, "user" + i + "@example.com", userPassword,
+						userRole);
+			}
 		}
 	}
 
