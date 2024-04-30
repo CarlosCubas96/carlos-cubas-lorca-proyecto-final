@@ -29,7 +29,7 @@ export default class Home extends Component {
     return (
       <div>
         <Header currentUser={currentUser} />
-        <Main  currentUser={currentUser} />
+        <Main  />
         <Footer />
       </div>
     );

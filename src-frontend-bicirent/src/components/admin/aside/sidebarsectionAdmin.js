@@ -1,10 +1,14 @@
-import React from 'react'
-
-import './sidebarsectionAdmin.css'
-import AsideButton from '../../UI/Button/AsideButton/asideButton'
-import Icon from '../../UI/icon/icon'
+import React from 'react';
+import { useLocation } from 'react-router-dom';  // Importar useLocation
+import './sidebarsectionAdmin.css';
+import AsideButton from '../../UI/Button/AsideButton/asideButton';
 
 const SidebarsectionAdmin = () => {
+  const location = useLocation();  // Obtener la ubicación actual
+
+  // Función para determinar si el botón debe estar activo
+  const isActive = (path) => location.pathname === path;
+
   return (
     <div className="containersidebarsection-containersidebarsection">
       <div className="containersidebarsection-containersidebarbr">
@@ -15,69 +19,57 @@ const SidebarsectionAdmin = () => {
             </span>
           </div>
           <div className="containersidebarsection-containersidebarpanelmenu">
-            <div className="containersidebarsection-containerpanelmenusection">
+            {/* Aplicar estilos condicionales basados en la ruta */}
+            <AsideButton 
+              to="/admin" 
+              icon="Home" 
+              style={{ backgroundColor: isActive('/admin') ? '#38E078' : 'inherit' }}
+            >
+              Panel de administrador
+            </AsideButton>
 
-              <Icon name="Home" />
+            <AsideButton 
+              to="/admin/usuarios" 
+              icon="Users" 
+              style={{ backgroundColor: isActive('/admin/usuarios') ? '#38E078' : 'inherit' }}
+            >
+              Usuarios
+            </AsideButton>
 
-              <div className="containersidebarsection-containermenusectiontext">
-                <AsideButton to="/admin" >Panel de administrador</AsideButton>
-              </div>
-            </div>
-            <div className="containersidebarsection-containerpanelmenusection1">
+            <AsideButton 
+              to="/bikes" 
+              icon="Bici" 
+              style={{ backgroundColor: isActive('/bikes') ? '#f0f0f0' : 'inherit' }}
+            >
+              Bicicletas
+            </AsideButton>
 
-              <Icon name="Users" />
+            <AsideButton 
+              to="/posts" 
+              icon="Bell" 
+              style={{ backgroundColor: isActive('/posts') ? '#f0f0f0' : 'inherit' }}
+            >
+              Publicaciones
+            </AsideButton>
 
-              <div className="containersidebarsection-containermenusectiontext1">
-                <AsideButton to="/panel">Usuarios</AsideButton>
-              </div>
-            </div>
-            <div className="containersidebarsection-containerpanelmenusection2">
-
-              <Icon name="Bici" />
-
-              <div className="containersidebarsection-containermenusectiontext2">
-                <AsideButton to="/panel">Bicicletas</AsideButton>
-              </div>
-            </div>
-            <div className="containersidebarsection-containerpanelmenusection3">
-
-              <Icon name="Bell" />
-
-              <div className="containersidebarsection-containermenusectiontext3">
-                <AsideButton to="/panel">Publicaciones</AsideButton>
-              </div>
-            </div>
-            <div className="containersidebarsection-containerpanelmenusection4">
-              <Icon name="Altavoz" />
-              <div className="containersidebarsection-containermenusectiontext4">
-                <AsideButton to="/panel">Alquileres</AsideButton>
-              </div>
-            </div>
+            <AsideButton 
+              to="/rentals" 
+              icon="Altavoz" 
+              style={{ backgroundColor: isActive('/rentals') ? '#f0f0f0' : 'inherit' }}
+            >
+              Alquileres
+            </AsideButton>
           </div>
         </div>
         <div className="containersidebarsection-containersidebarpanel2">
           <div className="containersidebarsection-containersidebarpanel2menu">
-            <div className="containersidebarsection-containerpanelmenusection5">
-
-              <Icon name="Question" />
-
-              <div className="containersidebarsection-containermenusectiontext5">
-                <AsideButton to="/panel">Soporte</AsideButton>
-              </div>
-            </div>
-            <div className="containersidebarsection-containerpanelmenusection6">
-
-              <Icon name="Logout" />
-
-              <div className="containersidebarsection-containermenusectiontext6">
-                <AsideButton to="/panel">Cerrar Sesión</AsideButton>
-              </div>
-            </div>
+            <AsideButton to="#" icon="Question" >Soporte</AsideButton>
+            <AsideButton to="#" icon="Logout" >Cerrar Sesión</AsideButton>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default SidebarsectionAdmin
+export default SidebarsectionAdmin;

@@ -1,5 +1,19 @@
-.containersidebarsection-text {
+.containersidebarsection-containerpanelmenusection {
+  gap: 12px;
+  width: 275px;
+  height: 40px;
+  display: flex;
+  padding: 8px 12px;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 12px;
+  text-decoration: none;
+  outline: none;
   color: rgba(20, 20, 20, 1);
+}
+
+
+.containersidebarsection-text {
   height: auto;
   font-size: 14px;
   font-style: Medium;
@@ -9,9 +23,5 @@
   line-height: 21px;
   font-stretch: normal;
   text-decoration: none;
-}
-
-.containersidebarsection-text.active {
-  /* Estilos específicos para el botón activo */
-  background-color: #f0f0f0; /* Cambia esto según tu diseño */
+  outline: none;
 }

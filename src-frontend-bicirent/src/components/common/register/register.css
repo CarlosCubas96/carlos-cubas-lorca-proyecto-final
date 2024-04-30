@@ -150,7 +150,7 @@
     flex-shrink: 0;
 }
 
-.register-containererror-message {
+.register-containererror-message-error {
     width: 512px;
     height: 64px;
     display: flex;
@@ -162,6 +162,20 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     animation: shake-horizontal 0.8s ease-in-out 0.2s;
 }
+
+.register-containererror-message-confirm {
+    width: 512px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ff4d4d;
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: shake-horizontal 0.8s ease-in-out 0.2s;
+}
+
 
 @keyframes shake-horizontal {
     0% {

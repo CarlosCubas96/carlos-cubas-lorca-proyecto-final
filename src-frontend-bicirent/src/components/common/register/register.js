@@ -241,7 +241,7 @@ export default class Register extends Component {
 
                                 {this.state.message && (
                                     <div className="form-group">
-                                        <div className={"register-containererror-message"}>
+                                        <div className={"register-containererror-message-error"}>
                                             {this.state.message}
                                         </div>
                                     </div>
