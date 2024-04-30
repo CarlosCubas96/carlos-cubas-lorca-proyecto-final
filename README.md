@@ -48,9 +48,9 @@ El repositorio del proyecto se organizará de la siguiente manera:
 
 ## Herramientas Utilizadas
 
-- [Prototipo de Figma (Prototitpo)](#)
+- [Prototipo de Figma (Prototitpo)](https://www.figma.com/file/pMZuOd8qOY0CCM65OJv1se/Bicirent_prototype?type=design&node-id=32%3A271&mode=design&t=e4oYr9R17TUVv18j-1)
 
-- [Trello (Gestión de Tareas)](https://trello.com/b/gd5xitKt/ud01-actividad-evaluable-01-metodolog%C3%ADatiendajabones)
+- [Trello (Gestión de Tareas)](#)
   
 - **Front-end**:: React: Utilizamos React como el framework principal para el desarrollo del frontend de la aplicación. React nos permite crear interfaces de usuario interactivas y dinámicas de manera eficiente, facilitando la creación de una experiencia de usuario fluida.
 
