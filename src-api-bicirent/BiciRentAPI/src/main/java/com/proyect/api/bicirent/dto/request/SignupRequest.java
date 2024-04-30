@@ -4,30 +4,30 @@ import java.util.Set;
 
 import jakarta.validation.constraints.*;
 
-import com.proyect.api.bicirent.models.Role; // Importa la clase Role de tu modelo
+import com.proyect.api.bicirent.models.Role; 
 
 public class SignupRequest {
-    @NotBlank
-    @Size(min = 3, max = 20)
+    @NotBlank(message = "El nombre de usuario es obligatorio")
+    @Size(min = 3, max = 20, message = "El nombre de usuario debe tener entre 3 y 20 caracteres")
     private String username;
 
-    @NotBlank
-    @Size(max = 50)
-    @Email
+    @NotBlank(message = "El correo electrónico es obligatorio")
+    @Size(max = 50, message = "El correo electrónico no puede tener más de 50 caracteres")
+    @Email(message = "El correo electrónico no es válido")
     private String email;
 
-    @NotBlank
-    @Size(min = 2, max = 30)
+    @NotBlank(message = "El nombre es obligatorio")
+    @Size(min = 2, max = 30, message = "El nombre debe tener entre 2 y 30 caracteres")
     private String firstname;
 
-    @NotBlank
-    @Size(min = 2, max = 30)
+    @NotBlank(message = "El apellido es obligatorio")
+    @Size(min = 2, max = 30, message = "El apellido debe tener entre 2 y 30 caracteres")
     private String lastName;
 
-    private Set<Role> roles; // Utiliza un conjunto de objetos Role en lugar de un conjunto de cadenas
+    private Set<Role> roles; 
 
-    @NotBlank
-    @Size(min = 6, max = 40)
+    @NotBlank(message = "La contraseña es obligatoria")
+    @Size(min = 6, max = 40, message = "La contraseña debe tener entre 6 y 40 caracteres")
     private String password;
 
     public String getUsername() {

@@ -1,17 +1,19 @@
 import React, { Component } from "react";
 import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-import Select from "react-validation/build/select";
 import { isEmail } from "validator";
+import './register.css';
 
-import AuthService from "../../../services/auth/auth.service";
+import RegisterFormInput from "../../UI/inputs/registerFormInput/registerFormInput";
+import AuthButton from "../../UI/Button/AuthButtom/authButtom";
+
+import authService from "../../../services/auth/auth.service";
 
 const required = value => {
     if (!value) {
         return (
-            <div className="alert alert-danger" role="alert">
-                This field is required!
+            <div className="login-text-error">
+                ¡Este campo es obligatorio!
             </div>
         );
     }
@@ -20,8 +22,8 @@ const required = value => {
 const email = value => {
     if (!isEmail(value)) {
         return (
-            <div className="alert alert-danger" role="alert">
-                This is not a valid email.
+            <div className="login-text-error">
+                Este no es un correo electrónico válido.
             </div>
         );
     }
@@ -30,8 +32,8 @@ const email = value => {
 const vusername = value => {
     if (value.length < 3 || value.length > 20) {
         return (
-            <div className="alert alert-danger" role="alert">
-                The username must be between 3 and 20 characters.
+            <div className="login-text-error">
+                El nombre de usuario debe tener entre 3 y 20 caracteres.
             </div>
         );
     }
@@ -40,18 +42,18 @@ const vusername = value => {
 const vpassword = value => {
     if (value.length < 6 || value.length > 40) {
         return (
-            <div className="alert alert-danger" role="alert">
-                The password must be between 6 and 40 characters.
+            <div className="login-text-error">
+                La contraseña debe tener entre 6 y 40 caracteres.
             </div>
         );
     }
 };
 
-const vname = value => {
+const vfirstname = value => {
     if (value.length < 2 || value.length > 30) {
         return (
-            <div className="alert alert-danger" role="alert">
-                The name must be between 2 and 30 characters.
+            <div className="login-text-error">
+                El nombre debe tener entre 2 y 30 caracteres.
             </div>
         );
     }
@@ -60,8 +62,8 @@ const vname = value => {
 const vlastname = value => {
     if (value.length < 2 || value.length > 30) {
         return (
-            <div className="alert alert-danger" role="alert">
-                The last name must be between 2 and 30 characters.
+            <div className="login-text-error">
+                El apellido debe tener entre 2 y 30 caracteres.
             </div>
         );
     }
@@ -74,18 +76,15 @@ export default class Register extends Component {
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
-        this.onChangeName = this.onChangeName.bind(this);
+        this.onChangeFirstName = this.onChangeFirstName.bind(this);
         this.onChangeLastName = this.onChangeLastName.bind(this);
-        this.onChangeRole = this.onChangeRole.bind(this);
 
         this.state = {
             username: "",
             email: "",
             password: "",
-            name: "",
+            firstname: "",
             lastName: "",
-            role: "",
-            successful: false,
             message: ""
         };
     }
@@ -108,9 +107,9 @@ export default class Register extends Component {
         });
     }
 
-    onChangeName(e) {
+    onChangeFirstName(e) {
         this.setState({
-            name: e.target.value
+            firstname: e.target.value
         });
     }
 
@@ -120,36 +119,31 @@ export default class Register extends Component {
         });
     }
 
-    onChangeRole(e) {
-        this.setState({
-            role: e.target.value
-        });
-    }
-
     handleRegister(e) {
         e.preventDefault();
 
         this.setState({
             message: "",
-            successful: false
         });
 
         this.form.validateAll();
 
         if (this.checkBtn.context._errors.length === 0) {
-            AuthService.register(
+            authService.register(
                 this.state.username,
                 this.state.email,
                 this.state.password,
-                this.state.name,
+                this.state.firstname,
                 this.state.lastName,
-                this.state.role
             ).then(
                 response => {
                     this.setState({
                         message: response.data.message,
-                        successful: true
                     });
+                },
+                () => {
+                    this.props.router.navigate("/");
+                    window.location.reload()
                 },
                 error => {
                     const resMessage =
@@ -159,8 +153,8 @@ export default class Register extends Component {
                         error.message ||
                         error.toString();
 
+
                     this.setState({
-                        successful: false,
                         message: resMessage
                     });
                 }
@@ -170,126 +164,122 @@ export default class Register extends Component {
 
     render() {
         return (
-            <div className="col-md-12">
-                <div className="card card-container">
-                    <img
-                        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-                        alt="profile-img"
-                        className="profile-img-card"
-                    />
-
-                    <Form
-                        onSubmit={this.handleRegister}
-                        ref={c => {
-                            this.form = c;
-                        }}
-                    >
-                        {!this.state.successful && (
-                            <div>
-                                <div className="form-group">
-                                    <label htmlFor="username">Username</label>
-                                    <Input
+            <div className="register-container">
+                <div className="register-dash-board-signin">
+                    <div className="register-containermainsignin">
+                        <div className="register-containersignin">
+                            <div className="register-containersignintitle">
+                                <div className="register-containerregistersectiontitle">
+                                    <span className="register-text">
+                                        <span>Create una cuenta</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <Form
+                                onSubmit={this.handleRegister}
+                                ref={c => {
+                                    this.form = c;
+                                }}
+                            >
+                                <>
+                                    <RegisterFormInput
                                         type="text"
-                                        className="form-control"
+                                        placeholder="Usuario"
                                         name="username"
                                         value={this.state.username}
                                         onChange={this.onChangeUsername}
                                         validations={[required, vusername]}
                                     />
-                                </div>
 
-                                <div className="form-group">
-                                    <label htmlFor="email">Email</label>
-                                    <Input
+                                    <RegisterFormInput
                                         type="text"
-                                        className="form-control"
-                                        name="email"
-                                        value={this.state.email}
-                                        onChange={this.onChangeEmail}
-                                        validations={[required, email]}
+                                        placeholder="Nombre"
+                                        name="firstname"
+                                        value={this.state.firstname}
+                                        onChange={this.onChangeFirstName}
+                                        validations={[required, vfirstname]}
                                     />
-                                </div>
 
-                                <div className="form-group">
-                                    <label htmlFor="password">Password</label>
-                                    <Input
-                                        type="password"
-                                        className="form-control"
-                                        name="password"
-                                        value={this.state.password}
-                                        onChange={this.onChangePassword}
-                                        validations={[required, vpassword]}
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="name">Name</label>
-                                    <Input
+                                    <RegisterFormInput
                                         type="text"
-                                        className="form-control"
-                                        name="name"
-                                        value={this.state.name}
-                                        onChange={this.onChangeName}
-                                        validations={[required, vname]}
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="lastName">Last Name</label>
-                                    <Input
-                                        type="text"
-                                        className="form-control"
+                                        placeholder="Apellido"
                                         name="lastName"
                                         value={this.state.lastName}
                                         onChange={this.onChangeLastName}
                                         validations={[required, vlastname]}
                                     />
-                                </div>
+                                    <RegisterFormInput
+                                        type="text"
+                                        placeholder="Correo Electrónico"
+                                        name="email"
+                                        value={this.state.email}
+                                        onChange={this.onChangeEmail}
+                                        validations={[required, email]}
+                                    />
 
-                                <div className="form-group">
-                                    <label htmlFor="role">Role</label>
-                                    <Select
-                                        className="form-control"
-                                        name="role"
-                                        value={this.state.role}
-                                        onChange={this.onChangeRole}
-                                        validations={[required]}
-                                    >
-                                        <option value="">Select Role</option>
-                                        <option value="user">User</option>
-                                        <option value="admin">Admin</option>
-                                    </Select>
-                                </div>
+                                    <RegisterFormInput
+                                        type="password"
+                                        placeholder="Contraseña"
+                                        name="password"
+                                        value={this.state.password}
+                                        onChange={this.onChangePassword}
+                                        validations={[required, vpassword]}
+                                    />
 
-                                <div className="form-group">
-                                    <button className="btn btn-primary btn-block">Sign Up</button>
+
+                                    <div className="register-containerbuttomsignin">
+                                        <AuthButton
+                                            loading={this.state.loading}
+                                            onClick={this.handleRegister}
+                                            className="login-containerbuttom1"
+                                        >
+                                            Crear Cuenta
+                                        </AuthButton>
+                                    </div>
+
+                                </>
+
+                                {this.state.message && (
+                                    <div className="form-group">
+                                        <div className={"register-containererror-message"}>
+                                            {this.state.message}
+                                        </div>
+                                    </div>
+                                )}
+                                <CheckButton
+                                    style={{ display: "none" }}
+                                    ref={c => {
+                                        this.checkBtn = c;
+                                    }}
+                                />
+                            </Form>
+                            <div className="register-containerregistersubtext">
+                                <div className="register-containerregistersectionsubtext1">
+                                    <span className="register-text08">
+                                        <span>
+                                            Al hacer clic en Crear Cuenta, aceptas los Términos de Servicio
+                                            y la Política de Privacidad de BiciRent Co.
+                                        </span>
+                                    </span>
                                 </div>
                             </div>
-                        )}
-
-                        {this.state.message && (
-                            <div className="form-group">
-                                <div
-                                    className={
-                                        this.state.successful
-                                            ? "alert alert-success"
-                                            : "alert alert-danger"
-                                    }
-                                    role="alert"
-                                >
-                                    {this.state.message}
+                            <div className="register-containersigninsubtext2">
+                                <div className="register-containerregistersectionsubtext2">
+                                    <span className="register-text12">
+                                        <span>¿No tienes cuenta?</span>
+                                    </span>
                                 </div>
                             </div>
-                        )}
-                        <CheckButton
-                            style={{ display: "none" }}
-                            ref={c => {
-                                this.checkBtn = c;
-                            }}
-                        />
-                    </Form>
+                            <div className="register-containerregisterbuttom">
+                                <AuthButton to="/login" className="login-containerbuttom2">
+                                    Iniciar Sesión
+                                </AuthButton>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         );
     }
 }

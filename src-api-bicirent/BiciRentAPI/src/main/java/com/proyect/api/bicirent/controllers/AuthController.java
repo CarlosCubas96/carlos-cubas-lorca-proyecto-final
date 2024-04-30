@@ -32,7 +32,7 @@ public class AuthController {
 			JwtResponse jwtResponse = authService.authenticateUser(loginRequest);
 			return ResponseEntity.ok(jwtResponse);
 		} catch (AuthenticationException e) {
-			return ResponseEntity.badRequest().body(new MessageResponse("Error: Incorrect username or password"));
+			return ResponseEntity.badRequest().body(new MessageResponse("Usuario o contraseña inválidos"));
 		}
 	}
 

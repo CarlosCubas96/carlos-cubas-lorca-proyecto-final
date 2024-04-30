@@ -32,7 +32,7 @@ class Login extends Component {
       username: "",
       password: "",
       loading: false,
-      message: ""
+      message: "",
     };
   }
 
@@ -72,9 +72,10 @@ class Login extends Component {
             error.message ||
             error.toString();
 
+
           this.setState({
             loading: false,
-            message: resMessage
+            message: resMessage,
           });
         }
       );

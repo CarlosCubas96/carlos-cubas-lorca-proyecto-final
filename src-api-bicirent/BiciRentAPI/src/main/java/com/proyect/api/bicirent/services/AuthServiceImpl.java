@@ -40,17 +40,24 @@ public class AuthServiceImpl implements AuthServiceI {
 		this.encoder = encoder;
 	}
 
+	// Métodos de registro de usuario
+
 	@Override
 	public MessageResponse registerUser(SignupRequest signUpRequest) {
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-			return new MessageResponse("Error: ¡El nombre de usuario ya está en uso!");
+			return new MessageResponse(Messages.USERNAME_ALREADY_EXISTS);
 		}
 
 		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-			return new MessageResponse("Error: ¡El correo electrónico ya está en uso!");
+			return new MessageResponse(Messages.EMAIL_ALREADY_EXISTS);
 		}
 
-		// Crear la cuenta del nuevo usuario
+		User user = createUserFromSignupRequest(signUpRequest);
+		userRepository.save(user);
+		return new MessageResponse(Messages.USER_REGISTERED_SUCCESSFULLY);
+	}
+
+	private User createUserFromSignupRequest(SignupRequest signUpRequest) {
 		User user = new User(signUpRequest.getUsername(), signUpRequest.getEmail(),
 				encoder.encode(signUpRequest.getPassword()), signUpRequest.getFirstname(), signUpRequest.getLastName());
 
@@ -58,28 +65,42 @@ public class AuthServiceImpl implements AuthServiceI {
 
 		if (roles == null || roles.isEmpty()) {
 			Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-					.orElseThrow(() -> new RuntimeException("Error: Rol no encontrado."));
+					.orElseThrow(() -> new RuntimeException(Messages.ROLE_NOT_FOUND));
 			user.setRoles(Set.of(userRole));
 		} else {
 			user.setRoles(roles);
 		}
-
-		userRepository.save(user);
-		return new MessageResponse("¡Usuario registrado exitosamente!");
+		return user;
 	}
+
+	// Métodos de autenticación de usuario
 
 	@Override
 	public JwtResponse authenticateUser(SigninRequest loginRequest) {
-		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+		Authentication authentication = authenticate(loginRequest.getUsername(), loginRequest.getPassword());
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = jwtUtils.generateJwtToken(authentication);
-
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-		List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
-				.collect(Collectors.toList());
+		List<String> roles = extractRolesFromUserDetails(userDetails);
 
 		return new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles);
+	}
+
+	private Authentication authenticate(String username, String password) {
+		return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+	}
+
+	private List<String> extractRolesFromUserDetails(UserDetailsImpl userDetails) {
+		return userDetails.getAuthorities().stream().map(item -> item.getAuthority()).collect(Collectors.toList());
+	}
+
+	// Constantes para mensajes
+
+	private static class Messages {
+		static final String USERNAME_ALREADY_EXISTS = "¡El nombre de usuario ya está en uso!";
+		static final String EMAIL_ALREADY_EXISTS = "¡El correo electrónico ya está en uso!";
+		static final String USER_REGISTERED_SUCCESSFULLY = "¡Usuario registrado exitosamente!";
+		static final String ROLE_NOT_FOUND = "Rol no encontrado.";
 	}
 }

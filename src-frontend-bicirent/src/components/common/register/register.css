@@ -1,14 +1,13 @@
-.login-container {
+.register-container {
     width: 100%;
     height: auto;
     display: flex;
     position: relative;
     align-items: flex-start;
     flex-direction: column;
-
 }
 
-.login-dash-board-signin {
+.register-dash-board-signin {
     width: 100%;
     height: auto;
     display: flex;
@@ -18,7 +17,7 @@
     background-size: cover;
 }
 
-.login-containermainsignin {
+.register-containermainsignin {
     width: 100%;
     height: 735px;
     display: flex;
@@ -28,7 +27,7 @@
     justify-content: center;
 }
 
-.login-containersignin {
+.register-containersignin {
     width: 512px;
     height: 695px;
     display: flex;
@@ -38,7 +37,7 @@
     flex-direction: column;
 }
 
-.login-containersignintitle {
+.register-containersignintitle {
     width: 512px;
     height: 58px;
     display: flex;
@@ -48,18 +47,18 @@
     flex-direction: column;
 }
 
-.login-containerregistersectiontitle {
+.register-containerregistersectiontitle {
     display: flex;
-    align-self: stretch;
-    align-items: flex-start;
+    align-self: center;
+    align-items: center;
     flex-direction: column;
     justify-content: center;
 }
 
-.login-text {
+.register-text {
     color: rgba(17, 20, 22, 1);
     height: auto;
-    font-size: 24px;
+    font-size: 28px;
     font-style: Bold;
     text-align: center;
     font-family: Inter;
@@ -69,39 +68,8 @@
     text-decoration: none;
 }
 
-.login-containersigninsubtext {
-    width: 512px;
-    height: 58px;
-    display: flex;
-    padding: 4px 16px 12px;
-    align-items: center;
-    flex-shrink: 0;
-    flex-direction: column;
-    justify-content: center;
-}
 
-.login-containerregistersectionsubtext {
-    display: flex;
-    align-self: stretch;
-    align-items: flex-start;
-    flex-direction: column;
-}
-
-.login-text02 {
-    color: rgba(17, 20, 22, 1);
-    width: 478px;
-    height: auto;
-    font-size: 14px;
-    font-style: Regular;
-    text-align: left;
-    font-family: Inter;
-    font-weight: 400;
-    line-height: 21px;
-    font-stretch: normal;
-    text-decoration: none;
-}
-
-.login-containerbuttomsignin {
+.register-containerbuttomsignin {
     width: 512px;
     height: 64px;
     display: flex;
@@ -111,7 +79,7 @@
     flex-shrink: 0;
 }
 
-.login-containerregistersubtext {
+.register-containerregistersubtext {
     width: 512px;
     height: 58px;
     display: flex;
@@ -121,14 +89,14 @@
     flex-direction: column;
 }
 
-.login-containerregistersectionsubtext1 {
+.register-containerregistersectionsubtext1 {
     display: flex;
     align-self: stretch;
     align-items: flex-start;
     flex-direction: column;
 }
 
-.login-text08 {
+.register-text08 {
     color: rgba(99, 117, 135, 1);
     width: 478px;
     height: auto;
@@ -142,7 +110,7 @@
     text-decoration: none;
 }
 
-.login-containersigninsubtext2 {
+.register-containersigninsubtext2 {
     width: 512px;
     height: 37px;
     display: flex;
@@ -152,14 +120,14 @@
     flex-direction: column;
 }
 
-.login-containerregistersectionsubtext2 {
+.register-containerregistersectionsubtext2 {
     display: flex;
     align-self: stretch;
     align-items: center;
     flex-direction: column;
 }
 
-.login-text12 {
+.register-text12 {
     color: rgba(99, 117, 135, 1);
     height: auto;
     font-size: 14px;
@@ -172,7 +140,7 @@
     text-decoration: none;
 }
 
-.login-containerregisterbuttom {
+.register-containerregisterbuttom {
     width: 512px;
     height: 64px;
     display: flex;
@@ -182,7 +150,7 @@
     flex-shrink: 0;
 }
 
-.login-containererror-message {
+.register-containererror-message {
     width: 512px;
     height: 64px;
     display: flex;

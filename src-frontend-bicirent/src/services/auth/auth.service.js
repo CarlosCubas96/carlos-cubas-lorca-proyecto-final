@@ -15,8 +15,17 @@ class AuthService {
         }
 
         return response.data;
+      })
+      .catch(error => {
+        if (error.response && error.response.data) {
+          throw error.response.data;
+
+        } else {
+          throw new Error("Error de conexión");
+        }
       });
   }
+
 
   logout() {
     localStorage.removeItem("user");

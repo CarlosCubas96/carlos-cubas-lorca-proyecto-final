@@ -3,8 +3,9 @@ package com.proyect.api.bicirent.dto.request;
 import jakarta.validation.constraints.NotBlank;
 
 public class SigninRequest {
+	
 	@NotBlank
-  private String username;
+	private String username;
 
 	@NotBlank
 	private String password;
