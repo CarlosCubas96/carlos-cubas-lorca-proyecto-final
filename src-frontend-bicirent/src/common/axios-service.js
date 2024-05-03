@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authHeader from '../services/auth/auth.header';
 
-const BASE_URL = 'http://localhost:8081/api/';
+const BASE_URL = 'http://localhost:8081/api';
 
 class AxiosService {
   constructor() {

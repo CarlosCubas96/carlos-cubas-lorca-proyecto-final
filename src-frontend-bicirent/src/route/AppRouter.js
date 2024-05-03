@@ -20,13 +20,13 @@ const AppRouter = () => {
                 </ProtectedRoute>
             } />
 
-<Route path="/admin/usuarios" element={
+            <Route path="/admin/usuarios" element={
                 <ProtectedRoute roles={['ROLE_ADMIN']}>
                     <UsersPanel />
                 </ProtectedRoute>
             } />
 
-             <Route path="no-access" element={<NoPermissionPage />} />
+            <Route path="no-access" element={<NoPermissionPage />} />
         </Routes>
     );
 };

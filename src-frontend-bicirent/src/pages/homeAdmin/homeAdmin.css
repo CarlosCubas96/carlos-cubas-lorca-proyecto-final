@@ -476,7 +476,7 @@
 .admin-dashboard-main-containermainsectioncontent {
     gap: 16px;
     width: 921px;
-    height: 401.5px;
+    height: auto;
     display: flex;
     padding: 24px 16px;
     position: relative;
@@ -794,7 +794,7 @@
     top: 24px;
     left: 16px;
     width: 436px;
-    height: 353.5px;
+    height: auto;
     display: flex;
     padding: 24px;
     position: absolute;
@@ -871,146 +871,22 @@
     flex-direction: column;
 }
 
-.admin-dashboard-main-containercontentmainchar {
-    gap: 8px;
-    width: 386.5px;
-    height: 207.5px;
+.admin-dashboard-main-containercontentmain1 {
+    width: 100%;
+    /* Establece el ancho al 100% del contenedor padre */
+    height: 100%;
+    /* Establece la altura al 100% del contenedor padre */
     display: flex;
-    align-items: flex-start;
-    flex-shrink: 0;
-    flex-direction: column;
+    /* Usa flexbox para gestionar el layout */
+    justify-content: center;
+    /* Centra el contenido horizontalmente */
+    align-items: center;
+    /* Centra el contenido verticalmente */
 }
 
-.admin-dashboard-main-containercharmain {
-    width: 386.5px;
-    height: 180px;
-    display: flex;
-    padding: 16px 0;
-    align-items: flex-start;
-    flex-shrink: 0;
-    flex-direction: column;
-}
-
-.admin-dashboard-main-containerchar {
-    width: 386px;
-    height: 148px;
-}
-
-.admin-dashboard-main-containerchartext {
-    width: 386.5px;
-    height: 19.5px;
-    display: flex;
-    align-items: flex-start;
-    flex-shrink: 0;
-    justify-content: space-between;
-}
-
-.admin-dashboard-main-containerchartext1 {
-    width: 28.921875px;
-    height: 19.5px;
-    display: flex;
-    align-items: flex-start;
-    flex-shrink: 0;
-    flex-direction: column;
-}
-
-.admin-dashboard-main-text60 {
-    color: rgba(114, 114, 114, 1);
-    height: auto;
-    font-size: 13px;
-    font-style: Bold;
-    text-align: left;
-    font-family: Plus Jakarta Sans;
-    font-weight: 700;
-    line-height: 19.5px;
-    font-stretch: normal;
-    text-decoration: none;
-}
-
-.admin-dashboard-main-containerchartext2 {
-    width: 30.953125px;
-    height: 19.5px;
-    display: flex;
-    align-items: flex-start;
-    flex-shrink: 0;
-    flex-direction: column;
-}
-
-.admin-dashboard-main-text62 {
-    color: rgba(114, 114, 114, 1);
-    height: auto;
-    font-size: 13px;
-    font-style: Bold;
-    text-align: left;
-    font-family: Plus Jakarta Sans;
-    font-weight: 700;
-    line-height: 19.5px;
-    font-stretch: normal;
-    text-decoration: none;
-}
-
-.admin-dashboard-main-containerchartext3 {
-    width: 37.625px;
-    height: 19.5px;
-    display: flex;
-    align-items: flex-start;
-    flex-shrink: 0;
-    flex-direction: column;
-}
-
-.admin-dashboard-main-text64 {
-    color: rgba(114, 114, 114, 1);
-    height: auto;
-    font-size: 13px;
-    font-style: Bold;
-    text-align: left;
-    font-family: Plus Jakarta Sans;
-    font-weight: 700;
-    line-height: 19.5px;
-    font-stretch: normal;
-    text-decoration: none;
-}
-
-.admin-dashboard-main-containerchartext4 {
-    width: 36.890625px;
-    height: 19.5px;
-    display: flex;
-    align-items: flex-start;
-    flex-shrink: 0;
-    flex-direction: column;
-}
-
-.admin-dashboard-main-text66 {
-    color: rgba(114, 114, 114, 1);
-    height: auto;
-    font-size: 13px;
-    font-style: Bold;
-    text-align: left;
-    font-family: Plus Jakarta Sans;
-    font-weight: 700;
-    line-height: 19.5px;
-    font-stretch: normal;
-    text-decoration: none;
-}
-
-.admin-dashboard-main-containerchartext5 {
-    width: 39.875px;
-    height: 19.5px;
-    display: flex;
-    align-items: flex-start;
-    flex-shrink: 0;
-    flex-direction: column;
-}
-
-.admin-dashboard-main-text68 {
-    color: rgba(114, 114, 114, 1);
-    height: auto;
-    font-size: 13px;
-    font-style: Bold;
-    text-align: left;
-    font-family: Plus Jakarta Sans;
-    font-weight: 700;
-    line-height: 19.5px;
-    font-stretch: normal;
-    text-decoration: none;
+.recharts-wrapper {
+    width: 100% !important;
+    /* Asegura que Recharts ocupe el 100% del ancho disponible */
+    height: auto !important;
+    /* Ajusta la altura automáticamente */
 }

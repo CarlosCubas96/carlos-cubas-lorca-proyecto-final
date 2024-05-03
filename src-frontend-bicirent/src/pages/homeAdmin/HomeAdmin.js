@@ -1,44 +1,101 @@
 import React, { Component } from "react";
-import Header from "../../components/common/layout/header/header"
-
-import "./homeAdmin.css"
-
+import { parseISO, format } from 'date-fns';
+import { es } from 'date-fns/locale';
 
 import authService from "../../services/auth/auth.service";
+import StatisticsService from "../../services/stadistics/stadistics.service";
+import Header from "../../components/common/layout/header/header";
 import SidebarsectionAdmin from "../../components/admin/aside/sidebarsectionAdmin";
-
+import RentalLineChart from "../../components/UI/charts/RentalLineChart";
+import './homeAdmin.css';
 
 export default class HomeAdmin extends Component {
     constructor(props) {
         super(props);
         this.state = {
             currentUser: undefined,
+            rentalData: undefined,
+            generalStats: undefined,
+            bicyclesByCategory: undefined,
+            error: null
+
         };
     }
 
     componentDidMount() {
         const user = authService.getCurrentUser();
         if (user) {
-            this.setState({
-                currentUser: user,
-            });
+            this.setState({ currentUser: user });
         }
+        this.loadRentalData();
+        this.loadGeneralStats();
+        this.loadBicyclesByCategory();
     }
 
+    loadRentalData = () => {
+        StatisticsService.getRentalsOverTime()
+            .then(data => {
+                this.setState({ rentalData: data, error: null });
+                console.log("Rental Data:", data);
+            })
+            .catch(error => {
+                this.setState({ error: error.toString(), rentalData: undefined });
+                console.error("Error fetching data: ", error);
+            });
+    };
+
+    loadGeneralStats = () => {
+        StatisticsService.getGeneralStats()
+            .then(data => {
+                this.setState({ generalStats: data });
+                console.log("GeneralStats: ", data);
+            })
+            .catch(error => {
+                this.setState({ error: error.toString() });
+                console.log("Error fetching data: ", error);
+            });
+    };
+
+    loadBicyclesByCategory = () => {
+        StatisticsService.getBicyclesByCategory()
+            .then(data => {
+                this.setState({ bicyclesByCategory: data });
+                console.log("BicyclesByCategory: ", data);
+            })
+            .catch(error => {
+                this.setState({ error: error.toString() });
+                console.log("Error fetching data: ", error);
+            });
+    };
+
+
+
+
     render() {
-        const { currentUser } = this.state;
+        const { currentUser, rentalData, error } = this.state;
+
+        let contentHeaderDate = "Cargando datos de alquileres..."; // Mensaje predeterminado
+
+        if (rentalData && Object.keys(rentalData).length > 0) {
+            const dates = Object.keys(rentalData).sort();
+            const firstDate = dates[0];
+            const lastDate = dates[dates.length - 1];
+            const formattedFirstDate = format(parseISO(firstDate), 'MMMM d, yyyy', { locale: es });
+            const formattedLastDate = format(parseISO(lastDate), 'MMMM d, yyyy', { locale: es });
+            contentHeaderDate = `${formattedFirstDate} - ${formattedLastDate}`;
+        }
 
         return (
 
             <>
-                {/*  */}
+
 
                 <div className="admin-dashboard-main-container">
                     <div className="admin-dashboard-main-dash-board-main-admin">
 
 
                         <Header currentUser={currentUser} />
-                        
+
                         <div className="admin-dashboard-main-containerdashboardadmin">
                             <div className="admin-dashboard-main-containerdashboardsections">
 
@@ -64,11 +121,7 @@ export default class HomeAdmin extends Component {
                                                     <span>12</span>
                                                 </span>
                                             </div>
-                                            <div className="admin-dashboard-main-containerfeaturepercent">
-                                                <span className="admin-dashboard-main-text24">
-                                                    <span>+4%</span>
-                                                </span>
-                                            </div>
+
                                         </div>
                                         <div className="admin-dashboard-main-containerfeaturelist1">
                                             <div className="admin-dashboard-main-containerfeaturetitle1">
@@ -81,11 +134,7 @@ export default class HomeAdmin extends Component {
                                                     <span>10</span>
                                                 </span>
                                             </div>
-                                            <div className="admin-dashboard-main-containerfeaturepercent1">
-                                                <span className="admin-dashboard-main-text30">
-                                                    <span>+4%</span>
-                                                </span>
-                                            </div>
+
                                         </div>
                                         <div className="admin-dashboard-main-containerfeaturelist2">
                                             <div className="admin-dashboard-main-containerfeaturetitle2">
@@ -187,48 +236,17 @@ export default class HomeAdmin extends Component {
                                                 </div>
                                                 <div className="admin-dashboard-main-containercontentheaderdate">
                                                     <span className="admin-dashboard-main-text58">
-                                                        <span>Enero 1, 2024 - Enero 31, 2024</span>
+                                                        {contentHeaderDate}
                                                     </span>
                                                 </div>
                                             </div>
                                             <div className="admin-dashboard-main-containercontentmain1">
-                                                <div className="admin-dashboard-main-containercontentmainchar">
-                                                    <div className="admin-dashboard-main-containercharmain">
-                                                        <img
-                                                            src="https://play.teleporthq.io/static/svg/default-img.svg"
-                                                            alt="containerchar1184"
-                                                            className="admin-dashboard-main-containerchar"
-                                                        />
-                                                    </div>
-                                                    <div className="admin-dashboard-main-containerchartext">
-                                                        <div className="admin-dashboard-main-containerchartext1">
-                                                            <span className="admin-dashboard-main-text60">
-                                                                <span>Jan 1</span>
-                                                            </span>
-                                                        </div>
-                                                        <div className="admin-dashboard-main-containerchartext2">
-                                                            <span className="admin-dashboard-main-text62">
-                                                                <span>Jan 7</span>
-                                                            </span>
-                                                        </div>
-                                                        <div className="admin-dashboard-main-containerchartext3">
-                                                            <span className="admin-dashboard-main-text64">
-                                                                <span>Jan 14</span>
-                                                            </span>
-                                                        </div>
-                                                        <div className="admin-dashboard-main-containerchartext4">
-                                                            <span className="admin-dashboard-main-text66">
-                                                                <span>Jan 21</span>
-                                                            </span>
-                                                        </div>
-                                                        <div className="admin-dashboard-main-containerchartext5">
-                                                            <span className="admin-dashboard-main-text68">
-                                                                <span>Jan 28</span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
+
+                                                {error && <p>Error al cargar los datos de la gráfica: {error}</p>}
+                                                {rentalData ? <RentalLineChart rentalData={rentalData} /> : <p>{contentHeaderDate}</p>}
+
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
