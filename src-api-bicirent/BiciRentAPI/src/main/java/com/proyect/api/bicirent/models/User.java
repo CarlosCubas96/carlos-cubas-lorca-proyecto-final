@@ -4,9 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "BR_USERS", uniqueConstraints = { @UniqueConstraint(columnNames = "USERNAME"),
@@ -18,28 +16,22 @@ public class User {
 	private Long id;
 
 	@NotBlank
-	@Size(max = 50)
 	@Column(name = "USERNAME")
 	private String username;
 
 	@NotBlank
-	@Size(max = 20)
 	@Column(name = "FIRSTNAME")
 	private String firstname;
 
 	@NotBlank
-	@Size(max = 20)
 	@Column(name = "LASTNAME")
 	private String lastname;
 
 	@NotBlank
-	@Size(max = 50)
-	@Email
 	@Column(name = "EMAIL")
 	private String email;
 
 	@NotBlank
-	@Size(max = 120)
 	@Column(name = "PASSWORD")
 	private String password;
 

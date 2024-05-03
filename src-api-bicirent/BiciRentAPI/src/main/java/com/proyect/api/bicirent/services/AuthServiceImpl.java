@@ -40,8 +40,6 @@ public class AuthServiceImpl implements AuthServiceI {
 		this.encoder = encoder;
 	}
 
-	// Métodos de registro de usuario
-
 	@Override
 	public MessageResponse registerUser(SignupRequest signUpRequest) {
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
@@ -72,8 +70,6 @@ public class AuthServiceImpl implements AuthServiceI {
 		}
 		return user;
 	}
-
-	// Métodos de autenticación de usuario
 
 	@Override
 	public JwtResponse authenticateUser(SigninRequest loginRequest) {
