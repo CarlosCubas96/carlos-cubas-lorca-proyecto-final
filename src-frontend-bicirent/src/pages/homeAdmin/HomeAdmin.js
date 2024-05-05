@@ -8,6 +8,7 @@ import Header from "../../components/common/layout/header/header";
 import SidebarsectionAdmin from "../../components/admin/aside/sidebarsectionAdmin";
 import RentalLineChart from "../../components/UI/charts/RentalLineChart";
 import './homeAdmin.css';
+import Utils from "../../common/utils";
 
 export default class HomeAdmin extends Component {
     constructor(props) {
@@ -16,21 +17,30 @@ export default class HomeAdmin extends Component {
             currentUser: undefined,
             rentalData: undefined,
             generalStats: undefined,
+            totalBicycles: 0,
             bicyclesByCategory: undefined,
             error: null
 
         };
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         const user = authService.getCurrentUser();
         if (user) {
             this.setState({ currentUser: user });
         }
+
         this.loadRentalData();
-        this.loadGeneralStats();
-        this.loadBicyclesByCategory();
+
+        try {
+            await this.loadGeneralStats(); // Esperar a que los stats generales sean cargados
+            await this.loadBicyclesByCategory(); // Solo se llama después de que loadGeneralStats ha completado
+        } catch (error) {
+            console.error("Error loading data: ", error);
+        }
     }
+
+
 
     loadRentalData = () => {
         StatisticsService.getRentalsOverTime()
@@ -44,37 +54,51 @@ export default class HomeAdmin extends Component {
             });
     };
 
-    loadGeneralStats = () => {
-        StatisticsService.getGeneralStats()
-            .then(data => {
-                this.setState({ generalStats: data });
-                console.log("GeneralStats: ", data);
-            })
-            .catch(error => {
-                this.setState({ error: error.toString() });
-                console.log("Error fetching data: ", error);
-            });
+    loadGeneralStats = async () => {
+        try {
+            const data = await StatisticsService.getGeneralStats();
+            const filteredStats = {
+                'Bicicletas Alquiladas': data['Bicicletas Alquiladas'],
+                'Total de Alquileres': data['Total de Alquileres'],
+                'Alquileres Completados': data['Alquileres Completados'],
+                'Usuarios Totales': data['Total de Usuarios'],
+                'totalBicycles': data['totalBicycles']
+            };
+            this.setState({ generalStats: filteredStats });
+            console.log("GeneralStats: ", filteredStats);
+        } catch (error) {
+            this.setState({ error: error.toString() });
+            console.log("Error fetching data: ", error);
+        }
     };
 
-    loadBicyclesByCategory = () => {
-        StatisticsService.getBicyclesByCategory()
-            .then(data => {
-                this.setState({ bicyclesByCategory: data });
-                console.log("BicyclesByCategory: ", data);
-            })
-            .catch(error => {
-                this.setState({ error: error.toString() });
-                console.log("Error fetching data: ", error);
-            });
+    loadBicyclesByCategory = async () => {
+        try {
+            const data = await StatisticsService.getBicyclesByCategory();
+            const total = this.state.generalStats.totalBicycles;
+            console.log("Total de bicicletas:", total);
+
+            const percentages = Object.keys(data).reduce((acc, key) => {
+                acc[key] = (data[key] / total) * 100;
+                return acc;
+            }, {});
+
+            this.setState({ bicyclesByCategory: percentages });
+            console.log("BicyclesByCategory porcentajes:", percentages);
+        } catch (error) {
+            this.setState({ error: error.toString() });
+            console.error("Error fetching bicycles by category: ", error);
+        }
     };
+
 
 
 
 
     render() {
-        const { currentUser, rentalData, error } = this.state;
+        const { currentUser, rentalData, error, bicyclesByCategory, generalStats } = this.state;
 
-        let contentHeaderDate = "Cargando datos de alquileres..."; // Mensaje predeterminado
+        let contentHeaderDate = "Cargando datos de alquileres...";
 
         if (rentalData && Object.keys(rentalData).length > 0) {
             const dates = Object.keys(rentalData).sort();
@@ -82,8 +106,9 @@ export default class HomeAdmin extends Component {
             const lastDate = dates[dates.length - 1];
             const formattedFirstDate = format(parseISO(firstDate), 'MMMM d, yyyy', { locale: es });
             const formattedLastDate = format(parseISO(lastDate), 'MMMM d, yyyy', { locale: es });
-            contentHeaderDate = `${formattedFirstDate} - ${formattedLastDate}`;
+            contentHeaderDate = `${Utils.capitalize(formattedFirstDate)} - ${Utils.capitalize(formattedLastDate)}`;
         }
+        
 
         return (
 
@@ -110,68 +135,29 @@ export default class HomeAdmin extends Component {
                                         </div>
                                     </div>
                                     <div className="admin-dashboard-main-containermainsectionfeaturelist">
-                                        <div className="admin-dashboard-main-containerfeaturelist">
-                                            <div className="admin-dashboard-main-containerfeaturetitle">
-                                                <span className="admin-dashboard-main-text20">
-                                                    <span>Total de Alquileres</span>
-                                                </span>
-                                            </div>
-                                            <div className="admin-dashboard-main-containerfeaturetext">
-                                                <span className="admin-dashboard-main-text22">
-                                                    <span>12</span>
-                                                </span>
-                                            </div>
 
-                                        </div>
-                                        <div className="admin-dashboard-main-containerfeaturelist1">
-                                            <div className="admin-dashboard-main-containerfeaturetitle1">
-                                                <span className="admin-dashboard-main-text26">
-                                                    <span>Alquileres completados</span>
-                                                </span>
-                                            </div>
-                                            <div className="admin-dashboard-main-containerfeaturetext1">
-                                                <span className="admin-dashboard-main-text28">
-                                                    <span>10</span>
-                                                </span>
-                                            </div>
+                                        {generalStats && Object.entries(generalStats).slice(0, 4).map(([label, value]) => (
+                                            <div key={label} className="admin-dashboard-main-containerfeaturelist">
+                                                <div className="admin-dashboard-main-containerfeaturetitle">
+                                                    <span className="admin-dashboard-main-text20">
+                                                        <span>{label} </span>
+                                                    </span>
+                                                </div>
+                                                <div className="admin-dashboard-main-containerfeaturetext">
+                                                    <span className="admin-dashboard-main-text22">
+                                                        <span>{value}</span>
+                                                    </span>
+                                                </div>
 
-                                        </div>
-                                        <div className="admin-dashboard-main-containerfeaturelist2">
-                                            <div className="admin-dashboard-main-containerfeaturetitle2">
-                                                <span className="admin-dashboard-main-text32">
-                                                    <span>Usuarios Totales</span>
-                                                </span>
                                             </div>
-                                            <div className="admin-dashboard-main-containerfeaturetext2">
-                                                <span className="admin-dashboard-main-text34">
-                                                    <span>2</span>
-                                                </span>
-                                            </div>
-                                            <div className="admin-dashboard-main-containerfeaturepercent2">
-                                                <span className="admin-dashboard-main-text36">
-                                                    <span>+4%</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div className="admin-dashboard-main-containerfeaturelist3">
-                                            <div className="admin-dashboard-main-containerfeaturetitle3">
-                                                <span className="admin-dashboard-main-text38">
-                                                    <span>Bicicletas Alquiladas</span>
-                                                </span>
-                                            </div>
-                                            <div className="admin-dashboard-main-containerfeaturetext3">
-                                                <span className="admin-dashboard-main-text40">
-                                                    <span>4</span>
-                                                </span>
-                                            </div>
-                                            <div className="admin-dashboard-main-containerfeaturepercent3">
-                                                <span className="admin-dashboard-main-text42">
-                                                    <span>+4%</span>
-                                                </span>
-                                            </div>
-                                        </div>
+                                        ))}
+
+
+
+
                                     </div>
                                     <div className="admin-dashboard-main-containermainsectioncontent">
+
                                         <div className="admin-dashboard-main-containersectioncontent2">
                                             <div className="admin-dashboard-main-containercontentheader">
                                                 <span className="admin-dashboard-main-text44">
@@ -179,51 +165,20 @@ export default class HomeAdmin extends Component {
                                                 </span>
                                             </div>
                                             <div className="admin-dashboard-main-containercontentmain">
-                                                <div className="admin-dashboard-main-containercontentmaincategories">
-                                                    <div className="admin-dashboard-main-containercategoriessidebar">
-                                                        <div className="admin-dashboard-main-containercategoriessidebartext">
-                                                            <span className="admin-dashboard-main-text46">
-                                                                <span>Montaña</span>
-                                                            </span>
+                                                <div className="admin-dashboard-main-containercategoriessidebar">
+                                                    {bicyclesByCategory && Object.entries(bicyclesByCategory).map(([categoryName, percentage]) => (
+                                                        <div key={categoryName} className="admin-dashboard-main-containernav-progress-category">
+                                                            <div className="admin-dashboard-main-containercategoriessidebartext">
+                                                                <span className="admin-dashboard-main-text46">
+                                                                    <span>{Utils.capitalize(categoryName)}</span>
+                                                                </span>
+                                                            </div>
+                                                            <div className="progress admin-dashboard-main-containernav-progress">
+                                                                <div className="progress-bar admin-dashboard-main-nav-progress" style={{ width: `${percentage}%` }} role="progressbar" aria-valuenow={percentage} aria-valuemin="0" aria-valuemax="100">
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div className="admin-dashboard-main-containercategoriessidebartext1">
-                                                            <span className="admin-dashboard-main-text48">
-                                                                <span>Paseo</span>
-                                                            </span>
-                                                        </div>
-                                                        <div className="admin-dashboard-main-containercategoriessidebartext2">
-                                                            <span className="admin-dashboard-main-text50">
-                                                                <span>Trabajo</span>
-                                                            </span>
-                                                        </div>
-                                                        <div className="admin-dashboard-main-containercategoriessidebartext3">
-                                                            <span className="admin-dashboard-main-text52">
-                                                                <span>Viajes</span>
-                                                            </span>
-                                                        </div>
-                                                        <div className="admin-dashboard-main-containercategoriessidebartext4">
-                                                            <span className="admin-dashboard-main-text54">
-                                                                <span>Reparto</span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div className="admin-dashboard-main-containercategoriesnav-progress">
-                                                        <div className="admin-dashboard-main-containernav-progress">
-                                                            <div className="admin-dashboard-main-nav-progress"></div>
-                                                        </div>
-                                                        <div className="admin-dashboard-main-containernav-progress1">
-                                                            <div className="admin-dashboard-main-nav-progress1"></div>
-                                                        </div>
-                                                        <div className="admin-dashboard-main-containernav-progress2">
-                                                            <div className="admin-dashboard-main-nav-progress2"></div>
-                                                        </div>
-                                                        <div className="admin-dashboard-main-containernav-progress3">
-                                                            <div className="admin-dashboard-main-nav-progress3"></div>
-                                                        </div>
-                                                        <div className="admin-dashboard-main-containernav-progress4">
-                                                            <div className="admin-dashboard-main-nav-progress4"></div>
-                                                        </div>
-                                                    </div>
+                                                    ))}
                                                 </div>
                                             </div>
                                         </div>
@@ -242,7 +197,7 @@ export default class HomeAdmin extends Component {
                                             </div>
                                             <div className="admin-dashboard-main-containercontentmain1">
 
-                                                {error && <p>Error al cargar los datos de la gráfica: {error}</p>}
+                                                {error && <p>Error al cargar los datos de la gráfica</p>}
                                                 {rentalData ? <RentalLineChart rentalData={rentalData} /> : <p>{contentHeaderDate}</p>}
 
                                             </div>
@@ -258,3 +213,4 @@ export default class HomeAdmin extends Component {
         );
     }
 }
+

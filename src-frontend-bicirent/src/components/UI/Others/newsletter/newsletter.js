@@ -1,7 +1,7 @@
 import React from 'react'
 
 import './newsletter.css'
-import PrimaryButton from '../Button/PrimaryButton/primaryButton'
+import PrimaryButton from '../../Button/PrimaryButton/primaryButton'
 
 const Newsletter = (props) => {
     return (

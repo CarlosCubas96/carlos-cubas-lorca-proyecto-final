@@ -1,11 +1,11 @@
 import React from 'react';
 import './main.css';
-import Banner from '../../../UI/banner/banner';
-import Feauture from '../../../UI/feature/feature';
-import Category from '../../../UI/category/category';
-import FeatureList from '../../../UI/feature-list/feature-list';
-import Post from '../../../UI/post/post';
-import Newsletter from '../../../UI/newsletter/newsletter';
+import Banner from '../../../UI/Others/banner/banner';
+import Feauture from '../../../UI/Others/feature/feature';
+import Category from '../../../UI/Others/category/category';
+import FeatureList from '../../../UI/Others/feature-list/feature-list';
+import Post from '../../../UI/Others/post/post';
+import Newsletter from '../../../UI/Others/newsletter/newsletter';
 
 const Main = () => {
   return (

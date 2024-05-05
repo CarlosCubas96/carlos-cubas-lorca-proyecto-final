@@ -48,12 +48,19 @@ public class StatisticsServiceImpl implements StatisticsServiceI {
 	public long getCurrentlyRentedBicycles() {
 		return rentalRepository.countByRentalStatus(RentalStatus.ACTIVE);
 	}
+	
+	@Override
+	public long getTotalBicycles() {
+		System.out.println(rentalRepository.count());
+		return rentalRepository.count();
+	}
 
 	@Override
-	public Map<String, Long> getBicyclesByCategory() {
+	public Map<String, Double> getBicyclesByCategoryPercentage() {
 		List<Bicycle> bicycles = bicycleRepository.findAll();
-		return bicycles.stream()
-				.collect(Collectors.groupingBy(b -> b.getCategory().getCategoryName(), Collectors.counting()));
+		long total = bicycles.size();
+		return bicycles.stream().collect(Collectors.groupingBy(b -> b.getCategory().getCategoryName(),
+				Collectors.collectingAndThen(Collectors.counting(), count -> 100.0 * count / total)));
 	}
 
 	@Override

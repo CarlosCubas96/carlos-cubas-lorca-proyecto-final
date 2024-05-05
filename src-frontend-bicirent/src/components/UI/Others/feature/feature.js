@@ -1,7 +1,7 @@
 import React from 'react'
 
 import './feature.css'
-import SearchBoxButton from '../Button/SearchBoxButton/searchBoxButton'
+import SearchBoxButton from '../../Button/SearchBoxButton/searchBoxButton'
 
 const Feauture = (props) => {
   return (

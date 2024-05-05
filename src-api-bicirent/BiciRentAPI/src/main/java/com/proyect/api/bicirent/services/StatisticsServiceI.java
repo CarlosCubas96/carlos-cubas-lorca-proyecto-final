@@ -11,8 +11,10 @@ public interface StatisticsServiceI {
 	long getCompletedRentals();
 
 	long getCurrentlyRentedBicycles();
+	
+	long getTotalBicycles();
 
-	Map<String, Long> getBicyclesByCategory();
+	Map<String, Double> getBicyclesByCategoryPercentage();
 
 	Map<String, Long> getDailyRentalsOverLastMonth();
 

@@ -1,5 +1,5 @@
 package com.proyect.api.bicirent.models;
 
 public enum CategoryType {
-    TRANSPORTE, TRABAJO, OCIO;
+	MONTAÑA, TRABAJO, VIAJES, PASEO, REPARTO;
 }

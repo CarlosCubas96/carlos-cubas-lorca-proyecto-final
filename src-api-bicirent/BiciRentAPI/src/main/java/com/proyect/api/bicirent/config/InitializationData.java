@@ -25,6 +25,8 @@ import com.proyect.api.bicirent.repository.RentalRepository;
 import com.proyect.api.bicirent.repository.RoleRepository;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -82,7 +84,6 @@ public class InitializationData implements CommandLineRunner {
 
 		initializeBicyclesAndPosts();
 
-		initializeRentals();
 	}
 
 	private void createUser(String username, String firstname, String lastname, String email, String password,
@@ -103,16 +104,26 @@ public class InitializationData implements CommandLineRunner {
 	private void initializeBicyclesAndPosts() {
 		User admin = userRepository.findByUsername("admin").orElseThrow();
 
-		Category category = new Category("Ocio", CategoryType.OCIO);
-		categoryRepository.save(category);
+		// Asegurarte de que todas las categorías estén presentes en la lista
+		List<Category> categories = categoryRepository.findAll();
+		if (categories.isEmpty()) {
+			for (CategoryType categoryType : CategoryType.values()) {
+				Category newCategory = new Category(categoryType.name(), categoryType);
+				Category savedCategory = categoryRepository.save(newCategory);
+				categories.add(savedCategory);
+			}
+		}
 
-		for (int i = 0; i < 30; i++) {
+		for (int i = 0; i < 50; i++) {
+			int randomIndex = faker.number().numberBetween(0, categories.size());
+			Category randomCategory = categories.get(randomIndex);
+
 			Post post = new Post(faker.book().title(), faker.lorem().sentence(), PostStatus.AVAILABLE, LocalDate.now(),
-					faker.lorem().paragraph(), admin, category);
+					faker.lorem().paragraph(), admin, randomCategory);
 			postRepository.save(post);
 
 			Bicycle bicycle = new Bicycle(faker.company().name(), post, faker.commerce().productName(),
-					faker.number().randomDouble(2, 10, 100), admin, category);
+					faker.number().randomDouble(2, 10, 100), admin, randomCategory);
 			bicycleRepository.save(bicycle);
 
 			Rental rental = new Rental(admin, admin, bicycle,
@@ -120,18 +131,7 @@ public class InitializationData implements CommandLineRunner {
 					LocalDate.now().plusDays(faker.number().numberBetween(1, 15)),
 					RentalStatus.values()[faker.number().numberBetween(0, RentalStatus.values().length)]);
 			rentalRepository.save(rental);
-
 		}
-
 	}
 
-	private void initializeRentals() {
-		User admin = userRepository.findByUsername("admin").orElseThrow();
-		Bicycle bike = bicycleRepository.findByOwner(admin).stream().findFirst().orElseThrow();
-
-		Rental rental = new Rental(admin, admin, bike, LocalDate.now(), LocalDate.now().plusDays(2),
-				RentalStatus.COMPLETED);
-
-		rentalRepository.save(rental);
-	}
 }

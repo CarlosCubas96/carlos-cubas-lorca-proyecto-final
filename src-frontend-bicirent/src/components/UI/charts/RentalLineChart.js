@@ -7,24 +7,19 @@ import 'chart.js/auto';
 const RentalLineChart = ({ rentalData }) => {
     // Extraer y preparar datos para el gráfico
     const entries = Object.entries(rentalData).sort((a, b) => a[0].localeCompare(b[0]));
-    const labels = entries.map(([date], index) =>
-        index % 5 === 0 ? format(parseISO(date), 'dd MMM', { locale: es }) : ''
-    );
-    const dataPoints = entries.map(([, count]) => count);
 
     // Configuración del gráfico
     const data = {
-        labels,
+        labels: entries.map(([date]) => format(parseISO(date), 'dd MMM', { locale: es })),
         datasets: [
             {
                 label: 'Alquileres por Día',
-                data: dataPoints,
+                data: entries.map(([date, count]) => count),
                 fill: false,
                 borderColor: '#737373',
-                borderWidth: 2,
-                pointRadius: 3,
-                tension: 0.5 
-
+                borderWidth: 4,
+                pointRadius: 2,  
+                tension: 0.4  
             }
         ]
     };
@@ -33,17 +28,20 @@ const RentalLineChart = ({ rentalData }) => {
     const options = {
         scales: {
             y: {
-                display: false,  // Oculta el eje Y completamente
+                display: false,
                 beginAtZero: true,
+                grid: {
+                    display: false  // Oculta las líneas de cuadrícula en el eje Y
+                }
             },
             x: {
-                ticks: {
-                    maxRotation: 0,  // Mantiene las etiquetas del eje X rectas
-                    autoSkip: true, // Habilita el salto automático para evitar solapamientos
-                    maxTicksLimit: 6  // Limita el número máximo de etiquetas en el eje X
-                },
                 grid: {
                     display: false  // Oculta las líneas de cuadrícula en el eje X
+                },
+                ticks: {
+                    maxRotation: 0,  // Mantiene las etiquetas del eje X rectas
+                    autoSkip: true,  // Habilita el salto automático para evitar solapamientos
+                    maxTicksLimit: 6  // Limita el número máximo de etiquetas en el eje X
                 }
             }
         },
@@ -54,7 +52,12 @@ const RentalLineChart = ({ rentalData }) => {
                 display: false  // Oculta la leyenda del gráfico
             },
             tooltip: {
-                enabled: true  // Deshabilita los tooltips
+                enabled: true,
+                callbacks: {
+                    label: function (context) {
+                        return `${context.parsed.y} alquileres el ${context.label}`;
+                    }
+                }
             }
         },
         elements: {
@@ -62,7 +65,7 @@ const RentalLineChart = ({ rentalData }) => {
                 borderWidth: 2
             },
             point: {
-                radius: 0  // Oculta los puntos del gráfico
+                radius: 4 // Si no deseas mostrar puntos, establecer a 0
             }
         }
     };

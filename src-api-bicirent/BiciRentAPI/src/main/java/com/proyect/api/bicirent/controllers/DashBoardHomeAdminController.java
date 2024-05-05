@@ -25,18 +25,19 @@ public class DashBoardHomeAdminController {
 	public ResponseEntity<Map<String, Long>> getGeneralStats() {
 
 		Map<String, Long> stats = new HashMap<>();
-		stats.put("totalUsers", statisticsService.getTotalUsers());
-		stats.put("totalRentals", statisticsService.getTotalRentals());
-		stats.put("completedRentals", statisticsService.getCompletedRentals());
-		stats.put("currentlyRentedBicycles", statisticsService.getCurrentlyRentedBicycles());
+		stats.put("Bicicletas Alquiladas", statisticsService.getCurrentlyRentedBicycles());
+		stats.put("Total de Alquileres", statisticsService.getTotalRentals());
+		stats.put("Alquileres Completados", statisticsService.getCompletedRentals());
+		stats.put("Total de Usuarios", statisticsService.getTotalUsers());
+		stats.put("totalBicycles", statisticsService.getTotalBicycles());
 		return ResponseEntity.ok(stats);
 
 	}
 
 	@GetMapping("/bicycles-by-category")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public ResponseEntity<Map<String, Long>> getBicyclesByCategory() {
-		return ResponseEntity.ok(statisticsService.getBicyclesByCategory());
+	public ResponseEntity<Map<String, Double>> getBicyclesByCategory() {
+		return ResponseEntity.ok(statisticsService.getBicyclesByCategoryPercentage());
 	}
 
 	@GetMapping("/rentals-over-last-month")
