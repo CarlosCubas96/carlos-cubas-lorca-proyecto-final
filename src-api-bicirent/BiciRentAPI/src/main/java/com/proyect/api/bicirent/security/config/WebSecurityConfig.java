@@ -63,10 +63,8 @@ public class WebSecurityConfig {
 		http.csrf(csrf -> csrf.disable())
 				.exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.authorizeHttpRequests(auth -> auth.requestMatchers("/api/auth/**").permitAll() // Rutas públicas de
-																								// autenticación
-						.anyRequest().authenticated() // Todas las demás rutas requieren autenticación
-				);
+				.authorizeHttpRequests(
+						auth -> auth.requestMatchers("/api/auth/**").permitAll().anyRequest().authenticated());
 
 		http.authenticationProvider(authenticationProvider());
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

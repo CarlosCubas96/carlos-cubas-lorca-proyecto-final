@@ -24,7 +24,7 @@ public class UserController {
 	@GetMapping
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Page<UserResponse>> getAllUsers(@RequestParam(required = false) String searchTerm,
-			@RequestParam(defaultValue = "0") int pageNumber, @RequestParam(defaultValue = "8") int pageSize) {
+			@RequestParam(defaultValue = "0") int pageNumber, @RequestParam(defaultValue = "6") int pageSize) {
 		Page<UserResponse> usersPage = userService.getAllUsers(searchTerm, PageRequest.of(pageNumber, pageSize));
 		if (usersPage.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);

@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserServiceI {
 		if (!userRepository.existsById(id)) {
 			throw new IllegalArgumentException("User with id " + id + " not found");
 		}
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.setPassword(user.getPassword());
 		user.setId(id);
 		return userRepository.save(user);
 	}

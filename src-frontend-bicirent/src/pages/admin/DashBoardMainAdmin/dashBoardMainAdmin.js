@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import { parseISO, format } from 'date-fns';
 import { es } from 'date-fns/locale';
 
-import authService from "../../services/auth/auth.service";
-import StatisticsService from "../../services/stadistics/stadistics.service";
-import Header from "../../components/common/layout/header/header";
-import SidebarsectionAdmin from "../../components/admin/aside/sidebarsectionAdmin";
-import RentalLineChart from "../../components/UI/charts/RentalLineChart";
-import './homeAdmin.css';
-import Utils from "../../common/utils";
+import authService from "../../../services/auth/auth.service";
+import StatisticsService from "../../../services/stadistics/stadistics.service";
+import Header from "../../../components/common/layout/header/header";
+import SidebarsectionAdmin from "../../../components/admin/aside/sidebarsectionAdmin";
+import RentalLineChart from "../../../components/UI/charts/RentalLineChart";
+import './dashBoardMainAdmin.css';
+import Utils from "../../../common/utils";
 
 export default class HomeAdmin extends Component {
     constructor(props) {
@@ -46,7 +46,6 @@ export default class HomeAdmin extends Component {
         StatisticsService.getRentalsOverTime()
             .then(data => {
                 this.setState({ rentalData: data, error: null });
-                console.log("Rental Data:", data);
             })
             .catch(error => {
                 this.setState({ error: error.toString(), rentalData: undefined });
@@ -75,21 +74,14 @@ export default class HomeAdmin extends Component {
     loadBicyclesByCategory = async () => {
         try {
             const data = await StatisticsService.getBicyclesByCategory();
-            const total = this.state.generalStats.totalBicycles;
-            console.log("Total de bicicletas:", total);
-
-            const percentages = Object.keys(data).reduce((acc, key) => {
-                acc[key] = (data[key] / total) * 100;
-                return acc;
-            }, {});
-
-            this.setState({ bicyclesByCategory: percentages });
-            console.log("BicyclesByCategory porcentajes:", percentages);
+            this.setState({ bicyclesByCategory: data });
+            console.log("BicyclesByCategory data:", data);
         } catch (error) {
             this.setState({ error: error.toString() });
             console.error("Error fetching bicycles by category: ", error);
         }
     };
+
 
 
 
@@ -108,7 +100,7 @@ export default class HomeAdmin extends Component {
             const formattedLastDate = format(parseISO(lastDate), 'MMMM d, yyyy', { locale: es });
             contentHeaderDate = `${Utils.capitalize(formattedFirstDate)} - ${Utils.capitalize(formattedLastDate)}`;
         }
-        
+
 
         return (
 

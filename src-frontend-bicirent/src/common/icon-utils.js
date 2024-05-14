@@ -9,6 +9,10 @@ import { HiOutlineSpeakerphone } from "react-icons/hi";
 import { CiCircleQuestion } from "react-icons/ci";
 import { CiLogout } from "react-icons/ci";
 import { MdHomeFilled } from "react-icons/md";
+import { MdKeyboardArrowLeft } from "react-icons/md";
+import { MdKeyboardArrowRight } from "react-icons/md";
+
+
 
 
 
@@ -23,5 +27,7 @@ export const icons = {
     Settings: RiSettings3Line,
     User: AiOutlineUser,
     Users: FaUsers,
-    Lupa: HiMiniMagnifyingGlass
+    Lupa: HiMiniMagnifyingGlass,
+    Arrow1: MdKeyboardArrowLeft,
+    Arrow2: MdKeyboardArrowRight
 };

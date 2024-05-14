@@ -51,7 +51,6 @@ public class StatisticsServiceImpl implements StatisticsServiceI {
 	
 	@Override
 	public long getTotalBicycles() {
-		System.out.println(rentalRepository.count());
 		return rentalRepository.count();
 	}
 
