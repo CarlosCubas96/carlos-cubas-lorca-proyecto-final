@@ -5,7 +5,6 @@ import "./editFormInput.css";
 
 const EditFormInput = ({ label, type, placeholder, name, value, onChange, validations, disabled }) => {
 
-    // Clase condicional para aplicar estilos al input
     const inputClassName = disabled ? 'edit-containerinput disabled' : 'edit-containerinput';
 
     return (
@@ -20,7 +19,7 @@ const EditFormInput = ({ label, type, placeholder, name, value, onChange, valida
                 <Input
                     type={type}
                     placeholder={placeholder}
-                    className={inputClassName} 
+                    className={inputClassName}
                     name={name}
                     value={value}
                     onChange={onChange}

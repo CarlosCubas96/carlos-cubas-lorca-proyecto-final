@@ -48,6 +48,14 @@ const RentalService = {
       .catch(error => {
         throw error;
       });
+  },
+
+  getAllRentalStatuses: () => {
+    return AxiosService.get('rentals/statuses')
+      .then(response => response.data)
+      .catch(error => {
+        throw error;
+      });
   }
 };
 

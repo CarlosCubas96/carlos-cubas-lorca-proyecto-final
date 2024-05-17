@@ -1,4 +1,4 @@
-.edit-containersectioninput {
+.check-containersectioninput {
     gap: 16px;
     width: 480px;
     height: auto;
@@ -7,17 +7,18 @@
     flex-shrink: 0;
 }
 
-.edit-containermaininput {
+.check-containermaininput {
     width: 480px;
     height: auto;
     margin-bottom: 30px;
+    gap: 30px;
     display: flex;
     align-items: flex-start;
     flex-shrink: 0;
     flex-direction: column;
 }
 
-.edit-containersectionlabel {
+.check-containersectionlabel {
     width: 480px;
     height: 32px;
     display: flex;
@@ -27,14 +28,14 @@
     flex-direction: column;
 }
 
-.edit-text04 {
+.check-text04 {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 
-.edit-text04 span {
+.check-text04 span {
     margin-right: 10px;
     /* Ajusta el margen entre los elementos si es necesario */
     color: rgba(17, 20, 22, 1);
@@ -51,13 +52,13 @@
     text-decoration: none;
 }
 
-.edit-text-error {
+.check-text-error {
     font-size: 12px;
     color: red;
 }
 
 
-.edit-containerinput {
+.check-containerinput {
     width: 480px;
     height: 56px;
     padding: 16px;
@@ -72,7 +73,7 @@
     font-weight: 400;
 }
 
-.edit-containerinput.disabled {
+.check-containerinput.disabled {
     background-color: #f2f2f2;
     /* Cambiar el color de fondo cuando está deshabilitado */
     color: #666;
@@ -84,16 +85,16 @@
 }
 
 
-.edit-containerinput.is-invalid-input {
+.check-containerinput.is-invalid-input {
     border-color: red;
     outline: none;
 }
 
-.edit-containerinput.is-invalid-input:focus {
+.check-containerinput.is-invalid-input:focus {
     border-color: red;
 }
 
-.edit-containerinput:focus {
+.check-containerinput:focus {
     border-color: #38E078;
     outline: none;
 }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Modal } from "react-bootstrap";
+import ModalDelete from "../../../components/UI/Modal/modalDelete";
 import './dashBoardUsersAdmin.css';
 import Header from "../../../components/common/layout/header/header";
 import SidebarsectionAdmin from "../../../components/admin/aside/sidebarsectionAdmin";
@@ -244,25 +244,12 @@ export default class DashBoardUsersAdmin extends Component {
                                             </tr>
                                         </tfoot>
                                     </table>
-                                    {/* Modal para eliminar usuario */}
-                                    <Modal show={showDeleteModal} onHide={() => this.setState({ showDeleteModal: false })}>
-                                        <Modal.Header closeButton>
-                                            <Modal.Title>Confirmar eliminación</Modal.Title>
-                                        </Modal.Header>
-                                        <Modal.Body>
-                                            ¿Estás seguro de que quieres eliminar este usuario?
-                                            Esta acción no se puede deshacer.
-                                        </Modal.Body>
-                                        <Modal.Footer>
-                                            <FormButtom color="#D4DCE4" onClick={() => this.setState({ showDeleteModal: false })}>
-                                                Cancelar
-                                            </FormButtom>
-                                            <FormButtom onClick={() => this.confirmDeleteUser()}>
-                                                Eliminar
-                                            </FormButtom>
-                                        </Modal.Footer>
-                                    </Modal>
 
+                                    <ModalDelete
+                                        show={showDeleteModal}
+                                        onHide={() => this.setState({ showDeleteModal: false })}
+                                        onConfirm={this.confirmDeleteUser}
+                                    />
                                 </div>
                             </div>
                         </div>

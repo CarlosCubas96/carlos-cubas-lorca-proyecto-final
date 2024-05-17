@@ -1,21 +1,22 @@
 import React, { Component } from "react";
+
 import './dashBoardRentalsAdmin.css';
-import ModalDelete from "../../../components/UI/Modal/modalDelete";
 import Header from "../../../components/common/layout/header/header";
 import SidebarsectionAdmin from "../../../components/admin/aside/sidebarsectionAdmin";
 import Icon from "../../../components/UI/icon/icon";
 import FormButtom from "../../../components/UI/Button/FormButton/formButton";
+import ModalDelete from "../../../components/UI/Modal/modalDelete";
 import authService from "../../../services/auth/auth.service";
 import RentalService from "../../../services/rentals/rental.service";
 
 
-export default class DashBoardRentalsAdmin extends Component {
+export default class DashBoardBicyclesAdmin extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             currentUser: undefined,
-            rentals: [],
+            bicycles: [],
             searchQuery: '',
             currentPage: 0,
             totalPages: 0,
@@ -252,6 +253,7 @@ export default class DashBoardRentalsAdmin extends Component {
                                         onHide={() => this.setState({ showDeleteModal: false })}
                                         onConfirm={this.confirmDeleteUser}
                                     />
+
                                 </div>
                             </div>
                         </div>

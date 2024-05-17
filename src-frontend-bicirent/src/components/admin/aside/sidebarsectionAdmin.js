@@ -35,7 +35,7 @@ const SidebarsectionAdmin = () => {
             <AsideButton
               to="/admin/usuarios"
               icon="Users"
-              style={{ backgroundColor: isActive('/admin/usuarios') || isActive('/admin/edit/:id') ? '#38E078' : 'inherit' }}
+              style={{ backgroundColor: isActive('/admin/usuarios') || isActive('/admin/usuarios/edit/:id') ? '#38E078' : 'inherit' }}
             >
               Usuarios
             </AsideButton>
@@ -45,7 +45,7 @@ const SidebarsectionAdmin = () => {
             <AsideButton
               to="/admin/alquileres"
               icon="Altavoz"
-              style={{ backgroundColor: isActive('/admin/alquileres') ? '#38E078' : 'inherit' }}
+              style={{ backgroundColor: isActive('/admin/alquileres') || isActive('/admin/alquileres/edit/:id') ? '#38E078' : 'inherit' }}
             >
               Alquileres
             </AsideButton>

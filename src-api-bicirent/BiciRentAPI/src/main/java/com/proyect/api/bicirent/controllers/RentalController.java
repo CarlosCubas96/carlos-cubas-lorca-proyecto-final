@@ -2,7 +2,11 @@ package com.proyect.api.bicirent.controllers;
 
 import com.proyect.api.bicirent.dto.response.RentalResponse;
 import com.proyect.api.bicirent.models.Rental;
+import com.proyect.api.bicirent.models.RentalStatus;
 import com.proyect.api.bicirent.services.RentalServiceImpl;
+
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -32,10 +36,17 @@ public class RentalController {
 		return new ResponseEntity<>(rentalsPage, HttpStatus.OK);
 	}
 
+	@GetMapping("/statuses")
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+	public ResponseEntity<List<RentalStatus>> getAllRentalStatuses() {
+		List<RentalStatus> rentalStatuses = rentalService.getAllRentalStatuses();
+		return new ResponseEntity<>(rentalStatuses, HttpStatus.OK);
+	}
+
 	@GetMapping("/{id}")
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Rental> getRentalById(@PathVariable("id") Long id) {
-		return rentalService.getRentalById(id).map(user -> new ResponseEntity<>(user, HttpStatus.OK))
+		return rentalService.getRentalById(id).map(rental -> new ResponseEntity<>(rental, HttpStatus.OK))
 				.orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
