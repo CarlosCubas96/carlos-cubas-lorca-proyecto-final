@@ -137,22 +137,23 @@ const DashBoardEditUserAdmin = () => {
 
     return (
         <>
+
             <div className="admin-dashboard-main-container">
                 <div className="admin-dashboard-main-dash-board-main-admin">
                     <Header currentUser={currentUser} />
                     <div className="admin-dashboard-main-containerdashboardadmin">
                         <div className="admin-dashboard-main-containerdashboardsections">
                             <SidebarsectionAdmin />
-                            <div className="dash-board-edit-user-admin-containermainsection">
-                                <div className="dash-board-edit-user-admin-containermainsectiontitle">
-                                    <div className="dash-board-edit-user-admin-containersectiontitle">
-                                        <span className="dash-board-edit-user-admin-text">
+                            <div className="dash-board-profile-admin-containermainsection">
+                                <div className="dash-board-profile-admin-containermainsectiontitle">
+                                    <div className="dash-board-profile-admin-containersectiontitle">
+                                        <span className="dash-board-profile-admin-text">
                                             <span>Gestión de Usuario</span>
                                         </span>
                                     </div>
                                 </div>
-                                <Form className="dash-board-edit-user-admin-containermainsectioneditprofile">
-                                    <div className="dash-board-edit-user-admin-containermainsectionusername">
+                                <Form className="dash-board-users-admin-containermainsectioneditprofile">
+                                    <div className="dash-board-user-admin-containermainsectionusername">
                                         <EditFormInput
                                             label="Usuario"
                                             type="text"

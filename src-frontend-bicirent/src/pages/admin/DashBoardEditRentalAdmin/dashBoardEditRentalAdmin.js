@@ -5,7 +5,7 @@ import authService from "../../../services/auth/auth.service";
 import SidebarsectionAdmin from "../../../components/admin/aside/sidebarsectionAdmin";
 import Form from "react-validation/build/form";
 import './dashBoardEditRentalAdmin.css';
-import RentalService from "../../../services/rentals/rental.service";
+import RentalService from "../../../services/rental/rental.service";
 import EditFormInput from "../../../components/UI/inputs/EditFormInput/editFormInput";
 import FormButton from "../../../components/UI/Button/FormButton/formButton";
 import CheckBoxFormInput from "../../../components/UI/inputs/CheckboxFormInput/checkboxFormInput";
@@ -40,6 +40,10 @@ const vprice = (value) => {
     }
 };
 
+const formatDate = (date) => {
+    const formattedDate = new Date(date);
+    return formattedDate.toISOString().split('T')[0];
+};
 
 const DashBoardEditRentalAdmin = () => {
     const { id } = useParams();
@@ -50,7 +54,7 @@ const DashBoardEditRentalAdmin = () => {
         tenant: { username: '' },
         startDate: '',
         endDate: '',
-        rentedBicycle: { rentalPrice: 0 }, 
+        rentedBicycle: { rentalPrice: 0 },
         rentalStatus: ''
     });
 
@@ -69,7 +73,13 @@ const DashBoardEditRentalAdmin = () => {
     const getRentalId = (id) => {
         RentalService.getRentalById(id)
             .then(response => {
-                setCurrentEditRental(response);
+                const formattedStartDate = formatDate(response.startDate);
+                const formattedEndDate = formatDate(response.endDate);
+                setCurrentEditRental({
+                    ...response,
+                    startDate: formattedStartDate,
+                    endDate: formattedEndDate
+                });
             })
             .catch(e => {
                 console.log(e);
@@ -103,6 +113,7 @@ const DashBoardEditRentalAdmin = () => {
     const handleUpdateRental = () => {
         RentalService.updateRental(id, currentEditRental)
             .then(currentEditRental => {
+                console.log(currentEditRental);
                 setEditable(false);
                 setMessage("Alquiler actualizado exitosamente!");
                 setErrorMessage(null);
@@ -189,8 +200,6 @@ const DashBoardEditRentalAdmin = () => {
                                         disabled={!editable}
                                         validations={[required, vprice]}
                                     />
-
-
                                 </div>
                                 <div className="dash-board-profile-admin-containermainsection-checkbox">
                                     <CheckBoxFormInput

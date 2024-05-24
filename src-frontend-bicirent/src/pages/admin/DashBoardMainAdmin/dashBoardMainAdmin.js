@@ -64,7 +64,6 @@ export default class HomeAdmin extends Component {
                 'totalBicycles': data['totalBicycles']
             };
             this.setState({ generalStats: filteredStats });
-            console.log("GeneralStats: ", filteredStats);
         } catch (error) {
             this.setState({ error: error.toString() });
             console.log("Error fetching data: ", error);
@@ -75,7 +74,6 @@ export default class HomeAdmin extends Component {
         try {
             const data = await StatisticsService.getBicyclesByCategory();
             this.setState({ bicyclesByCategory: data });
-            console.log("BicyclesByCategory data:", data);
         } catch (error) {
             this.setState({ error: error.toString() });
             console.error("Error fetching bicycles by category: ", error);

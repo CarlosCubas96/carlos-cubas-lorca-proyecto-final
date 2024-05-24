@@ -1,0 +1,99 @@
+.edit-containersectioninput {
+    gap: 16px;
+    width: 480px;
+    height: auto;
+    display: flex;
+    align-items: flex-end;
+    flex-shrink: 0;
+}
+
+.edit-containermaininput {
+    width: 480px;
+    height: auto;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+}
+
+.edit-containersectionlabel {
+    width: 480px;
+    height: 32px;
+    display: flex;
+    padding: 0 0 8px;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+}
+
+.edit-text04 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.edit-text04 span {
+    margin-right: 10px;
+    /* Ajusta el margen entre los elementos si es necesario */
+    color: rgba(17, 20, 22, 1);
+    height: auto;
+
+    font-size: 16px;
+    align-self: stretch;
+    font-style: Medium;
+    text-align: left;
+    font-family: Plus Jakarta Sans;
+    font-weight: 500;
+    line-height: 24px;
+    font-stretch: normal;
+    text-decoration: none;
+}
+
+.edit-text-error {
+    font-size: 12px;
+    color: red;
+}
+
+
+.edit-containerinput {
+    width: 480px;
+    height: 56px;
+    padding: 16px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border-color: rgba(219, 224, 229, 1);
+    border-style: solid;
+    border-width: 1px;
+    color: rgba(114, 114, 114, 1);
+    border-radius: 12px;
+    font-family: Plus Jakarta Sans;
+    font-weight: 400;
+}
+
+.edit-containerinput.disabled {
+    background-color: #f2f2f2;
+    /* Cambiar el color de fondo cuando está deshabilitado */
+    color: #666;
+    /* Cambiar el color del texto cuando está deshabilitado */
+    cursor: not-allowed;
+    /* Cambiar el cursor cuando está deshabilitado */
+    border: 1px solid #ccc;
+    /* Opcional: Cambiar el borde cuando está deshabilitado */
+}
+
+
+.edit-containerinput.is-invalid-input {
+    border-color: red;
+    outline: none;
+}
+
+.edit-containerinput.is-invalid-input:focus {
+    border-color: red;
+}
+
+.edit-containerinput:focus {
+    border-color: #38E078;
+    outline: none;
+}

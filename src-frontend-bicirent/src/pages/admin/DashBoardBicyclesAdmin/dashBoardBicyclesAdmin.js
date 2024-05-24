@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 
-import './dashBoardRentalsAdmin.css';
+import './dashBoardBicyclesAdmin.css';
 import Header from "../../../components/common/layout/header/header";
 import SidebarsectionAdmin from "../../../components/admin/aside/sidebarsectionAdmin";
 import Icon from "../../../components/UI/icon/icon";
 import FormButtom from "../../../components/UI/Button/FormButton/formButton";
 import ModalDelete from "../../../components/UI/Modal/modalDelete";
 import authService from "../../../services/auth/auth.service";
-import RentalService from "../../../services/rentals/rental.service";
+import BicycleService from "../../../services/bicycle/bicycle.service";
+import Utils from "../../../common/utils";
 
 
 export default class DashBoardBicyclesAdmin extends Component {
@@ -21,7 +22,7 @@ export default class DashBoardBicyclesAdmin extends Component {
             currentPage: 0,
             totalPages: 0,
             showDeleteModal: false,
-            rentalToDeleteId: null,
+            bicycleToDeleteId: null,
         };
     }
 
@@ -32,7 +33,7 @@ export default class DashBoardBicyclesAdmin extends Component {
                 currentUser: user,
             });
         }
-        this.retrieveRentals();
+        this.retrieveBicycles();
     }
 
     onChangeSearchQuery(e) {
@@ -41,7 +42,7 @@ export default class DashBoardBicyclesAdmin extends Component {
             searchQuery: searchQuery,
             currentPage: 0
         }, () => {
-            this.retrieveRentals();
+            this.retrieveBicycles();
         });
     }
 
@@ -49,17 +50,17 @@ export default class DashBoardBicyclesAdmin extends Component {
         this.setState({
             currentPage: pageNumber
         }, () => {
-            this.retrieveRentals();
+            this.retrieveBicycles();
         });
     }
 
-    retrieveRentals() {
+    retrieveBicycles() {
         const { searchQuery, currentPage } = this.state;
         const pageSize = 6;
-        RentalService.getAllRentals(searchQuery, currentPage, pageSize)
+        BicycleService.getAllBicycles(searchQuery, currentPage, pageSize)
             .then(data => {
                 this.setState({
-                    rentals: data.content,
+                    bicycles: data.content,
                     totalPages: data.totalPages
                 });
             })
@@ -68,24 +69,24 @@ export default class DashBoardBicyclesAdmin extends Component {
             });
     }
 
-    handleDeleteUser(id) {
+    handleDeleteBicycle(id) {
         this.setState({
             showDeleteModal: true,
-            rentalToDeleteId: id
+            bicycleToDeleteId: id
         });
     }
 
-    confirmDeleteUser() {
-        const { rentalToDeleteId } = this.state;
-        RentalService.deleteRental(rentalToDeleteId)
+    confirmDeleteBicycle() {
+        const { bicycleToDeleteId } = this.state;
+        BicycleService.deleteBicycle(bicycleToDeleteId)
             .then(() => {
                 this.setState(prevState => ({
-                    rentals: prevState.rentals.filter(rental => rental.id !== rentalToDeleteId),
+                    bicycles: prevState.bicycles.filter(bicycle => bicycle.id !== bicycleToDeleteId),
                     showDeleteModal: false,
-                    rentalToDeleteId: null
+                    bicycleToDeleteId: null
                 }), () => {
 
-                    this.retrieveRentals();
+                    this.retrieveBicycles();
                 });
             })
             .catch(error => {
@@ -95,7 +96,7 @@ export default class DashBoardBicyclesAdmin extends Component {
 
 
     render() {
-        const { currentUser, rentals, searchQuery, currentPage, totalPages, showDeleteModal } = this.state;
+        const { currentUser, bicycles, searchQuery, currentPage, totalPages, showDeleteModal } = this.state;
 
         return (
             <>
@@ -109,7 +110,7 @@ export default class DashBoardBicyclesAdmin extends Component {
                                     <div className="admin-dashboard-rentals-containermainsectiontitle">
                                         <div className="admin-dashboard-rentals-containersectiontitle">
                                             <span className="admin-dashboard-rentals-text">
-                                                <span>Gestión de Alquileres</span>
+                                                <span>Gestión de Bicicletas</span>
                                             </span>
                                         </div>
                                     </div>
@@ -140,31 +141,32 @@ export default class DashBoardBicyclesAdmin extends Component {
                                                 <th className="admin-dashboard-rentals-sectionheadertable2">
                                                     <div className="admin-dashboard-rentals-textheadertable2">
                                                         <span className="admin-dashboard-rentals-text04">
-                                                            <div>Bicicleta</div>
+                                                            <div>Inquilino</div>
                                                         </span>
                                                     </div>
                                                 </th>
                                                 <th className="admin-dashboard-rentals-sectionheadertable3">
                                                     <div className="admin-dashboard-rentals-textheadertable3">
                                                         <span className="admin-dashboard-rentals-text06">
-                                                            <div>Fecha Inicio</div>
-                                                        </span>
-                                                    </div>
-                                                </th>
-                                                <th className="admin-dashboard-rentals-sectionheadertable4">
-                                                    <div className="admin-dashboard-rentals-textheadertable4">
-                                                        <span className="admin-dashboard-rentals-text08">
-                                                            <div>Fecha Fin</div>
+                                                            <div>Modelo</div>
                                                         </span>
                                                     </div>
                                                 </th>
                                                 <th className="admin-dashboard-rentals-sectionheadertable5">
                                                     <div className="admin-dashboard-rentals-textheadertable5">
                                                         <span className="admin-dashboard-rentals-text10">
-                                                            <div>Coste</div>
+                                                            <div>Precio</div>
                                                         </span>
                                                     </div>
                                                 </th>
+                                                <th className="admin-dashboard-rentals-sectionheadertable4">
+                                                    <div className="admin-dashboard-rentals-textheadertable4">
+                                                        <span className="admin-dashboard-rentals-text08">
+                                                            <div>Categoria</div>
+                                                        </span>
+                                                    </div>
+                                                </th>
+
                                                 <th className="admin-dashboard-rentals-sectionheadertable6">
                                                     <div className="admin-dashboard-rentals-textheadertable6">
                                                         <span className="admin-dashboard-rentals-text12">
@@ -177,48 +179,50 @@ export default class DashBoardBicyclesAdmin extends Component {
                                         <tbody className="admin-dashboard-rentals-containersectionmaintable">
                                             {/* Cuerpo de la tabla */}
 
-                                            {Array.isArray(rentals) && rentals.map(rental => (
-                                                <tr key={rental.id} className="admin-dashboard-rentals-sectiontabletr">
+                                            {Array.isArray(bicycles) && bicycles.map(bicycle => (
+                                                <tr key={bicycle.id} className="admin-dashboard-rentals-sectiontabletr">
                                                     <td className="admin-dashboard-rentals-sectiontabletd">
                                                         <div className="admin-dashboard-rentals-td">
                                                             <span className="admin-dashboard-rentals-text14">
-                                                                <span>{rental.landlordUsername}</span>
+                                                                <span>{bicycle.landlordUsername}</span>
                                                             </span>
                                                         </div>
                                                     </td>
                                                     <td className="admin-dashboard-rentals-sectiontabletd1">
                                                         <div className="admin-dashboard-rentals-td1">
                                                             <span className="admin-dashboard-rentals-text16">
-                                                                <span>{rental.bicycleBrandModel}</span>
+                                                                <span>{bicycle.tenantUsername}</span>
                                                             </span>
                                                         </div>
                                                     </td>
                                                     <td className="admin-dashboard-rentals-sectiontabletd2">
                                                         <div className="admin-dashboard-rentals-td2">
                                                             <span className="admin-dashboard-rentals-text18">
-                                                                <span>{rental.startDate}</span>
+                                                                <span>{bicycle.bicycleBrandModel}</span>
+                                                            </span>
+                                                        </div>
+                                                    </td>
+
+                                                    <td className="admin-dashboard-rentals-sectiontabletd4">
+                                                        <div className="admin-dashboard-rentals-td4">
+                                                            <span className="admin-dashboard-rentals-text22">
+                                                                <span>{bicycle.cost + " €/Hora"}</span>
                                                             </span>
                                                         </div>
                                                     </td>
                                                     <td className="admin-dashboard-rentals-sectiontabletd3">
                                                         <div className="admin-dashboard-rentals-td3">
                                                             <span className="admin-dashboard-rentals-text20">
-                                                                <span>{rental.endDate}</span>
+                                                                <span>{Utils.capitalize(bicycle.category)}</span>
                                                             </span>
                                                         </div>
                                                     </td>
-                                                    <td className="admin-dashboard-rentals-sectiontabletd4">
-                                                        <div className="admin-dashboard-rentals-td4">
-                                                            <span className="admin-dashboard-rentals-text22">
-                                                                <span>{rental.cost + " €/Hora"}</span>
-                                                            </span>
-                                                        </div>
-                                                    </td>
+
                                                     <td className="admin-dashboard-rentals-sectiontabletd5">
-                                                        <FormButtom to={`/admin/alquileres/edit/${rental.id}`}>Editar</FormButtom>
+                                                        <FormButtom to={`/admin/bicicletas/edit/${bicycle.id}`}>Editar</FormButtom>
                                                     </td>
                                                     <td className="admin-dashboard-rentals-sectiontabletd6">
-                                                        <FormButtom onClick={() => this.handleDeleteUser(rental.id)}>Eliminar</FormButtom>
+                                                        <FormButtom onClick={() => this.handleDeleteBicycle(bicycle.id)}>Eliminar</FormButtom>
                                                     </td>
                                                 </tr>
                                             ))}
@@ -251,7 +255,7 @@ export default class DashBoardBicyclesAdmin extends Component {
                                     <ModalDelete
                                         show={showDeleteModal}
                                         onHide={() => this.setState({ showDeleteModal: false })}
-                                        onConfirm={this.confirmDeleteUser}
+                                        onConfirm={this.confirmDeleteBicycle}
                                     />
 
                                 </div>

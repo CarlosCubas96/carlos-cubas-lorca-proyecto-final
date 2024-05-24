@@ -1,0 +1,690 @@
+.dash-board-bicycles-admin-containermainsection {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-bicycles-admin-containermainsectiontitle {
+  gap: 12px;
+  width: 921px;
+  height: 72px;
+  display: flex;
+  padding: 16px;
+  position: relative;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.dash-board-bicycles-admin-containersectiontitle {
+  gap: 12px;
+  top: 16px;
+  left: 16px;
+  width: 328px;
+  height: 40px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-bicycles-admin-text {
+  color: rgba(20, 20, 20, 1);
+  height: auto;
+  font-size: 32px;
+  font-style: Bold;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 700;
+  line-height: 40px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.dash-board-bicycles-admin-containermainsectioneditprofile {
+  width: 921px;
+  height: 745px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-bicycles-admin-containermainsectionshield {
+  width: 921px;
+  height: 112px;
+  display: flex;
+  padding: 12px 16px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dash-board-bicycles-admin-containersectionshield {
+  gap: 16px;
+  width: 480px;
+  display: flex;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.dash-board-bicycles-admin-containershield {
+  width: 480px;
+  height: 88px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-bicycles-admin-containersectionlabelshield {
+  width: 480px;
+  height: 32px;
+  display: flex;
+  padding: 0 0 8px;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-bicycles-admin-text02 {
+  color: rgba(17, 20, 22, 1);
+  height: auto;
+  font-size: 16px;
+  align-self: stretch;
+  font-style: Medium;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 500;
+  line-height: 24px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.dash-board-bicycles-admin-containersectioninputshield {
+  width: 480px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dash-board-bicycles-admin-containerinputusername {
+  width: 480px;
+  height: 56px;
+  display: flex;
+  padding: 16px;
+  overflow: hidden;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-radius: 12px;
+  justify-content: space-between;
+  background-color: rgba(244, 244, 244, 1);
+}
+
+.dash-board-bicycles-admin-inputusername {
+  color: rgba(17, 20, 22, 1);
+  display: flex;
+  font-size: 16px;
+  align-self: stretch;
+  text-align: left;
+  align-items: flex-start;
+  font-family: Plus Jakarta Sans;
+  font-weight: 400;
+  flex-direction: column;
+}
+
+.dash-board-bicycles-admin-containermainsectionselect {
+  width: 921px;
+  height: 112px;
+  display: flex;
+  padding: 12px 16px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dash-board-bicycles-admin-containersectionselect {
+  gap: 16px;
+  width: 480px;
+  height: 88px;
+  display: flex;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.dash-board-bicycles-admin-containerselect {
+  width: 480px;
+  height: 88px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-bicycles-admin-containersectionlabelselect {
+  width: 480px;
+  height: 32px;
+  display: flex;
+  padding: 0 0 8px;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-bicycles-admin-text04 {
+  color: rgba(17, 20, 22, 1);
+  height: auto;
+  font-size: 16px;
+  align-self: stretch;
+  font-style: Medium;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 500;
+  line-height: 24px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.dash-board-bicycles-admin-containersectioninputselect {
+  width: 480px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dash-board-bicycles-admin-containerinputselect {
+  width: 480px;
+  height: 56px;
+  display: flex;
+  padding: 16px;
+  overflow: hidden;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-radius: 12px;
+  justify-content: space-between;
+  background-color: rgba(244, 244, 244, 1);
+}
+
+.dash-board-bicycles-admin-inputselect {
+  color: rgba(17, 20, 22, 1);
+  display: flex;
+  font-size: 16px;
+  align-self: stretch;
+  text-align: left;
+  align-items: flex-start;
+  font-family: Plus Jakarta Sans;
+  font-weight: 400;
+  flex-direction: column;
+}
+
+.dash-board-bicycles-admin-containerinputselecticon {
+  width: 24px;
+  height: 24px;
+}
+
+.dash-board-bicycles-admin-containermainsectionshield1 {
+  width: 921px;
+  height: 198px;
+  display: flex;
+  padding: 12px 16px;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.dash-board-bicycles-admin-containersectionshield1 {
+  gap: 16px;
+  width: 480px;
+  height: 88px;
+  display: flex;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.dash-board-bicycles-admin-containershield1 {
+  width: 480px;
+  height: 88px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-bicycles-admin-containersectionlabelshield1 {
+  width: 480px;
+  height: 32px;
+  display: flex;
+  padding: 0 0 8px;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-bicycles-admin-text06 {
+  color: rgba(17, 20, 22, 1);
+  height: auto;
+  font-size: 16px;
+  align-self: stretch;
+  font-style: Medium;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 500;
+  line-height: 24px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.dash-board-bicycles-admin-containersectioninputshield1 {
+  width: 480px;
+  height: 144px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dash-board-bicycles-admin-containerinputusername1 {
+  width: 480px;
+  height: 144px;
+  display: flex;
+  padding: 16px;
+  overflow: hidden;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-radius: 12px;
+  justify-content: space-between;
+  background-color: rgba(244, 244, 244, 1);
+}
+
+.dash-board-bicycles-admin-inputusername1 {
+  color: rgba(17, 20, 22, 1);
+  display: flex;
+  font-size: 16px;
+  align-self: stretch;
+  text-align: left;
+  align-items: flex-start;
+  font-family: Plus Jakarta Sans;
+  font-weight: 400;
+  flex-direction: column;
+}
+
+.dash-board-bicycles-admin-containermainsectionshield2 {
+  width: 921px;
+  height: 112px;
+  display: flex;
+  padding: 12px 16px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dash-board-bicycles-admin-containersectionshield2 {
+  gap: 16px;
+  width: 480px;
+  height: 88px;
+  display: flex;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.dash-board-bicycles-admin-containershield2 {
+  width: 480px;
+  height: 88px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-bicycles-admin-containersectionlabelshield2 {
+  width: 480px;
+  height: 32px;
+  display: flex;
+  padding: 0 0 8px;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-bicycles-admin-text08 {
+  color: rgba(17, 20, 22, 1);
+  height: auto;
+  font-size: 16px;
+  align-self: stretch;
+  font-style: Medium;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 500;
+  line-height: 24px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.dash-board-bicycles-admin-containersectioninputshield2 {
+  width: 480px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dash-board-bicycles-admin-containerinputusername2 {
+  width: 480px;
+  height: 56px;
+  display: flex;
+  padding: 16px;
+  overflow: hidden;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-radius: 12px;
+  justify-content: space-between;
+  background-color: rgba(244, 244, 244, 1);
+}
+
+.dash-board-bicycles-admin-inputusername2 {
+  color: rgba(17, 20, 22, 1);
+  display: flex;
+  font-size: 16px;
+  align-self: stretch;
+  text-align: left;
+  align-items: flex-start;
+  font-family: Plus Jakarta Sans;
+  font-weight: 400;
+  flex-direction: column;
+}
+
+.dash-board-bicycles-admin-containermainsectionshield3 {
+  width: 921px;
+  height: 147px;
+  display: flex;
+  padding: 12px 16px;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.dash-board-bicycles-admin-containersectionshield3 {
+  width: 512px;
+  height: 118.984375px;
+  display: flex;
+  padding: 16px;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.dash-board-bicycles-admin-containeruploadimg {
+  gap: 16px;
+  width: 480px;
+  height: 86.984375px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  justify-content: space-between;
+}
+
+.dash-board-bicycles-admin-containeruploadimgsections {
+  gap: 16px;
+  height: 73px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-bicycles-admin-containeruploadimgsectionlabel {
+  gap: 4px;
+  width: 309.34375px;
+  height: 25px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-bicycles-admin-depth9-frame0 {
+  width: 309.34375px;
+  height: 21px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-bicycles-admin-depth10-frame0 {
+  display: flex;
+  align-self: stretch;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.dash-board-bicycles-admin-text10 {
+  color: rgba(73, 112, 155, 1);
+  height: auto;
+  font-size: 14px;
+  font-style: Regular;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 400;
+  line-height: 21px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.dash-board-bicycles-admin-containeruploadimgsectionbuttom {
+  gap: 4px;
+  width: 95px;
+  height: 32px;
+  display: flex;
+  padding: 0 8px 0 16px;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 12px;
+  justify-content: flex-end;
+  background-color: rgba(232, 237, 244, 1);
+}
+
+.dash-board-bicycles-admin-containeruploadbuttomtitle {
+  width: 61px;
+  height: 21px;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(232, 237, 244, 1);
+}
+
+.dash-board-bicycles-admin-text12 {
+  color: rgba(12, 20, 28, 1);
+  height: auto;
+  font-size: 14px;
+  font-style: Medium;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 500;
+  line-height: 21px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.dash-board-bicycles-admin-containeruploadbuttomicon {
+  width: 100%;
+  border: none;
+  height: auto;
+}
+
+.dash-board-bicycles-admin-containeruploadimgsectionimg {
+  width: 154.65625px;
+  height: 86.984375px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.dash-board-bicycles-admin-depth8-frame0 {
+  width: 154.65625px;
+  height: 86.984375px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background-size: cover;
+  background-image: url("https://play.teleporthq.io/static/svg/default-img.svg");
+}
+
+.dash-board-bicycles-admin-containermainsectionbuttoms {
+  gap: 19px;
+  width: 921px;
+  height: 64px;
+  display: flex;
+  padding: 12px 16px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dash-board-bicycles-admin-containerbuttomprofileedit {
+  width: 84px;
+  height: 40px;
+  display: flex;
+  padding: 0 16px;
+  overflow: hidden;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 12px;
+  justify-content: center;
+  background-color: rgba(56, 224, 119, 1);
+}
+
+.dash-board-bicycles-admin-containertextbuttomprofileedit {
+  width: 75px;
+  height: 22px;
+  display: flex;
+  overflow: hidden;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-bicycles-admin-buttomprofileedit {
+  width: 75px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dash-board-bicycles-admin-text14 {
+  color: rgba(20, 20, 20, 1);
+  height: auto;
+  font-size: 14px;
+  font-style: Bold;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 700;
+  line-height: 21px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.dash-board-bicycles-admin-containerbuttomprofilesave {
+  width: 84px;
+  height: 40px;
+  display: flex;
+  padding: 0 16px;
+  overflow: hidden;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 12px;
+  justify-content: center;
+  background-color: rgba(56, 224, 119, 1);
+}
+
+.dash-board-bicycles-admin-containertextbuttomprofilesave {
+  width: 75px;
+  height: 22px;
+  display: flex;
+  overflow: hidden;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-bicycles-admin-buttomprofilesave {
+  width: 75px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dash-board-bicycles-admin-text16 {
+  color: rgba(20, 20, 20, 1);
+  height: auto;
+  font-size: 14px;
+  font-style: Bold;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 700;
+  line-height: 21px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+
+.edit-containermessage-message {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10%;
+  text-align: center;
+  background-color: #38E078;
+  color: #000000;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  animation: shake-horizontal 0.8s ease-in-out 0.2s;
+}
+
+
+.edit-containererror-message {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ff4d4d;
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  animation: shake-horizontal 0.8s ease-in-out 0.2s;
+}
+
+
+
+
+@keyframes shake-horizontal {
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(5px);
+  }
+
+  50% {
+    transform: translateX(-5px);
+  }
+
+  75% {
+    transform: translateX(5px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}

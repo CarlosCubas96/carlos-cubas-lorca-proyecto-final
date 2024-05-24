@@ -11,6 +11,10 @@ import { CiLogout } from "react-icons/ci";
 import { MdHomeFilled } from "react-icons/md";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import { IoImagesOutline } from "react-icons/io5";
+import { IoMdClose } from "react-icons/io";
+
+
 
 
 
@@ -29,5 +33,8 @@ export const icons = {
     Users: FaUsers,
     Lupa: HiMiniMagnifyingGlass,
     Arrow1: MdKeyboardArrowLeft,
-    Arrow2: MdKeyboardArrowRight
+    Arrow2: MdKeyboardArrowRight,
+    Imagen: IoImagesOutline,
+    Close: IoMdClose
+
 };

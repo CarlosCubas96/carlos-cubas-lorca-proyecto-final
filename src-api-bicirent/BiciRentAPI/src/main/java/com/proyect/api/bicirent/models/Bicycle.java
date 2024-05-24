@@ -38,14 +38,15 @@ public class Bicycle {
 
 	}
 
-	public Bicycle(String brandModel, Post post, String description, Double rentalPrice, User owner,
-			Category category) {
+	public Bicycle(String brandModel, Post post, String description, Double rentalPrice, User owner, Category category,
+			String bicycleImage) {
 		this.brandModel = brandModel;
 		this.post = post;
 		this.description = description;
 		this.rentalPrice = rentalPrice;
 		this.category = category;
 		this.owner = owner;
+		this.bicycleImage = bicycleImage;
 	}
 
 	public Long getId() {

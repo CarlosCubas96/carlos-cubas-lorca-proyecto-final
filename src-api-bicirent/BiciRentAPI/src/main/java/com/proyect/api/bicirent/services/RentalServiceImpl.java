@@ -71,7 +71,7 @@ public class RentalServiceImpl implements RentalServiceI {
 	    if (existingRental == null) {
 	        throw new IllegalArgumentException("Rental with id " + id + " not found");
 	    }
-
+	    
 	    // Actualizar los campos del Rental según sea necesario
 	    existingRental.setStartDate(rental.getStartDate());
 	    existingRental.setEndTime(rental.getEndDate());
@@ -79,9 +79,9 @@ public class RentalServiceImpl implements RentalServiceI {
 
 	    // Acceder al objeto Bicycle asociado al Rental y actualizar el precio del alquiler
 	    Bicycle rentedBicycle = existingRental.getRentedBicycle();
-	    System.out.println(rentedBicycle);
 	    if (rentedBicycle != null) {
 	        rentedBicycle.setRentalPrice(rental.getRentedBicycle().getRentalPrice());
+	        
 	        // Guardar el objeto Bicycle actualizado
 	        bicycleRepository.save(rentedBicycle);
 	    }

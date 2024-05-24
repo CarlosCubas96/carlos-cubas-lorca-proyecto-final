@@ -2,13 +2,20 @@ package com.proyect.api.bicirent.dto.response;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class RentalResponse {
 
 	private Long id;
 	private String landlordUsername;
 	private String bicycleBrandModel;
+
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate startDate;
+
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate endDate;
+
 	private Double cost;
 
 	public RentalResponse(Long id, String landlordUsername, String bicycleBrandModel, LocalDate startDate,

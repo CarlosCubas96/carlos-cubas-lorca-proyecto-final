@@ -3,6 +3,7 @@ package com.proyect.api.bicirent.services;
 import com.proyect.api.bicirent.dto.response.RentalResponse;
 import com.proyect.api.bicirent.models.Rental;
 import com.proyect.api.bicirent.models.RentalStatus;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

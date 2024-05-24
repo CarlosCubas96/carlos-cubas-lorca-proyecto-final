@@ -48,4 +48,12 @@ public class Category {
     public void setCategoryType(CategoryType categoryType) {
         this.categoryType = categoryType;
     }
+
+	@Override
+	public String toString() {
+		return "Category [getId()=" + getId() + ", getCategoryName()=" + getCategoryName() + ", getCategoryType()="
+				+ getCategoryType() + "]";
+	}
+    
+    
 }

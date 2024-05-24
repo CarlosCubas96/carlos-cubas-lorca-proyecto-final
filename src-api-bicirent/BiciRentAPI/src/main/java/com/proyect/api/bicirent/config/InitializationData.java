@@ -5,30 +5,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import com.github.javafaker.Faker;
 
-import com.proyect.api.bicirent.models.Bicycle;
-import com.proyect.api.bicirent.models.Category;
-import com.proyect.api.bicirent.models.CategoryType;
-import com.proyect.api.bicirent.models.ERole;
-import com.proyect.api.bicirent.models.Post;
-import com.proyect.api.bicirent.models.PostStatus;
-import com.proyect.api.bicirent.models.Rental;
-import com.proyect.api.bicirent.models.RentalStatus;
-import com.proyect.api.bicirent.models.Role;
-import com.proyect.api.bicirent.models.User;
-import com.proyect.api.bicirent.repository.UserRepository;
-import com.proyect.api.bicirent.repository.BicycleRepository;
-import com.proyect.api.bicirent.repository.CategoryRepository;
-import com.proyect.api.bicirent.repository.PostRepository;
-import com.proyect.api.bicirent.repository.RentalRepository;
-import com.proyect.api.bicirent.repository.RoleRepository;
+import com.github.javafaker.Faker;
+import com.proyect.api.bicirent.models.*;
+import com.proyect.api.bicirent.repository.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
+import java.util.*;
 
 @Profile("custom-profile")
 @Component
@@ -41,6 +24,7 @@ public class InitializationData implements CommandLineRunner {
 	private final BicycleRepository bicycleRepository;
 	private final CategoryRepository categoryRepository;
 	private final RentalRepository rentalRepository;
+	private final TagRepository tagRepository;
 
 	private final Faker faker = new Faker(new Locale("es"));
 
@@ -52,7 +36,7 @@ public class InitializationData implements CommandLineRunner {
 
 	public InitializationData(UserRepository userRepository, RoleRepository roleRepository,
 			PostRepository postRepository, BicycleRepository bicycleRepository, CategoryRepository categoryRepository,
-			RentalRepository rentalRepository, PasswordEncoder passwordEncoder) {
+			RentalRepository rentalRepository, TagRepository tagRepository, PasswordEncoder passwordEncoder) {
 		this.userRepository = userRepository;
 		this.roleRepository = roleRepository;
 		this.passwordEncoder = passwordEncoder;
@@ -60,6 +44,7 @@ public class InitializationData implements CommandLineRunner {
 		this.bicycleRepository = bicycleRepository;
 		this.categoryRepository = categoryRepository;
 		this.rentalRepository = rentalRepository;
+		this.tagRepository = tagRepository;
 	}
 
 	@Override
@@ -83,7 +68,6 @@ public class InitializationData implements CommandLineRunner {
 		}
 
 		initializeBicyclesAndPosts();
-
 	}
 
 	private void createUser(String username, String firstname, String lastname, String email, String password,
@@ -114,16 +98,37 @@ public class InitializationData implements CommandLineRunner {
 			}
 		}
 
+		// Crear y guardar etiquetas
+		List<String> tagNames = Arrays.asList("rápida", "ligera", "resistente", "confortable", "elegante");
+		List<Tag> tags = new ArrayList<>();
+		for (String tagName : tagNames) {
+			Tag tag = new Tag(tagName);
+			tags.add(tagRepository.save(tag));
+		}
+
 		for (int i = 0; i < 50; i++) {
 			int randomIndex = faker.number().numberBetween(0, categories.size());
 			Category randomCategory = categories.get(randomIndex);
 
-			Post post = new Post(faker.book().title(), faker.lorem().sentence(), PostStatus.AVAILABLE, LocalDate.now(),
+			Post post = new Post(faker.book().title(), faker.lorem().sentence(),
+					PostStatus.values()[faker.number().numberBetween(0, PostStatus.values().length)], LocalDate.now(),
 					faker.lorem().paragraph(), admin, randomCategory);
+
+			// Asociar etiquetas aleatorias a la publicación
+			Set<Tag> postTags = new HashSet<>();
+			int numberOfTags = faker.number().numberBetween(1, tags.size());
+			Collections.shuffle(tags);
+			for (int j = 0; j < numberOfTags; j++) {
+				postTags.add(tags.get(j));
+			}
+			post.setTags(postTags);
+
 			postRepository.save(post);
 
+			String randomImageUrl = "https://picsum.photos/200/300";
+
 			Bicycle bicycle = new Bicycle(faker.company().name(), post, faker.commerce().productName(),
-					faker.number().randomDouble(2, 10, 100), admin, randomCategory);
+					faker.number().randomDouble(2, 10, 100), admin, randomCategory, randomImageUrl);
 			bicycleRepository.save(bicycle);
 
 			Rental rental = new Rental(admin, admin, bicycle,
@@ -133,5 +138,4 @@ public class InitializationData implements CommandLineRunner {
 			rentalRepository.save(rental);
 		}
 	}
-
 }

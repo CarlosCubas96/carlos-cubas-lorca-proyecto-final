@@ -34,12 +34,12 @@ const EditFormInput = ({ label, type, placeholder, name, value, onChange, valida
 EditFormInput.propTypes = {
     label: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
-    placeholder: PropTypes.string.isRequired,
+    placeholder: PropTypes.any.isRequired,
     name: PropTypes.string.isRequired,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    value: PropTypes.any.isRequired,
     onChange: PropTypes.func.isRequired,
     validations: PropTypes.array.isRequired,
-    disabled: PropTypes.bool.isRequired, // Propiedad disabled agregada a PropTypes
+    disabled: PropTypes.bool.isRequired,
 };
 
 export default EditFormInput;

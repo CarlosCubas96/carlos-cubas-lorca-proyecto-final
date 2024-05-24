@@ -6,7 +6,7 @@ import SidebarsectionAdmin from "../../../components/admin/aside/sidebarsectionA
 import Icon from "../../../components/UI/icon/icon";
 import FormButtom from "../../../components/UI/Button/FormButton/formButton";
 import authService from "../../../services/auth/auth.service";
-import RentalService from "../../../services/rentals/rental.service";
+import RentalService from "../../../services/rental/rental.service";
 
 
 export default class DashBoardRentalsAdmin extends Component {
@@ -44,6 +44,7 @@ export default class DashBoardRentalsAdmin extends Component {
         });
     }
 
+
     handlePageChange(pageNumber) {
         this.setState({
             currentPage: pageNumber
@@ -74,7 +75,7 @@ export default class DashBoardRentalsAdmin extends Component {
         });
     }
 
-    confirmDeleteUser() {
+    confirmDeleteUser = () => {
         const { rentalToDeleteId } = this.state;
         RentalService.deleteRental(rentalToDeleteId)
             .then(() => {
@@ -83,7 +84,6 @@ export default class DashBoardRentalsAdmin extends Component {
                     showDeleteModal: false,
                     rentalToDeleteId: null
                 }), () => {
-
                     this.retrieveRentals();
                 });
             })
@@ -91,6 +91,7 @@ export default class DashBoardRentalsAdmin extends Component {
                 console.error('Error deleting user:', error);
             });
     }
+
 
 
     render() {
@@ -118,7 +119,7 @@ export default class DashBoardRentalsAdmin extends Component {
                                             <Icon name="Lupa" color="#637887" />
                                             <input
                                                 type="text"
-                                                placeholder="Buscar alquileres por usuario o modelo de bicicleta"
+                                                placeholder="Buscar alquileres por modelo de bicicleta"
                                                 className="admin-dashboard-rentals-sectioninputsearch-box"
                                                 value={searchQuery}
                                                 onChange={(e) => this.onChangeSearchQuery(e)}
