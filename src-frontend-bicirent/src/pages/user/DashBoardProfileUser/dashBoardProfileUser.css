@@ -1,0 +1,594 @@
+.dash-board-profile-admin-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.dash-board-profile-user-containermainsection {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-profile-admin-containermainsectiontitle {
+  gap: 12px;
+  width: 921px;
+  height: 72px;
+  display: flex;
+  padding: 16px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dash-board-profile-admin-containersectiontitle {
+  gap: 12px;
+  top: 16px;
+  left: 16px;
+  width: 328px;
+  height: 40px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-profile-admin-text {
+  color: rgba(20, 20, 20, 1);
+  height: auto;
+  font-size: 32px;
+  font-style: Bold;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 700;
+  line-height: 40px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.dash-board-profile-admin-containermainsectioneditprofile {
+  width: 921px;
+  height: 706px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-profile-admin-containermainsectionusername {
+  width: 921px;
+  height: 112px;
+  display: flex;
+  padding: 12px 16px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dash-board-profile-admin-containersectionusername {
+  gap: 16px;
+  width: 480px;
+  height: 88px;
+  display: flex;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.dash-board-profile-admin-containerusername {
+  width: 480px;
+  height: 88px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-profile-admin-containersectionlabelusername {
+  width: 480px;
+  height: 32px;
+  display: flex;
+  padding: 0 0 8px;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-profile-admin-text02 {
+  color: rgba(17, 20, 22, 1);
+  height: auto;
+  font-size: 16px;
+  align-self: stretch;
+  font-style: Medium;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 500;
+  line-height: 24px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.dash-board-profile-admin-containersectioninputusername {
+  width: 480px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dash-board-profile-admin-containerinputusername {
+  width: 480px;
+  height: 56px;
+  display: flex;
+  padding: 16px;
+  overflow: hidden;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-color: rgba(219, 224, 229, 1);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 12px;
+  justify-content: space-between;
+}
+
+.dash-board-profile-admin-inputusername {
+  color: rgba(17, 20, 22, 1);
+  display: flex;
+  font-size: 16px;
+  align-self: stretch;
+  text-align: left;
+  align-items: flex-start;
+  font-family: Plus Jakarta Sans;
+  font-weight: 400;
+  flex-direction: column;
+}
+
+.dash-board-profile-admin-containermainsectionfirst-name {
+  width: 921px;
+  height: 112px;
+  display: flex;
+  padding: 12px 16px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dash-board-profile-admin-containersectionfirst-name {
+  gap: 16px;
+  width: 480px;
+  height: 88px;
+  display: flex;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.dash-board-profile-admin-containerfirst-name {
+  width: 480px;
+  height: 88px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-profile-admin-containersectionlabelfirst-name {
+  width: 480px;
+  height: 32px;
+  display: flex;
+  padding: 0 0 8px;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-profile-admin-text04 {
+  color: rgba(17, 20, 22, 1);
+  height: auto;
+  font-size: 16px;
+  align-self: stretch;
+  font-style: Medium;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 500;
+  line-height: 24px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.dash-board-profile-admin-containersectioninputfirst-name {
+  width: 480px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dash-board-profile-admin-containerinputfirst-name {
+  width: 480px;
+  height: 56px;
+  display: flex;
+  padding: 16px;
+  overflow: hidden;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-color: rgba(219, 224, 229, 1);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 12px;
+  justify-content: space-between;
+}
+
+.dash-board-profile-admin-inputfirst-name {
+  color: rgba(17, 20, 22, 1);
+  display: flex;
+  font-size: 16px;
+  align-self: stretch;
+  text-align: left;
+  align-items: flex-start;
+  font-family: Plus Jakarta Sans;
+  font-weight: 400;
+  flex-direction: column;
+}
+
+.dash-board-profile-admin-containermainsectionlast-name {
+  width: 921px;
+  height: 112px;
+  display: flex;
+  padding: 12px 16px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dash-board-profile-admin-containersectionlast-name {
+  gap: 16px;
+  width: 480px;
+  height: 88px;
+  display: flex;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.dash-board-profile-admin-containerlast-name {
+  width: 480px;
+  height: 88px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-profile-admin-containersectionlabellast-name {
+  width: 480px;
+  height: 32px;
+  display: flex;
+  padding: 0 0 8px;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-profile-admin-text06 {
+  color: rgba(17, 20, 22, 1);
+  height: auto;
+  font-size: 16px;
+  align-self: stretch;
+  font-style: Medium;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 500;
+  line-height: 24px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.dash-board-profile-admin-containersectioninputlast-name {
+  width: 480px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dash-board-profile-admin-containerinputlast-name {
+  width: 480px;
+  height: 56px;
+  display: flex;
+  padding: 16px;
+  overflow: hidden;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-color: rgba(219, 224, 229, 1);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 12px;
+  justify-content: space-between;
+}
+
+.dash-board-profile-admin-inputlast-name {
+  color: rgba(17, 20, 22, 1);
+  display: flex;
+  font-size: 16px;
+  align-self: stretch;
+  text-align: left;
+  align-items: flex-start;
+  font-family: Plus Jakarta Sans;
+  font-weight: 400;
+  flex-direction: column;
+}
+
+.dash-board-profile-admin-containermainsectionemail {
+  width: 921px;
+  height: 112px;
+  display: flex;
+  padding: 12px 16px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dash-board-profile-admin-containersectionemail {
+  gap: 16px;
+  width: 480px;
+  height: 88px;
+  display: flex;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.dash-board-profile-admin-containeremail {
+  width: 480px;
+  height: 88px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-profile-admin-containersectionlabelemail {
+  width: 480px;
+  height: 32px;
+  display: flex;
+  padding: 0 0 8px;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-profile-admin-text08 {
+  color: rgba(17, 20, 22, 1);
+  height: auto;
+  font-size: 16px;
+  align-self: stretch;
+  font-style: Medium;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 500;
+  line-height: 24px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.dash-board-profile-admin-containersectioninputemail {
+  width: 480px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dash-board-profile-admin-containerinputemail {
+  width: 480px;
+  height: 56px;
+  display: flex;
+  padding: 16px;
+  overflow: hidden;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-color: rgba(219, 224, 229, 1);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 12px;
+  justify-content: space-between;
+}
+
+.dash-board-profile-admin-inputemail {
+  color: rgba(17, 20, 22, 1);
+  display: flex;
+  font-size: 16px;
+  align-self: stretch;
+  text-align: left;
+  align-items: flex-start;
+  font-family: Plus Jakarta Sans;
+  font-weight: 400;
+  flex-direction: column;
+}
+
+.dash-board-profile-admin-containermainsectionpassword {
+  width: 921px;
+  height: 112px;
+  display: flex;
+  padding: 12px 16px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dash-board-profile-admin-containersectionpassword {
+  gap: 16px;
+  width: 480px;
+  height: 88px;
+  display: flex;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.dash-board-profile-admin-containerpassword {
+  width: 480px;
+  height: 88px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-profile-admin-containersectionlabelpassword {
+  width: 480px;
+  height: 32px;
+  display: flex;
+  padding: 0 0 8px;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-profile-admin-text10 {
+  color: rgba(17, 20, 22, 1);
+  height: auto;
+  font-size: 16px;
+  align-self: stretch;
+  font-style: Medium;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 500;
+  line-height: 24px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.dash-board-profile-admin-containersectioninputpassword {
+  width: 480px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dash-board-profile-admin-containerinputpassword {
+  width: 480px;
+  height: 56px;
+  display: flex;
+  padding: 16px;
+  overflow: hidden;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-color: rgba(219, 224, 229, 1);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 12px;
+  justify-content: space-between;
+}
+
+.dash-board-profile-admin-inputpassword {
+  color: rgba(18, 20, 23, 1);
+  height: 24px;
+  display: flex;
+  font-size: 16px;
+  align-self: stretch;
+  text-align: left;
+  align-items: flex-start;
+  flex-shrink: 0;
+  font-family: Plus Jakarta Sans;
+  font-weight: 400;
+  flex-direction: column;
+}
+
+.dash-board-profile-admin-containermainsectionbuttoms {
+  gap: 19px;
+  width: 921px;
+  height: 64px;
+  display: flex;
+  padding: 12px 16px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dash-board-profile-admin-containerbuttomprofileedit {
+  width: 84px;
+  height: 40px;
+  display: flex;
+  padding: 0 16px;
+  overflow: hidden;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 12px;
+  justify-content: center;
+  background-color: rgba(56, 224, 119, 1);
+}
+
+.dash-board-profile-admin-containertextbuttomprofileedit {
+  width: 75px;
+  height: 22px;
+  display: flex;
+  overflow: hidden;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-profile-admin-buttomprofileedit {
+  width: 75px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dash-board-profile-admin-text12 {
+  color: rgba(20, 20, 20, 1);
+  height: auto;
+  font-size: 14px;
+  font-style: Bold;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 700;
+  line-height: 21px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.dash-board-profile-admin-containerbuttomprofilesave {
+  width: 84px;
+  height: 40px;
+  display: flex;
+  padding: 0 16px;
+  overflow: hidden;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 12px;
+  justify-content: center;
+  background-color: rgba(56, 224, 119, 1);
+}
+
+.dash-board-profile-admin-containertextbuttomprofilesave {
+  width: 75px;
+  height: 22px;
+  display: flex;
+  overflow: hidden;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.dash-board-profile-admin-buttomprofilesave {
+  width: 75px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dash-board-profile-admin-text14 {
+  color: rgba(20, 20, 20, 1);
+  height: auto;
+  font-size: 14px;
+  font-style: Bold;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 700;
+  line-height: 21px;
+  font-stretch: normal;
+  text-decoration: none;
+}

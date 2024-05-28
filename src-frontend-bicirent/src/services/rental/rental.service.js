@@ -56,7 +56,17 @@ const RentalService = {
       .catch(error => {
         throw error;
       });
+  },
+
+  getRentalsByLandlordId: (landlordId, status, pageNumber, pageSize) => {
+    const url = status ? `rentals/landlord/${landlordId}?status=${status}&pageNumber=${pageNumber}&pageSize=${pageSize}` : `rentals/landlord/${landlordId}?pageNumber=${pageNumber}&pageSize=${pageSize}`;
+    return AxiosService.get(url)
+      .then(response => response.data)
+      .catch(error => {
+        throw error;
+      });
   }
+
 };
 
 export default RentalService;

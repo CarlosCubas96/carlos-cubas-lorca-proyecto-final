@@ -13,10 +13,8 @@ import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { IoImagesOutline } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
-
-
-
-
+import { RiFolder6Line } from "react-icons/ri";
+import { IoMdArrowBack } from "react-icons/io";
 
 
 
@@ -35,6 +33,7 @@ export const icons = {
     Arrow1: MdKeyboardArrowLeft,
     Arrow2: MdKeyboardArrowRight,
     Imagen: IoImagesOutline,
-    Close: IoMdClose
-
+    Close: IoMdClose,
+    Carpeta: RiFolder6Line,
+    ArrowExit: IoMdArrowBack
 };

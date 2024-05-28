@@ -64,6 +64,15 @@ const PostService = {
       .catch(error => {
         throw error;
       });
+  },
+
+  getAllPostsByUserId: (userId, searchQuery, pageNumber, pageSize) => {
+    const url = searchQuery ? `posts/user/${userId}?searchTerm=${searchQuery}&pageNumber=${pageNumber}&pageSize=${pageSize}` : `posts/user/${userId}?pageNumber=${pageNumber}&pageSize=${pageSize}`;
+    return AxiosService.get(url)
+      .then(response => response.data)
+      .catch(error => {
+        throw error;
+      });
   }
 };
 

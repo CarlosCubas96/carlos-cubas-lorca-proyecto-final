@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 
-import './dashBoardPostsAdmin.css';
+import './dashBoardPostsUser.css';
 import Header from "../../../components/common/layout/header/header";
-import SidebarsectionAdmin from "../../../components/admin/aside/sidebarsectionAdmin";
 import Icon from "../../../components/UI/icon/icon";
 import FormButtom from "../../../components/UI/Button/FormButton/formButton";
 import ModalDelete from "../../../components/UI/Modal/modalDelete";
 import authService from "../../../services/auth/auth.service";
 import PostService from "../../../services/post/post.service";
 
-
-export default class DashBoardPostsAdmin extends Component {
+export default class DashBoardPostsUser extends Component {
 
     constructor(props) {
         super(props);
@@ -27,12 +25,13 @@ export default class DashBoardPostsAdmin extends Component {
 
     componentDidMount() {
         const user = authService.getCurrentUser();
-        if (user && user.roles.includes('ROLE_ADMIN')) {
+        if (user && user.roles.includes('ROLE_USER')) {
             this.setState({
                 currentUser: user,
+            }, () => {
+                this.retrievesPosts();
             });
         }
-        this.retrievesPosts();
     }
 
     onChangeSearchQuery(e) {
@@ -54,19 +53,20 @@ export default class DashBoardPostsAdmin extends Component {
     }
 
     retrievesPosts() {
-        const { searchQuery, currentPage } = this.state;
+        const { searchQuery, currentPage, currentUser } = this.state;
         const pageSize = 6;
-        PostService.getAllPosts(searchQuery, currentPage, pageSize)
-            .then(data => {
-                console.log(data);
-                this.setState({
-                    posts: data.content,
-                    totalPages: data.totalPages
+        if (currentUser) {
+            PostService.getAllPostsByUserId(currentUser.id, searchQuery, currentPage, pageSize)
+                .then(data => {
+                    this.setState({
+                        posts: data.content,
+                        totalPages: data.totalPages
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching posts:', error);
                 });
-            })
-            .catch(error => {
-                console.error('Error fetching posts:', error);
-            });
+        }
     }
 
     handleDeletePost(id) {
@@ -76,17 +76,16 @@ export default class DashBoardPostsAdmin extends Component {
         });
     }
 
-    confirmDeletePost() {
+    confirmDeletePost = () => {
         const { postToDeleteId } = this.state;
         PostService.deletePost(postToDeleteId)
             .then(() => {
                 this.setState(prevState => ({
-                    posts: prevState.bicycles.filter(post => post.id !== postToDeleteId),
+                    posts: prevState.posts.filter(post => post.id !== postToDeleteId),
                     showDeleteModal: false,
                     postToDeleteId: null
                 }), () => {
-
-                    this.retrieveBicycles();
+                    this.retrievesPosts();
                 });
             })
             .catch(error => {
@@ -94,47 +93,61 @@ export default class DashBoardPostsAdmin extends Component {
             });
     }
 
+    handleGoBack = () => {
+        window.history.back();
+    };
+
     formatDate(dateArray) {
-        const [year, month, day] = dateArray;
-        // Convert month and day to two digits
-        const formattedMonth = month.toString().padStart(2, '0');
-        const formattedDay = day.toString().padStart(2, '0');
-        return `${formattedDay}/${formattedMonth}/${year}`;
+        if (Array.isArray(dateArray) && dateArray.length === 3) {
+            const [year, month, day] = dateArray;
+            const formattedMonth = month.toString().padStart(2, '0');
+            const formattedDay = day.toString().padStart(2, '0');
+            return `${formattedDay}/${formattedMonth}/${year}`;
+        } else {
+            return "Formato de fecha inválido";
+        }
     }
-    
+
 
     render() {
         const { currentUser, posts, searchQuery, currentPage, totalPages, showDeleteModal } = this.state;
 
         return (
-            <>
-                <div className="admin-dashboard-main-container">
-                    <div className="admin-dashboard-main-dash-board-main-admin">
-                        <Header currentUser={currentUser} />
-                        <div className="admin-dashboard-main-containerdashboardadmin">
-                            <div className="admin-dashboard-main-containerdashboardsections">
-                                <SidebarsectionAdmin />
-                                <div className="admin-dashboard-main-containermainsection">
-                                    <div className="admin-dashboard-posts-containermainsectiontitle">
-                                        <div className="admin-dashboard-posts-containersectiontitle">
-                                            <span className="admin-dashboard-posts-text">
-                                                <span>Gestión de Publicaciones</span>
-                                            </span>
-                                        </div>
+            <div className="dash-board-posts-user-container">
+                <div className="dash-board-posts-user-dash-board-posts-user">
+                    <Header currentUser={currentUser} />
+                    <div className="dash-board-posts-user-containerdashboardadmin">
+                        <div className="dash-board-posts-user-containerdashboardsections">
+                            <div className="dash-board-posts-user-containermainsection">
+                                <div className="dash-board-posts-user-containermainsectiontitle">
+                                    <div className="dash-board-posts-user-containersectionbuttomback">
+                                        <button style={{ border: 'none', background: 'inherit' }} onClick={() => this.handleGoBack()}>
+                                            <Icon name="ArrowExit" size="30px"></Icon>
+                                        </button>
                                     </div>
-                                    <div className="admin-dashboard-posts-containermainsectionsearch-box">
-                                        <div className="admin-dashboard-posts-containersectionsearch-box">
+                                    <div className="dash-board-posts-user-containersectiontitle">
+                                        <span className="dash-board-posts-user-text12">
+                                            <span>Mis Publicaciones</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className="dash-board-posts-user-containermainsectionsearch-box">
+                                    <div className="dash-board-posts-user-containersectionsearch-box">
+                                        <Icon name="Lupa" color="#637887" />
+                                        <input
+                                            type="text"
+                                            placeholder="Buscar publicaciones por nombre de publicación "
+                                            className="admin-dashboard-posts-sectioninputsearch-box"
+                                            value={searchQuery}
+                                            onChange={(e) => this.onChangeSearchQuery(e)}
+                                        />
+                                    </div>
+                                    <div className="dash-board-posts-user-containerbuttomedit">
+                                        <FormButtom color="#F5F5F5" to={`/user/publicaciones/add`}>Añadir</FormButtom>
+                                    </div>
+                                </div>
 
-                                            <Icon name="Lupa" color="#637887" />
-                                            <input
-                                                type="text"
-                                                placeholder="Buscar publicaciones por nombre de publicación "
-                                                className="admin-dashboard-posts-sectioninputsearch-box"
-                                                value={searchQuery}
-                                                onChange={(e) => this.onChangeSearchQuery(e)}
-                                            />
-                                        </div>
-                                    </div>
+                                {Array.isArray(posts) && posts.length > 0 ? (
                                     <table className="admin-dashboard-posts-containermainsectiontable">
                                         <thead className="admin-dashboard-posts-containersectionheadertable">
                                             <tr className="admin-dashboard-posts-sectionsheadertable">
@@ -174,7 +187,6 @@ export default class DashBoardPostsAdmin extends Component {
                                                         </span>
                                                     </div>
                                                 </th>
-
                                                 <th className="admin-dashboard-posts-sectionheadertable6">
                                                     <div className="admin-dashboard-posts-textheadertable6">
                                                         <span className="admin-dashboard-posts-text12">
@@ -185,8 +197,8 @@ export default class DashBoardPostsAdmin extends Component {
                                             </tr>
                                         </thead>
                                         <tbody className="admin-dashboard-posts-containersectionmaintable">
-                                          
-                                            {Array.isArray(posts) && posts.map(post => (
+                                            {/* Contenido de la tabla de publicaciones */}
+                                            {posts.map(post => (
                                                 <tr key={post.id} className="admin-dashboard-posts-sectiontabletr">
                                                     <td className="admin-dashboard-posts-sectiontabletd">
                                                         <div className="admin-dashboard-posts-td">
@@ -209,11 +221,10 @@ export default class DashBoardPostsAdmin extends Component {
                                                             </span>
                                                         </div>
                                                     </td>
-
                                                     <td className="admin-dashboard-posts-sectiontabletd4">
                                                         <div className="admin-dashboard-posts-td4">
                                                             <span className="admin-dashboard-posts-text22">
-                                                                <span>{post.creationDate}</span>
+                                                                <span>{this.formatDate(post.creationDate)}</span>
                                                             </span>
                                                         </div>
                                                     </td>
@@ -224,16 +235,14 @@ export default class DashBoardPostsAdmin extends Component {
                                                             </span>
                                                         </div>
                                                     </td>
-
                                                     <td className="admin-dashboard-posts-sectiontabletd5">
-                                                        <FormButtom to={`/admin/publicaciones/edit/${post.id}`}>Editar</FormButtom>
+                                                        <FormButtom color="#F5F5F5" to={`/user/publicaciones/edit/${post.id}`}>Editar</FormButtom>
                                                     </td>
                                                     <td className="admin-dashboard-posts-sectiontabletd6">
-                                                        <FormButtom onClick={() => this.handleDeletePost(post.id)}>Eliminar</FormButtom>
+                                                        <FormButtom color="#F5F5F5" onClick={() => this.handleDeletePost(post.id)}>Eliminar</FormButtom>
                                                     </td>
                                                 </tr>
                                             ))}
-
                                         </tbody>
                                         <tfoot className="admin-dashboard-posts-containersectionmainpagination">
                                             <tr>
@@ -259,18 +268,22 @@ export default class DashBoardPostsAdmin extends Component {
                                             </tr>
                                         </tfoot>
                                     </table>
-                                    <ModalDelete
-                                        show={showDeleteModal}
-                                        onHide={() => this.setState({ showDeleteModal: false })}
-                                        onConfirm={this.confirmDeletePost}
-                                    />
-
-                                </div>
+                                ) : (
+                                    <div className="admin-dashboard-posts-containersectionmaintable">
+                                        <p>No hay existen publicaciones disponibles</p>
+                                    </div>
+                                )}
+                                <ModalDelete
+                                    show={showDeleteModal}
+                                    onHide={() => this.setState({ showDeleteModal: false })}
+                                    onConfirm={this.confirmDeletePost}
+                                />
                             </div>
                         </div>
                     </div>
                 </div>
-            </>
+            </div>
         );
     }
+
 }
