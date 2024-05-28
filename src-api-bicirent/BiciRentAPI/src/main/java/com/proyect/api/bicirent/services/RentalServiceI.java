@@ -23,4 +23,9 @@ public interface RentalServiceI {
 	void deleteRental(Long id);
 
 	List<RentalStatus> getAllRentalStatuses();
+
+	Page<RentalResponse> getRentalsByLandlordId(Long id, Pageable pageable);
+
+	Page<RentalResponse> getRentalsByLandlordIdAndStatus(Long landlordId, RentalStatus status, Pageable pageable);
+
 }

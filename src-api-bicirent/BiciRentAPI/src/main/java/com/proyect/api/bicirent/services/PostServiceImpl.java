@@ -1,20 +1,18 @@
 package com.proyect.api.bicirent.services;
 
 import com.proyect.api.bicirent.dto.response.PostResponse;
-import com.proyect.api.bicirent.models.Bicycle;
 import com.proyect.api.bicirent.models.Category;
 import com.proyect.api.bicirent.models.Post;
-import com.proyect.api.bicirent.models.Rental;
 import com.proyect.api.bicirent.models.Tag;
 import com.proyect.api.bicirent.repository.CategoryRepository;
 import com.proyect.api.bicirent.repository.PostRepository;
 import com.proyect.api.bicirent.repository.TagRepository;
 
-import org.antlr.v4.runtime.misc.Array2DHashSet;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -57,7 +55,42 @@ public class PostServiceImpl implements PostServiceI {
 
 	@Override
 	public Post createPost(Post post) {
-		return postRepository.save(post);
+
+		// Crear una nueva instancia de Post
+		Post newPost = new Post();
+
+		// Establecer los campos simples
+		newPost.setOwner(post.getOwner());
+
+		newPost.setCreationDate(LocalDate.now());
+
+		newPost.setPostName(post.getPostName());
+		newPost.setDescription(post.getDescription());
+		newPost.setOtherDetails(post.getOtherDetails());
+		newPost.setPostStatus(post.getPostStatus());
+
+		// Verificar si la categoría existe y establecerla en el nuevo Post
+		Category category = categoryRepository.findById(post.getCategory().getId()).orElseThrow(
+				() -> new IllegalArgumentException("Category with id " + post.getCategory().getId() + " not found"));
+		newPost.setCategory(category);
+
+		// Manejar las etiquetas
+		Set<Tag> tags = new HashSet<>();
+		for (Tag tag : post.getTags()) {
+			// Verificar si la etiqueta ya existe en la base de datos
+			Tag existingTag = tagRepository.findByTagName(tag.getTagName());
+			if (existingTag != null) {
+				tags.add(existingTag); // Si existe, agregar la etiqueta existente
+			} else {
+				// Si no existe, guardarla y luego agregarla
+				Tag savedTag = tagRepository.save(tag);
+				tags.add(savedTag);
+			}
+		}
+		newPost.setTags(tags); // Establecer las etiquetas en el nuevo Post
+
+		// Guardar y devolver el nuevo Post
+		return postRepository.save(newPost);
 	}
 
 	@Override
@@ -114,4 +147,16 @@ public class PostServiceImpl implements PostServiceI {
 	public void deletePost(Long id) {
 		postRepository.deleteById(id);
 	}
+
+	@Override
+	public Page<PostResponse> getAllPostsByUserId(Long userId, String searchTerm, Pageable pageable) {
+		Page<Post> postsPage;
+		if (searchTerm == null || searchTerm.isEmpty()) {
+			postsPage = postRepository.findByOwner_Id(userId, pageable);
+		} else {
+			postsPage = postRepository.findByOwner_IdAndPostNameContaining(userId, searchTerm, pageable);
+		}
+		return postsPage.map(this::mapToPostResponse);
+	}
+
 }

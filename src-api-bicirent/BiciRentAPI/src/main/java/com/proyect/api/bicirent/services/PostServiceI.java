@@ -23,4 +23,6 @@ public interface PostServiceI {
 	void deletePost(Long id);
 
 	List<Category> getAllCategories();
+
+	Page<PostResponse> getAllPostsByUserId(Long userId, String searchTerm, Pageable pageable);
 }

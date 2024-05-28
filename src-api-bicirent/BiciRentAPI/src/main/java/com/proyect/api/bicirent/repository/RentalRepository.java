@@ -26,4 +26,9 @@ public interface RentalRepository extends JpaRepository<Rental, Long> {
 	List<Rental> findAllByStartDateBetween(LocalDate startDate, LocalDate endDate);
 
 	Page<Rental> findByRentedBicycle_BrandModelContaining(String brandModel, Pageable pageable);
+
+	Page<Rental> findByLandlord_Id(Long id, Pageable pageable);
+
+	Page<Rental> findByLandlord_IdAndRentalStatus(Long landlordId, RentalStatus status, Pageable pageable);
+
 }

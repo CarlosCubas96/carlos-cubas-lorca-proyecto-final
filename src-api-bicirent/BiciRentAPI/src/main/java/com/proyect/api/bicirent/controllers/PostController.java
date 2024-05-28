@@ -30,7 +30,8 @@ public class PostController {
 	}
 
 	@GetMapping
-	public ResponseEntity<Page<PostResponse>> getAllRentals(@RequestParam(required = false) String searchTerm,
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+	public ResponseEntity<Page<PostResponse>> getAllPosts(@RequestParam(required = false) String searchTerm,
 			@RequestParam(defaultValue = "0") int pageNumber, @RequestParam(defaultValue = "6") int pageSize) {
 		Page<PostResponse> postsPage = postService.getAllPosts(searchTerm, PageRequest.of(pageNumber, pageSize));
 		if (postsPage.isEmpty()) {
@@ -40,6 +41,7 @@ public class PostController {
 	}
 
 	@GetMapping("/{id}")
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Post> getPostById(@PathVariable("id") Long id) {
 		Optional<Post> post = postService.getPostById(id);
 		return post.map(value -> ResponseEntity.ok().body(value)).orElseGet(() -> ResponseEntity.notFound().build());
@@ -91,5 +93,18 @@ public class PostController {
 			@PathVariable("tagId") Long tagId) {
 		Post updatedPost = tagService.removeTagFromPost(postId, tagId);
 		return ResponseEntity.ok(updatedPost);
+	}
+
+	@GetMapping("/user/{userId}")
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+	public ResponseEntity<Page<PostResponse>> getAllPostsByUserId(@PathVariable("userId") Long userId,
+			@RequestParam(required = false) String searchTerm, @RequestParam(defaultValue = "0") int pageNumber,
+			@RequestParam(defaultValue = "6") int pageSize) {
+		Page<PostResponse> postsPage = postService.getAllPostsByUserId(userId, searchTerm,
+				PageRequest.of(pageNumber, pageSize));
+		if (postsPage.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<>(postsPage, HttpStatus.OK);
 	}
 }

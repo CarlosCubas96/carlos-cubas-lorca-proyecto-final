@@ -71,4 +71,27 @@ public class RentalController {
 		rentalService.deleteRental(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
+
+	@GetMapping("/landlord/{landlordId}")
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+	public ResponseEntity<Page<RentalResponse>> getRentalsByLandlordId(@PathVariable Long landlordId,
+			@RequestParam(required = false) String status, @RequestParam(defaultValue = "0") int pageNumber,
+			@RequestParam(defaultValue = "4") int pageSize) {
+
+		Page<RentalResponse> rentalsPage;
+
+		if (status != null && !status.isEmpty()) {
+			RentalStatus rentalStatus = RentalStatus.valueOf(status);
+			rentalsPage = rentalService.getRentalsByLandlordIdAndStatus(landlordId, rentalStatus,
+					PageRequest.of(pageNumber, pageSize));
+		} else {
+			rentalsPage = rentalService.getRentalsByLandlordId(landlordId, PageRequest.of(pageNumber, pageSize));
+		}
+
+		if (rentalsPage.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<>(rentalsPage, HttpStatus.OK);
+	}
+
 }

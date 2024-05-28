@@ -8,4 +8,6 @@ import com.proyect.api.bicirent.models.Tag;
 @Repository
 public interface TagRepository extends JpaRepository<Tag, Long> {
 
+	Tag findByTagName(String tagName);
+
 }
