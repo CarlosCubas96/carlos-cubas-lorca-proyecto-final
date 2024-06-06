@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
-import Header from "../../../components/common/layout/header/header";
 import authService from "../../../services/auth/auth.service";
 import Form from "react-validation/build/form";
 import './viewAddPostUser.css';
 import FormButton from "../../../components/UI/Button/FormButton/formButton";
-import CheckBoxFormInput from "../../../components/UI/inputs/CheckboxFormInput/checkboxFormInput";
 import PostService from "../../../services/post/post.service";
 import SelectFormInput from "../../../components/UI/inputs/SelectFormInput/selectFormInput";
 import TextAreaFormInput from "../../../components/UI/inputs/TextAreaFormInput/textAreaFormInput";
 import Icon from "../../../components/UI/icon/icon";
 import AddFormInput from "../../../components/UI/inputs/AddFormInput/addFormInput";
+import { Link } from "react-router-dom";
 
 const required = (value) => {
     if (!value || value.trim() === "") {
@@ -52,10 +51,10 @@ const votherDetails = (value) => {
 };
 
 const ViewAddPostUser = () => {
-    const [currentUser, setCurrentUser] = useState(undefined);
     const [selectedCategory, setSelectedCategory] = useState("");
     const [categories, setCategories] = useState([]);
     const [newPost, setNewPost] = useState({
+        id: null,
         category: { id: null },
         owner: { id: null },
         description: '',
@@ -65,21 +64,30 @@ const ViewAddPostUser = () => {
         tags: []
     });
 
-    const [message, setMessage] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
     const [newTag, setNewTag] = useState("");
+    const [isPostCreated, setIsPostCreated] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         const user = authService.getCurrentUser();
         if (user && user.roles.includes('ROLE_USER')) {
-            setCurrentUser(user);
             setNewPost(prevState => ({
                 ...prevState,
-                owner: { id: user.id } 
+                owner: { id: user.id },
+                postStatus: "DISPONIBLE"
             }));
             getAllCategories();
+
+            if (categories.length > 0) {
+                setSelectedCategory(categories[0].id);
+                setNewPost(prevState => ({
+                    ...prevState,
+                    category: { id: categories[0].id }
+                }));
+            }
         }
-    }, []);
+    }, [categories]);
 
     const onChange = (e) => {
         const { name, value } = e.target;
@@ -115,12 +123,12 @@ const ViewAddPostUser = () => {
     const handleCreatePost = () => {
         PostService.createPost(newPost)
             .then(response => {
-                setMessage("Publicación creada exitosamente!");
+                setNewPost(prevState => ({ ...prevState, id: response.id }));
                 setErrorMessage(null);
+                setIsPostCreated(true);
             })
             .catch(error => {
                 setErrorMessage("Error al crear la Publicación. Inténtalo de nuevo." + error);
-                setMessage(null);
             });
     };
 
@@ -143,29 +151,49 @@ const ViewAddPostUser = () => {
         }));
     };
 
-    const handleGoBack = () => {
-        window.history.back();
+
+    const toggleModal = () => {
+        setShowModal(!showModal);
     };
+
     return (
-        <div className="admin-dashboard-main-container">
-            <div className="admin-dashboard-main-dash-board-main-admin">
-                <Header currentUser={currentUser} />
-                <div className="admin-dashboard-main-containerdashboardadmin">
-                    <div className="admin-dashboard-main-containerdashboardsections">
-                        <div className="dash-board-edit-post-user-containermainsection">
-                            <div className="dash-board-profile-admin-containermainsectiontitle">
-                                <div className="dash-board-profile-admin-containersectiontitle">
-                                    <span className="dash-board-profile-admin-text">
-                                        <span>Gestión de Publicación</span>
+        <div className="view-add-post-user-container">
+            <div className="view-add-post-user-view-add-post-user">
+                <div className="view-add-post-user-containersectionsprogress">
+                    <div className="view-add-post-user-containerprogressbuttomclose">
+                        <div className="view-add-post-user-containerbuttomtext">
+                            <Link to="/user/publicaciones" >
+                                <Icon name={"Close"} size="30px"></Icon>
+                            </Link>
+                        </div>
+                    </div>
+                    <div className="view-add-post-user-containerprogress">
+                        <div className="view-add-post-user-containerprogresstitle">
+                            <span className="view-add-post-user-text">
+                                <span>Pasos 1/2</span>
+                            </span>
+                        </div>
+                        <div className="view-add-post-user-containerprogressbar">
+                            <div className="view-add-post-user-depth6-frame0"></div>
+                            <div className="view-add-post-user-depth6-frame1"></div>
+                        </div>
+                    </div>
+                    <div className="view-add-post-user-containerbuttomprofilesave">
+                        <FormButton textColor="#FFFFFF" color="#121417" onClick={toggleModal}>Ayuda</FormButton>
+                    </div>
+                </div>
+                <div className="view-add-post-user-containerdashboardadmin">
+                    <div className="view-add-post-user-containerdashboardsections">
+                        <div className="view-add-post-user-containermainsection">
+                            <div className="view-add-post-user-containermainsectiontitle">
+                                <div className="view-add-post-user-containersectiontitle">
+                                    <span className="view-add-post-user-text04">
+                                        <span>Añadir Publicación</span>
                                     </span>
                                 </div>
-                                <button style={{ border: 'none', background: 'inherit' }} onClick={handleGoBack}>
-                                    <Icon name="ArrowExit" size="30px"></Icon>
-                                </button>
                             </div>
-
-                            <Form className="dash-board-edit-post-admin-containermainsectioneditprofile">
-                                <div className="dash-board-edit-post-admin-containermainsectionshield">
+                            <Form className="view-add-post-user-containermainsectioneditprofile">
+                                <div className="view-add-post-user-containermainsectionshield">
                                     <AddFormInput
                                         label="Nombre de la Publicación"
                                         type="text"
@@ -173,9 +201,11 @@ const ViewAddPostUser = () => {
                                         value={newPost.postName}
                                         onChange={onChange}
                                         validations={[required, vpostName]}
+                                        placeholder="Escribe aquí el nombre de la publicacion"
+                                        disabled={false}
                                     />
                                 </div>
-                                <div className="dash-board-edit-post-admin-containermainsectionselect">
+                                <div className="view-add-post-user-containermainsectionselect">
                                     <SelectFormInput
                                         label="Selecciona una categoría:"
                                         name="category"
@@ -183,27 +213,34 @@ const ViewAddPostUser = () => {
                                         onChange={handleChangeCategory}
                                         categories={categories}
                                         validations={[required]}
+                                        disabled={false}
                                     />
+
                                 </div>
-                                <div className="dash-board-edit-post-admin-containermainsectionshield1">
+                                <div className="view-add-post-user-containermainsectionshield1">
                                     <TextAreaFormInput
                                         label="Descripción"
                                         name="description"
                                         value={newPost.description}
                                         onChange={onChange}
                                         validations={[required, vdescription]}
+                                        placeholder="Escribe aquí tu descripción" 
+                                        disabled={false} 
                                     />
+
                                 </div>
-                                <div className="dash-board-edit-post-admin-containermainsectionshield2">
+                                <div className="view-add-post-user-containermainsectionshield2">
                                     <TextAreaFormInput
                                         label="Detalles Adicionales"
                                         name="otherDetails"
                                         value={newPost.otherDetails}
                                         onChange={onChange}
                                         validations={[required, votherDetails]}
+                                        placeholder="Escribe aquí otros detalles"
+                                        disabled={false}
                                     />
                                 </div>
-                                <div className="dash-board-edit-post-admin-containermainsectionshield3">
+                                <div className="view-add-post-user-containermainsectionshield3">
                                     <div className="dash-board-edit-post-admin-containersectionshield3">
                                         <div className="dash-board-edit-post-admin-containershield3">
                                             <div className="dash-board-edit-post-admin-containersectiontaglabel">
@@ -245,38 +282,50 @@ const ViewAddPostUser = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="dash-board-edit-post-admin-containermainsectionshield3">
-                                    <CheckBoxFormInput
-                                        label="Estado del Alquiler"
-                                        name="postStatus"
-                                        options={[
-                                            { value: 'DISPONIBLE', label: 'Disponible' },
-                                            { value: 'ALQUILADO', label: 'Alquilado' },
-                                            { value: 'NODISPONIBLE', label: 'No Disponible' }
-                                        ]}
-                                        selectedValue={newPost.postStatus}
-                                        onChange={onChange}
-                                        validations={[required]}
-                                    />
-                                </div>
                             </Form>
-                            <div className="dash-board-edit-post-admin-containermainsectionbuttoms">
-                                <FormButton color="#F5F5F5" onClick={handleCreatePost}>Crear</FormButton>
-                                {message && <div className="form-group">
-                                    <div className="edit-containermessage-message">
-                                        {message}
-                                    </div>
-                                </div>}
-                                {errorMessage && <div className="form-group">
-                                    <div className="edit-containererror-message">
-                                        {errorMessage}
-                                    </div>
-                                </div>}
+                        </div>
+                    </div>
+                </div>
+                <div className="view-add-post-user-containersectionsprogress1">
+                    {errorMessage && <div className="form-group">
+                        <div className="edit-containererror-message">
+                            {errorMessage}
+                        </div>
+                    </div>}
+                    {isPostCreated && (
+                        <FormButton textColor="#FFFFFF" color="#121417" to={`/user/publicaciones/add/bicicleta/${newPost.id}`} >Siguiente</FormButton>
+                    )}
+                    {!isPostCreated && (
+                        <FormButton textColor="#FFFFFF" color="#121417" onClick={handleCreatePost}>Confirmar</FormButton>
+                    )}
+                </div>
+            </div>
+            {showModal && (
+                <div className="modal fade show" tabIndex="-1" style={{ display: "block" }}>
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title">Ayuda para Añadir Publicación</h5>
+                                <button type="button" className="btn-close" onClick={toggleModal}></button>
+                            </div>
+                            <div className="modal-body">
+                                <ul>
+                                    <li>Asegúrate de completar todos los campos obligatorios.</li>
+                                    <li>El nombre de la publicación debe tener entre 3 y 50 caracteres.</li>
+                                    <li>La descripción debe tener entre 10 y 200 caracteres.</li>
+                                    <li>Los detalles adicionales deben proporcionar información relevante.</li>
+                                    <li>Selecciona una categoría apropiada para tu publicación.</li>
+                                    <li>Utiliza etiquetas relevantes para mejorar la búsqueda de tu publicación.</li>
+                                </ul>
+                            </div>
+                            <div className="modal-footer">
+
+                                <FormButton textColor="#FFFFFF" color="#121417" onClick={toggleModal}>Cerrar</FormButton>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 };

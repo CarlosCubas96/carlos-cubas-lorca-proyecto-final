@@ -1,14 +1,18 @@
 package com.proyect.api.bicirent.services;
 
 import com.proyect.api.bicirent.dto.response.PostResponse;
+import com.proyect.api.bicirent.models.Bicycle;
 import com.proyect.api.bicirent.models.Category;
 import com.proyect.api.bicirent.models.Post;
+import com.proyect.api.bicirent.models.PostStatus;
 import com.proyect.api.bicirent.models.Tag;
+import com.proyect.api.bicirent.repository.BicycleRepository;
 import com.proyect.api.bicirent.repository.CategoryRepository;
 import com.proyect.api.bicirent.repository.PostRepository;
 import com.proyect.api.bicirent.repository.TagRepository;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -24,12 +28,14 @@ public class PostServiceImpl implements PostServiceI {
 	private final PostRepository postRepository;
 	private final CategoryRepository categoryRepository;
 	private final TagRepository tagRepository;
+	private final BicycleRepository bicycleRepository;
 
 	public PostServiceImpl(PostRepository postRepository, CategoryRepository categoryRepository,
-			TagRepository tagRepository) {
+			TagRepository tagRepository, BicycleRepository bicycleRepository) {
 		this.postRepository = postRepository;
 		this.categoryRepository = categoryRepository;
 		this.tagRepository = tagRepository;
+		this.bicycleRepository = bicycleRepository;
 	}
 
 	@Override
@@ -37,9 +43,41 @@ public class PostServiceImpl implements PostServiceI {
 		Page<Post> postsPage;
 		if (searchTerm == null || searchTerm.isEmpty()) {
 			postsPage = postRepository.findAll(pageable);
+
 		} else {
 			postsPage = postRepository.findByPostNameContaining(searchTerm, pageable);
+
 		}
+		return postsPage.map(this::mapToPostResponse);
+	}
+
+	@Override
+	public Page<PostResponse> getAllPostsByCategoryId(Long categoryId, Pageable pageable) {
+		Category category = categoryRepository.findById(categoryId)
+				.orElseThrow(() -> new IllegalArgumentException("Category with id " + categoryId + " not found"));
+		Page<Post> postsPage = postRepository.findByCategory(category, pageable);
+		return postsPage.map(this::mapToPostResponse);
+	}
+
+	@Override
+	public Page<Post> getAllPostsByTagName(String tagName, Pageable pageable) {
+		return postRepository.getAllPostsByTagName(tagName, pageable);
+	}
+
+	public Page<Post> getPostsByRentalPriceRange(Integer price, int page, int size) {
+		// Obtener las bicicletas que caen dentro del rango de precios
+		Page<Bicycle> bicycles = bicycleRepository.findByRentalPriceGreaterThanEqual(price, PageRequest.of(page, size));
+
+		// Obtener las publicaciones asociadas a las bicicletas
+		Page<Post> posts = bicycles.map(Bicycle::getPost);
+
+		return posts;
+	}
+
+	@Override
+	public Page<PostResponse> getAllPostsByDateRange(LocalDate fromDate, LocalDate toDate, Pageable pageable) {
+		// Obtener las publicaciones dentro del rango de fechas especificado
+		Page<Post> postsPage = postRepository.findByCreationDateBetween(fromDate, toDate, pageable);
 		return postsPage.map(this::mapToPostResponse);
 	}
 
@@ -67,7 +105,7 @@ public class PostServiceImpl implements PostServiceI {
 		newPost.setPostName(post.getPostName());
 		newPost.setDescription(post.getDescription());
 		newPost.setOtherDetails(post.getOtherDetails());
-		newPost.setPostStatus(post.getPostStatus());
+		newPost.setPostStatus(PostStatus.DISPONIBLE);
 
 		// Verificar si la categoría existe y establecerla en el nuevo Post
 		Category category = categoryRepository.findById(post.getCategory().getId()).orElseThrow(
@@ -87,7 +125,7 @@ public class PostServiceImpl implements PostServiceI {
 				tags.add(savedTag);
 			}
 		}
-		newPost.setTags(tags); // Establecer las etiquetas en el nuevo Post
+		newPost.setTags(tags);
 
 		// Guardar y devolver el nuevo Post
 		return postRepository.save(newPost);

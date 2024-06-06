@@ -244,14 +244,14 @@ export default class DashBoardProfileUser extends Component {
                                             name="password"
                                             value={currentUserProfile.password}
                                             onChange={this.onChange}
-                                            disabled={!editable}
+                                            disabled={true}
                                             validations={[required, vpassword]}
                                         />
                                     </div>
                                 </Form>
                                 <div className="dash-board-profile-admin-containermainsectionbuttoms">
-                                    <FormButton onClick={this.handleEdit}>Editar</FormButton>
-                                    <FormButton onClick={this.handleUpdateProfile}>Guardar</FormButton>
+                                    <FormButton color="#F5F5F5" onClick={this.handleEdit}>Editar</FormButton>
+                                    <FormButton color="#F5F5F5" onClick={this.handleUpdateProfile}>Guardar</FormButton>
                                     {message && <div className="form-group">
                                         <div className="edit-containermessage-message">
                                             {message}

@@ -1,0 +1,49 @@
+.view-catalog-user-containerbuttomcatalog {
+  width: 269.3299865722656px;
+  height: 40px;
+  display: flex;
+  padding: 0 16px;
+  overflow: hidden;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 12px;
+  justify-content: center;
+  background-color: rgba(240, 242, 245, 1);
+  outline: none;
+  text-decoration: none;
+}
+
+
+
+.view-catalog-user-containerbuttomtext2 {
+  width: 110.390625px;
+  height: 21px;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(240, 242, 245, 1);
+}
+
+.view-catalog-user-buttomtext2 {
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.view-catalog-user-text054 {
+  color: rgba(17, 20, 22, 1);
+  height: auto;
+  font-size: 14px;
+  font-style: Bold;
+  text-align: left;
+  font-family: Inter;
+  font-weight: 700;
+  line-height: 21px;
+  font-stretch: normal;
+  text-decoration: none;
+}

@@ -9,11 +9,13 @@ import com.proyect.api.bicirent.services.TagServiceImpl;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +36,49 @@ public class PostController {
 	public ResponseEntity<Page<PostResponse>> getAllPosts(@RequestParam(required = false) String searchTerm,
 			@RequestParam(defaultValue = "0") int pageNumber, @RequestParam(defaultValue = "6") int pageSize) {
 		Page<PostResponse> postsPage = postService.getAllPosts(searchTerm, PageRequest.of(pageNumber, pageSize));
+		if (postsPage.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<>(postsPage, HttpStatus.OK);
+	}
+
+	@GetMapping("/tags/{tagName}")
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+	public ResponseEntity<Page<Post>> getAllPostsByTagName(@PathVariable String tagName,
+			@RequestParam(required = false, defaultValue = "0") int pageNumber,
+			@RequestParam(defaultValue = "6") int pageSize) {
+		Page<Post> postsPage = postService.getAllPostsByTagName(tagName, PageRequest.of(pageNumber, pageSize));
+		if (postsPage.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<>(postsPage, HttpStatus.OK);
+	}
+
+	@GetMapping("/categories/{categoryId}")
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+	public ResponseEntity<Page<PostResponse>> getAllPostsByCategoryId(@PathVariable Long categoryId,
+			@RequestParam(defaultValue = "0") int pageNumber, @RequestParam(defaultValue = "6") int pageSize) {
+		Page<PostResponse> postsPage = postService.getAllPostsByCategoryId(categoryId,
+				PageRequest.of(pageNumber, pageSize));
+		if (postsPage.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<>(postsPage, HttpStatus.OK);
+	}
+
+	@GetMapping("/filterPrice")
+	public Page<Post> filterPostsByBicycleRentalPrice(@RequestParam Integer price,
+			@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+		return postService.getPostsByRentalPriceRange(price, page, size);
+	}
+
+	@GetMapping("/filterDate")
+	public ResponseEntity<Page<PostResponse>> getAllPostsByDateRange(
+			@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
+			@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate,
+			@RequestParam(defaultValue = "0") int pageNumber, @RequestParam(defaultValue = "6") int pageSize) {
+		Page<PostResponse> postsPage = postService.getAllPostsByDateRange(fromDate, toDate,
+				PageRequest.of(pageNumber, pageSize));
 		if (postsPage.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
@@ -107,4 +152,17 @@ public class PostController {
 		}
 		return new ResponseEntity<>(postsPage, HttpStatus.OK);
 	}
+
+	@GetMapping("/tags")
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+	public ResponseEntity<List<Tag>> getAllTags() {
+		List<Tag> tags = tagService.getAllTags();
+		if (tags.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<>(tags, HttpStatus.OK);
+	}
+	
+	
+
 }

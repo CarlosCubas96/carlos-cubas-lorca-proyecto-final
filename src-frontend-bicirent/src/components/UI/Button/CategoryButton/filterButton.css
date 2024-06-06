@@ -1,0 +1,44 @@
+.view-catalog-user-containerbuttomfiltresshow {
+  width: 275px;
+  height: 40px;
+  display: flex;
+  padding: 0 16px;
+  overflow: hidden;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 12px;
+  justify-content: center;
+  background-color: rgba(17, 20, 22, 1);
+  border: none;
+}
+
+.view-catalog-user-containerbuttomtext {
+  width: auto;
+  height: 21px;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  flex-shrink: 0;
+  flex-direction: column;
+  background-color: rgba(17, 20, 22, 1);
+}
+
+.view-catalog-user-buttomtext {
+  display: flex;
+  align-self: stretch;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.view-catalog-user-text010 {
+  color: rgba(255, 255, 255, 1);
+  height: auto;
+  font-size: 14px;
+  font-style: Bold;
+  text-align: left;
+  font-family: Inter;
+  font-weight: 700;
+  line-height: 21px;
+  font-stretch: normal;
+  text-decoration: none;
+}

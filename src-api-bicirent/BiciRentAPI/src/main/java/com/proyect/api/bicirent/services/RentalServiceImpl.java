@@ -4,8 +4,11 @@ import com.proyect.api.bicirent.dto.response.RentalResponse;
 import com.proyect.api.bicirent.models.Bicycle;
 import com.proyect.api.bicirent.models.Rental;
 import com.proyect.api.bicirent.models.RentalStatus;
+import com.proyect.api.bicirent.models.User;
 import com.proyect.api.bicirent.repository.BicycleRepository;
 import com.proyect.api.bicirent.repository.RentalRepository;
+import com.proyect.api.bicirent.repository.UserRepository;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -19,10 +22,12 @@ public class RentalServiceImpl implements RentalServiceI {
 
 	private final RentalRepository rentalRepository;
 	private final BicycleRepository bicycleRepository;
+	private final UserRepository userRepository;
 
-	public RentalServiceImpl(RentalRepository rentalRepository, BicycleRepository bicycleRepository) {
+	public RentalServiceImpl(RentalRepository rentalRepository, BicycleRepository bicycleRepository, UserRepository userRepository) {
 		this.rentalRepository = rentalRepository;
 		this.bicycleRepository = bicycleRepository;
+		this.userRepository = userRepository;
 	}
 
 	@Override
@@ -63,10 +68,32 @@ public class RentalServiceImpl implements RentalServiceI {
 		return status;
 	}
 
-	@Override
-	public Rental createRental(Rental rental) {
-		return rentalRepository.save(rental);
-	}
+	 @Override
+	    public Rental reserveBicycle (Rental rental) {
+		 
+		 Rental newRental = new Rental();
+	        // Lógica para validar y guardar la reserva
+	        // Obtener la bicicleta y el usuario desde sus repositorios
+	        Bicycle bicycle = bicycleRepository.findById(rental.getRentedBicycle().getId())
+	                .orElseThrow(() -> new IllegalArgumentException("Invalid bicycle ID"));
+	        
+	        User landlord = userRepository.findById(rental.getLandlord().getId())
+	                .orElseThrow(() -> new IllegalArgumentException("Invalid LandLord user ID"));
+	        
+	        User tentant = userRepository.findById(rental.getTenant().getId())
+	                .orElseThrow(() -> new IllegalArgumentException("Invalid Tentant user ID"));
+
+	        newRental.setRentedBicycle(bicycle);
+	        newRental.setLandlord(landlord);
+	        newRental.setTenant(tentant);
+	        
+	        newRental.setRentalStatus(RentalStatus.ACTIVE);
+	        
+	        newRental.setStartDate(rental.getStartDate());
+	        newRental.setEndTime(rental.getEndDate()); 
+
+	        return rentalRepository.save(newRental);
+	    }
 
 	@Override
 	public Rental updateRental(Long id, Rental rental) {

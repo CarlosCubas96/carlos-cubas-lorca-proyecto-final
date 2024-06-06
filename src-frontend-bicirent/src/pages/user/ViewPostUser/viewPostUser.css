@@ -1,0 +1,1040 @@
+.view-post-user-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .view-post-user-view-post-user {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .view-post-user-containerheader {
+    gap: 180px;
+    width: 1280px;
+    border: 2px dashed rgba(120, 120, 120, 0.4);
+    height: 65px;
+    display: flex;
+    padding: 12px 40px;
+    align-items: center;
+    flex-shrink: 0;
+    border-color: rgba(229, 232, 234, 1);
+    border-style: solid;
+    border-width: 0 0 1px;
+  }
+  .view-post-user-containerdashboardadmin {
+    width: 1280px;
+    height: auto;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .view-post-user-containerdashboardsections {
+    gap: 4px;
+    width: 1280px;
+    height: auto;
+    display: flex;
+    padding: 20px 24px;
+    align-items: center;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .view-post-user-containerpostsectionmain {
+    width: 960px;
+    height: auto;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .view-post-user-containerpostsectiontitle {
+    gap: 9px;
+    width: 905px;
+    height: 62px;
+    display: flex;
+    padding: 20px 16px 12px;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .view-post-user-containercatalogtitle {
+    width: 879px;
+    height: 27.5px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .view-post-user-text {
+    color: rgba(17, 20, 22, 1);
+    height: auto;
+    font-size: 22px;
+    font-style: Bold;
+    text-align: left;
+    font-family: Plus Jakarta Sans;
+    font-weight: 700;
+    line-height: 27.5px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containerpostsectionimg {
+    gap: 10px;
+    height: 425px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    justify-content: center;
+  }
+  .view-post-user-containerimg {
+    width: 574px;
+    height: 390px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .view-post-user-img {
+    width: 574px;
+    height: 390px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    align-items: flex-start;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background-size: cover;
+    background-image: url("https://play.teleporthq.io/static/svg/default-img.svg");
+  }
+  .view-post-user-containerpostsectiondetails {
+    gap: 9px;
+    width: 373px;
+    height: 390px;
+    display: flex;
+    padding: 20px 16px 12px;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .view-post-user-containerpostdetailstitle {
+    display: flex;
+    align-self: stretch;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .view-post-user-text02 {
+    color: rgba(22, 20, 17, 1);
+    height: auto;
+    font-size: 16px;
+    font-style: Bold;
+    text-align: left;
+    font-family: Work Sans;
+    font-weight: 700;
+    line-height: 21px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containerpostdetailssections {
+    height: 253px;
+    display: flex;
+    align-self: stretch;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .view-post-user-containerdetails {
+    width: 341px;
+    height: 253px;
+    display: flex;
+    padding: 16px;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .view-post-user-containerdetail {
+    gap: 4px;
+    width: 174px;
+    height: 79px;
+    display: flex;
+    padding: 16px 8px 16px 0;
+    align-items: flex-start;
+    flex-shrink: 0;
+    border-color: rgba(229, 232, 234, 1);
+    border-style: solid;
+    border-width: 1px 0 0;
+    flex-direction: column;
+  }
+  .view-post-user-containerdetailtitle {
+    width: 174px;
+    height: 21px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .view-post-user-text04 {
+    color: rgba(99, 119, 135, 1);
+    height: auto;
+    font-size: 14px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Plus Jakarta Sans;
+    font-weight: 400;
+    line-height: 21px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containerdetailtext {
+    width: 174px;
+    height: 21px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .view-post-user-text06 {
+    color: rgba(17, 20, 22, 1);
+    height: auto;
+    font-size: 14px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Plus Jakarta Sans;
+    font-weight: 400;
+    line-height: 21px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containerdetail1 {
+    gap: 4px;
+    width: 174px;
+    height: 79px;
+    display: flex;
+    padding: 16px 8px 16px 0;
+    align-items: flex-start;
+    flex-shrink: 0;
+    border-color: rgba(229, 232, 234, 1);
+    border-style: solid;
+    border-width: 1px 0 0;
+    flex-direction: column;
+  }
+  .view-post-user-containerdetailtitle1 {
+    width: 175px;
+    height: 21px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .view-post-user-text08 {
+    color: rgba(99, 119, 135, 1);
+    height: auto;
+    font-size: 14px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Plus Jakarta Sans;
+    font-weight: 400;
+    line-height: 21px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containerdetailtext1 {
+    width: 174px;
+    height: 21px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .view-post-user-text10 {
+    color: rgba(17, 20, 22, 1);
+    height: auto;
+    font-size: 14px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Plus Jakarta Sans;
+    font-weight: 400;
+    line-height: 21px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containerdetail2 {
+    gap: 4px;
+    width: 174px;
+    height: 79px;
+    display: flex;
+    padding: 16px 8px 16px 0;
+    align-items: flex-start;
+    flex-shrink: 0;
+    border-color: rgba(229, 232, 234, 1);
+    border-style: solid;
+    border-width: 1px 0 0;
+    flex-direction: column;
+  }
+  .view-post-user-containerdetailtitle2 {
+    width: 174px;
+    height: 21px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .view-post-user-text12 {
+    color: rgba(99, 119, 135, 1);
+    height: auto;
+    font-size: 14px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Plus Jakarta Sans;
+    font-weight: 400;
+    line-height: 21px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containerdetailtext2 {
+    width: 174px;
+    height: 21px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .view-post-user-text14 {
+    color: rgba(17, 20, 22, 1);
+    height: auto;
+    font-size: 14px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Plus Jakarta Sans;
+    font-weight: 400;
+    line-height: 21px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containersectionprice {
+    width: 140px;
+    height: 48px;
+    display: flex;
+    padding: 0 20px;
+    overflow: hidden;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 12px;
+    justify-content: center;
+    background-color: rgba(56, 224, 119, 1);
+  }
+  .view-post-user-buttomtextprice {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .view-post-user-text16 {
+    color: rgba(20, 20, 20, 1);
+    width: 100%;
+    height: auto;
+    font-size: 16px;
+    font-style: Bold;
+    text-align: center;
+    font-family: Plus Jakarta Sans;
+    font-weight: 700;
+    line-height: 24px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containerpostsectiontags {
+    gap: 12px;
+    width: 921px;
+    height: 56px;
+    display: flex;
+    padding: 12px;
+    overflow: hidden;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .view-post-user-containersectiontag {
+    gap: 8px;
+    width: 85px;
+    height: 32px;
+    display: flex;
+    padding: 0 16px;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 12px;
+    justify-content: center;
+    background-color: rgba(239, 242, 244, 1);
+  }
+  .view-post-user-containertagtext {
+    width: 68px;
+    height: 21px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .view-post-user-text18 {
+    color: rgba(17, 20, 22, 1);
+    height: auto;
+    font-size: 14px;
+    font-style: Medium;
+    text-align: left;
+    font-family: Plus Jakarta Sans;
+    font-weight: 500;
+    line-height: 21px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containersectiontag1 {
+    gap: 8px;
+    width: 60px;
+    height: 32px;
+    display: flex;
+    padding: 0 16px;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 12px;
+    justify-content: center;
+    background-color: rgba(239, 242, 244, 1);
+  }
+  .view-post-user-containertagtext1 {
+    width: 44px;
+    height: 21px;
+    display: flex;
+    overflow: hidden;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .view-post-user-text20 {
+    color: rgba(17, 20, 22, 1);
+    width: 45px;
+    height: auto;
+    font-size: 14px;
+    font-style: Medium;
+    text-align: left;
+    font-family: Plus Jakarta Sans;
+    font-weight: 500;
+    line-height: 21px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containerpostsectiondescription {
+    gap: 9px;
+    width: 921px;
+    height: 215px;
+    display: flex;
+    padding: 20px 16px 12px;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .view-post-user-containerpostdescriptiontitle {
+    display: flex;
+    align-self: stretch;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .view-post-user-text22 {
+    color: rgba(22, 20, 17, 1);
+    height: auto;
+    font-size: 16px;
+    font-style: Bold;
+    text-align: left;
+    font-family: Work Sans;
+    font-weight: 700;
+    line-height: 21px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containerpostdescriptiontextarea {
+    height: 145px;
+    display: flex;
+    align-self: stretch;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .view-post-user-text24 {
+    color: rgba(22, 20, 17, 1);
+    width: 889px;
+    height: auto;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Work Sans;
+    font-weight: 400;
+    line-height: 24px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containerpostsectionform {
+    gap: 40px;
+    width: 921px;
+    height: auto;
+    display: flex;
+    padding: 12px 16px;
+    align-items: center;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .view-post-user-containerpostfromtitle {
+    display: flex;
+    align-self: stretch;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .view-post-user-text26 {
+    color: rgba(22, 20, 17, 1);
+    height: auto;
+    font-size: 16px;
+    font-style: Bold;
+    text-align: left;
+    font-family: Work Sans;
+    font-weight: 700;
+    line-height: 21px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containerpostfrominputs {
+    gap: 50px;
+    height: auto;
+    display: flex;
+    align-self: stretch;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .view-post-user-containersectioninput1 {
+    gap: 16px;
+    width: 480px;
+    height: 56px;
+    display: flex;
+    align-items: flex-end;
+    flex-shrink: 0;
+  }
+  .view-post-user-containersectioninput {
+    width: 480px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .view-post-user-containerinput {
+    width: 480px;
+    height: 56px;
+    display: flex;
+    padding: 16px;
+    overflow: hidden;
+    align-items: flex-start;
+    flex-shrink: 0;
+    border-color: rgba(219, 224, 229, 1);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 12px;
+    justify-content: space-between;
+  }
+  .view-post-user-input {
+    color: rgba(99, 117, 135, 1);
+    display: flex;
+    font-size: 16px;
+    align-self: stretch;
+    text-align: left;
+    align-items: flex-start;
+    font-family: Plus Jakarta Sans;
+    font-weight: 400;
+    flex-direction: column;
+  }
+  .view-post-user-containersectioninput11 {
+    gap: 16px;
+    width: 480px;
+    height: 56px;
+    display: flex;
+    align-items: flex-end;
+    flex-shrink: 0;
+  }
+  .view-post-user-containersectioninput1 {
+    width: 480px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .view-post-user-containerinput1 {
+    width: 480px;
+    height: 56px;
+    display: flex;
+    padding: 16px;
+    overflow: hidden;
+    align-items: flex-start;
+    flex-shrink: 0;
+    border-color: rgba(219, 224, 229, 1);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 12px;
+    justify-content: space-between;
+  }
+  .view-post-user-input1 {
+    color: rgba(99, 117, 135, 1);
+    display: flex;
+    font-size: 16px;
+    align-self: stretch;
+    text-align: left;
+    align-items: flex-start;
+    font-family: Plus Jakarta Sans;
+    font-weight: 400;
+    flex-direction: column;
+  }
+  .view-post-user-containerpostsectionbuttoms {
+    gap: 9px;
+    width: 905px;
+    height: 62px;
+    display: flex;
+    padding: 12px 16px;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .view-post-user-containerbuttommodalcancel {
+    display: flex;
+    align-items: flex-start;
+  }
+  .view-post-user-containerbuttommodalcancel1 {
+    width: 84px;
+    height: 40px;
+    display: flex;
+    padding: 0 16px;
+    overflow: hidden;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 12px;
+    justify-content: center;
+    background-color: rgba(244, 244, 244, 1);
+  }
+  .view-post-user-containertextbuttommodalcancel {
+    width: 75px;
+    height: 22px;
+    display: flex;
+    overflow: hidden;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .view-post-user-buttommodalcancel {
+    width: 75px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .view-post-user-text28 {
+    color: rgba(20, 20, 20, 1);
+    height: auto;
+    font-size: 14px;
+    font-style: Bold;
+    text-align: left;
+    font-family: Plus Jakarta Sans;
+    font-weight: 700;
+    line-height: 21px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containerbuttommodalcancel2 {
+    width: 84px;
+    height: 40px;
+    display: flex;
+    padding: 0 16px;
+    overflow: hidden;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 12px;
+    justify-content: center;
+    background-color: rgba(17, 20, 22, 1);
+  }
+  .view-post-user-containertextbuttommodalcancel1 {
+    width: 75px;
+    height: 22px;
+    display: flex;
+    overflow: hidden;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .view-post-user-buttommodalcancel1 {
+    width: 75px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .view-post-user-text30 {
+    color: rgba(244, 244, 244, 1);
+    height: auto;
+    font-size: 14px;
+    font-style: Bold;
+    text-align: left;
+    font-family: Plus Jakarta Sans;
+    font-weight: 700;
+    line-height: 21px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containerpostsectionotherdetails {
+    gap: 9px;
+    width: 921px;
+    height: auto;
+    display: flex;
+    padding: 12px 16px;
+    margin-top: 100px;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .accordion-button:not(.collapsed){
+    background-color: inherit;
+  }
+
+  .accordion-button:focus{
+    border: none;
+    box-shadow: none;
+  }
+
+  .accordion-item{
+
+    width: 100%;
+
+  }
+  .view-post-user-containersectionotherdetails {
+    gap: 8px;
+    width: 850.625px;
+    height: 145px;
+    display: flex;
+    padding: 15px;
+    align-items: flex-start;
+    flex-shrink: 0;
+    border-color: rgba(229, 224, 219, 1);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 12px;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .view-post-user-containersectionotherdetailstitle {
+    gap: 24px;
+    width: 818.625px;
+    height: 21px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    justify-content: space-between;
+  }
+  .view-post-user-text32 {
+    color: rgba(22, 20, 17, 1);
+    height: auto;
+    font-size: 14px;
+    font-style: Medium;
+    text-align: left;
+    font-family: Work Sans;
+    font-weight: 500;
+    line-height: 21px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containersectionotherdetailsicon {
+    width: 20px;
+    height: 20px;
+  }
+  .view-post-user-containersectionotherdetailscollapse {
+    width: 818.625px;
+    height: 84px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .view-post-user-text34 {
+    color: rgba(137, 114, 96, 1);
+    width: 807px;
+    height: auto;
+    font-size: 14px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Work Sans;
+    font-weight: 400;
+    line-height: 21px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containerfooter {
+    gap: 24px;
+    width: 960px;
+    height: 248px;
+    display: flex;
+    padding: 40px 20px;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .view-post-user-containerfooternav {
+    gap: 24px;
+    width: 920px;
+    height: 72px;
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .view-post-user-containerfooternavsecction {
+    top: 0px;
+    left: 2px;
+    width: 160px;
+    display: flex;
+    position: absolute;
+    align-self: stretch;
+    align-items: center;
+    flex-direction: column;
+  }
+  .view-post-user-text36 {
+    color: rgba(114, 114, 114, 1);
+    height: auto;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: center;
+    font-family: Plus Jakarta Sans;
+    font-weight: 400;
+    line-height: 24px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containerfooternavsecction1 {
+    top: 0px;
+    left: 191px;
+    width: 160px;
+    display: flex;
+    position: absolute;
+    align-self: stretch;
+    align-items: center;
+    flex-direction: column;
+  }
+  .view-post-user-text38 {
+    color: rgba(114, 114, 114, 1);
+    height: auto;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: center;
+    font-family: Plus Jakarta Sans;
+    font-weight: 400;
+    line-height: 24px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containerfooternavsecction2 {
+    top: 0px;
+    left: 380px;
+    width: 160px;
+    display: flex;
+    position: absolute;
+    align-self: stretch;
+    align-items: center;
+    flex-direction: column;
+  }
+  .view-post-user-text40 {
+    color: rgba(114, 114, 114, 1);
+    height: auto;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: center;
+    font-family: Plus Jakarta Sans;
+    font-weight: 400;
+    line-height: 24px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containerfooternavsecction3 {
+    top: 0px;
+    left: 569px;
+    width: 160px;
+    display: flex;
+    position: absolute;
+    align-self: stretch;
+    align-items: center;
+    flex-direction: column;
+  }
+  .view-post-user-text42 {
+    color: rgba(114, 114, 114, 1);
+    height: auto;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: center;
+    font-family: Plus Jakarta Sans;
+    font-weight: 400;
+    line-height: 24px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containerfooternavsecction4 {
+    top: 0px;
+    left: 758px;
+    width: 160px;
+    display: flex;
+    position: absolute;
+    align-self: stretch;
+    align-items: center;
+    flex-direction: column;
+  }
+  .view-post-user-text44 {
+    color: rgba(114, 114, 114, 1);
+    height: auto;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: center;
+    font-family: Plus Jakarta Sans;
+    font-weight: 400;
+    line-height: 24px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containerfooternavsecction5 {
+    top: 48px;
+    left: 26px;
+    width: 160px;
+    display: flex;
+    position: absolute;
+    align-self: stretch;
+    align-items: center;
+    flex-direction: column;
+  }
+  .view-post-user-text46 {
+    color: rgba(114, 114, 114, 1);
+    height: auto;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: center;
+    font-family: Plus Jakarta Sans;
+    font-weight: 400;
+    line-height: 24px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containerfooternavsecction6 {
+    top: 48px;
+    left: 262px;
+    width: 160px;
+    display: flex;
+    position: absolute;
+    align-self: stretch;
+    align-items: center;
+    flex-direction: column;
+  }
+  .view-post-user-text48 {
+    color: rgba(114, 114, 114, 1);
+    height: auto;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: center;
+    font-family: Plus Jakarta Sans;
+    font-weight: 400;
+    line-height: 24px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containerfooternavsecction7 {
+    top: 48px;
+    left: 498px;
+    width: 160px;
+    display: flex;
+    position: absolute;
+    align-self: stretch;
+    align-items: center;
+    flex-direction: column;
+  }
+  .view-post-user-text50 {
+    color: rgba(114, 114, 114, 1);
+    height: auto;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: center;
+    font-family: Plus Jakarta Sans;
+    font-weight: 400;
+    line-height: 24px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containerfooternavsecction8 {
+    top: 48px;
+    left: 734px;
+    width: 160px;
+    display: flex;
+    position: absolute;
+    align-self: stretch;
+    align-items: center;
+    flex-direction: column;
+  }
+  .view-post-user-text52 {
+    color: rgba(114, 114, 114, 1);
+    height: auto;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: center;
+    font-family: Plus Jakarta Sans;
+    font-weight: 400;
+    line-height: 24px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-post-user-containerfootericons {
+    gap: 16px;
+    width: 920px;
+    height: 24px;
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .view-post-user-containerfootericon {
+    top: 0px;
+    left: 488px;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+  }
+  .view-post-user-containerfootericon1 {
+    top: 0px;
+    left: 448px;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+  }
+  .view-post-user-containerfootericon2 {
+    top: 0px;
+    left: 408px;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+  }
+  .view-post-user-containerfootercopy {
+    width: 920px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .view-post-user-text54 {
+    color: rgba(114, 114, 114, 1);
+    height: auto;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: center;
+    font-family: Plus Jakarta Sans;
+    font-weight: 400;
+    line-height: 24px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  

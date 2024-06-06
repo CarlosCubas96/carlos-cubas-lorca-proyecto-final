@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ModalDelete from "../../../components/UI/Modal/modalDelete";
+import ModalDelete from "../../../components/UI/Modal/ModalDelete/modalDelete";
 import './dashBoardUsersAdmin.css';
 import Header from "../../../components/common/layout/header/header";
 import SidebarsectionAdmin from "../../../components/admin/aside/sidebarsectionAdmin";

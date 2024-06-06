@@ -24,10 +24,8 @@
   padding: 16px;
   align-items: center;
   flex-shrink: 0;
-  border-color: rgba(229, 232, 235, 1);
-  border-style: solid;
-  border-width: 1px;
-  justify-content: center;
+  border: none;
+  justify-content: space-between;
 }
 
 .view-add-post-user-containerprogressbuttomclose {
@@ -65,7 +63,7 @@
   height: 76px;
   display: flex;
   padding: 16px;
-  align-items: flex-start;
+  align-items: center;
   flex-shrink: 0;
   flex-direction: column;
 }
@@ -93,29 +91,18 @@
   text-decoration: none;
 }
 
-.view-add-post-user-containerprogressbar {
-  width: 100%;
+.view-add-bicycle-user-containerprogressbar {
+  width: 720px;
   height: 8px;
   display: flex;
   position: relative;
   align-items: center;
   flex-shrink: 0;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
-.view-add-post-user-depth6-frame0 {
-  width: 480px;
-  height: 8px;
-  display: flex;
-  align-items: flex-start;
-  flex-shrink: 0;
-  border-radius: 4px;
-  flex-direction: column;
-  background-color: rgba(206, 219, 232, 1);
-}
-
-.view-add-post-user-depth6-frame1 {
-  width: 240px;
+.view-add-bicycle-user-depth6-frame1 {
+  width: 720px;
   height: 8px;
   display: flex;
   z-index: 1;
@@ -798,7 +785,7 @@
   height: 20px;
 }
 
-.view-add-post-user-containersectionsprogress1 {
+.view-add-bicycle-user-containersectionsprogress1 {
   gap: 100px;
   width: 100%;
   height: auto;
@@ -807,7 +794,7 @@
   flex-wrap: wrap;
   align-items: center;
   flex-shrink: 0;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 .view-add-post-user-containerbuttomprofilesave1 {

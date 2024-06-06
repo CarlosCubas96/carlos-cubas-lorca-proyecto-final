@@ -58,6 +58,15 @@ public class BicycleController {
 				.orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
+	@GetMapping("/post/{postId}")
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+	public ResponseEntity<Bicycle> getBicycleByPostId(@PathVariable("postId") Long postId) {
+	    return bicycleServiceImpl.getBicycleByPostId(postId)
+	            .map(bicycle -> new ResponseEntity<>(bicycle, HttpStatus.OK))
+	            .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+	}
+
+
 	@PostMapping
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Bicycle> createBicycle(@RequestBody Bicycle bicycle) {

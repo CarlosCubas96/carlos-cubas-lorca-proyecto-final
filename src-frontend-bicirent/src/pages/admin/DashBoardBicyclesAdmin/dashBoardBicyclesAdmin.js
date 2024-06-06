@@ -5,7 +5,7 @@ import Header from "../../../components/common/layout/header/header";
 import SidebarsectionAdmin from "../../../components/admin/aside/sidebarsectionAdmin";
 import Icon from "../../../components/UI/icon/icon";
 import FormButtom from "../../../components/UI/Button/FormButton/formButton";
-import ModalDelete from "../../../components/UI/Modal/modalDelete";
+import ModalDelete from "../../../components/UI/Modal/ModalDelete/modalDelete";
 import authService from "../../../services/auth/auth.service";
 import BicycleService from "../../../services/bicycle/bicycle.service";
 import Utils from "../../../common/utils";

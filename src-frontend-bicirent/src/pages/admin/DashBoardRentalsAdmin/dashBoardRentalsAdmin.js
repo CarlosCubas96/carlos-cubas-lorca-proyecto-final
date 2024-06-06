@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import './dashBoardRentalsAdmin.css';
-import ModalDelete from "../../../components/UI/Modal/modalDelete";
+import ModalDelete from "../../../components/UI/Modal//ModalDelete/modalDelete";
 import Header from "../../../components/common/layout/header/header";
 import SidebarsectionAdmin from "../../../components/admin/aside/sidebarsectionAdmin";
 import Icon from "../../../components/UI/icon/icon";

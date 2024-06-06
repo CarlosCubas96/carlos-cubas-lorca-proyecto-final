@@ -10,16 +10,24 @@ public class PostResponse {
 	private String description;
 	private LocalDate creationDate;
 	private String postStatus;
+	private String imageUrl; // Nuevo campo
 
 	public PostResponse(Long id, String userName, String postName, String description, LocalDate creationDate,
 			String postStatus) {
-
 		this.id = id;
 		this.userName = userName;
 		this.postName = postName;
 		this.description = description;
 		this.creationDate = creationDate;
 		this.postStatus = postStatus;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	public String getUserName() {

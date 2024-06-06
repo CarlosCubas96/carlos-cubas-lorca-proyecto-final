@@ -3,8 +3,12 @@ package com.proyect.api.bicirent.services;
 import com.proyect.api.bicirent.dto.response.BicycleResponse;
 import com.proyect.api.bicirent.models.Bicycle;
 import com.proyect.api.bicirent.models.Category;
+import com.proyect.api.bicirent.models.Post;
+import com.proyect.api.bicirent.models.User;
 import com.proyect.api.bicirent.repository.BicycleRepository;
 import com.proyect.api.bicirent.repository.CategoryRepository;
+import com.proyect.api.bicirent.repository.PostRepository;
+import com.proyect.api.bicirent.repository.UserRepository;
 
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -23,12 +27,16 @@ public class BicycleServiceImpl implements BicycleServiceI {
 	private final BicycleRepository bicycleRepository;
 	private final CategoryRepository categoryRepository;
 	private final ResourceLoader resourceLoader;
+	private final PostRepository postRepository;
+	private final UserRepository userRepository;
 
 	public BicycleServiceImpl(BicycleRepository bicycleRepository, CategoryRepository categoryRepository,
-			ResourceLoader resourceLoader) {
+			PostRepository postRepository, ResourceLoader resourceLoader, UserRepository userRepository) {
 		this.bicycleRepository = bicycleRepository;
 		this.categoryRepository = categoryRepository;
 		this.resourceLoader = resourceLoader;
+		this.postRepository = postRepository;
+		this.userRepository = userRepository;
 	}
 
 	@Override
@@ -55,7 +63,53 @@ public class BicycleServiceImpl implements BicycleServiceI {
 
 	@Override
 	public Bicycle createBicycle(Bicycle bicycle) {
-		return bicycleRepository.save(bicycle);
+		// Crear una nueva instancia de Bicycle
+		Bicycle newBicycle = new Bicycle();
+
+		// Establecer los campos simples
+		newBicycle.setBrandModel(bicycle.getBrandModel());
+		newBicycle.setDescription(bicycle.getDescription());
+		newBicycle.setRentalPrice(bicycle.getRentalPrice());
+		newBicycle.setBicycleImage(bicycle.getBicycleImage());
+
+		// Verificar si la categoría existe y establecerla en la nueva bicicleta
+		Category category = categoryRepository.findById(bicycle.getCategory().getId()).orElseThrow(
+				() -> new IllegalArgumentException("Category with id " + bicycle.getCategory().getId() + " not found"));
+		newBicycle.setCategory(category);
+
+		// Verificar si el owner existe y establecerlo en la nueva bicicleta
+		if (bicycle.getOwner() != null && bicycle.getOwner().getId() != null) {
+			// Obtener el owner correspondiente de la base de datos
+			User owner = userRepository.findById(bicycle.getOwner().getId()).orElseThrow(
+					() -> new IllegalArgumentException("User with id " + bicycle.getOwner().getId() + " not found"));
+
+			// Asignar el owner a la bicicleta
+			newBicycle.setOwner(owner);
+		} else {
+			// Loguear un mensaje de advertencia indicando que el ID del owner es nulo
+			System.out.println("Warning: Owner ID is null");
+		}
+
+		// Guardar la nueva bicicleta para obtener el ID
+		newBicycle = bicycleRepository.save(newBicycle);
+
+		// Asignar el post correspondiente si está disponible
+		if (bicycle.getPost() != null && bicycle.getPost().getId() != null) {
+			// Obtener el post correspondiente de la base de datos
+			Post post = postRepository.findById(bicycle.getPost().getId()).orElseThrow(
+					() -> new IllegalArgumentException("Post with id " + bicycle.getPost().getId() + " not found"));
+
+			// Asignar el post a la bicicleta
+			newBicycle.setPost(post);
+		} else {
+			// Loguear un mensaje de advertencia indicando que el ID del post es nulo
+			System.out.println("Warning: Post ID is null");
+		}
+
+		// Guardar y devolver la nueva bicicleta con la referencia al post, si está
+		// disponible
+		return bicycleRepository.save(newBicycle);
+
 	}
 
 	@Override
@@ -96,5 +150,11 @@ public class BicycleServiceImpl implements BicycleServiceI {
 	public Resource getImage(@PathVariable String filename) {
 		return resourceLoader.getResource("classpath:/static/images/" + filename);
 	}
+	
+	@Override
+	public Optional<Bicycle> getBicycleByPostId(Long postId) {
+	    return bicycleRepository.findByPostId(postId);
+	}
+
 
 }

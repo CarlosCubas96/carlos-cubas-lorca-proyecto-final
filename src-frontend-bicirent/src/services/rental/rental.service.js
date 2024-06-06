@@ -18,14 +18,6 @@ const RentalService = {
       });
   },
 
-  createRental: (rentalData) => {
-    return AxiosService.post('rentals', rentalData)
-      .then(response => response.data)
-      .catch(error => {
-        throw error;
-      });
-  },
-
   updateRental: (id, rentalData) => {
     return AxiosService.put(`rentals/${id}`, rentalData)
       .then(response => response.data)
@@ -61,6 +53,14 @@ const RentalService = {
   getRentalsByLandlordId: (landlordId, status, pageNumber, pageSize) => {
     const url = status ? `rentals/landlord/${landlordId}?status=${status}&pageNumber=${pageNumber}&pageSize=${pageSize}` : `rentals/landlord/${landlordId}?pageNumber=${pageNumber}&pageSize=${pageSize}`;
     return AxiosService.get(url)
+      .then(response => response.data)
+      .catch(error => {
+        throw error;
+      });
+  },
+
+  reserveBicycle: (rentalData) => {
+    return AxiosService.post('rentals/reserve', rentalData)
       .then(response => response.data)
       .catch(error => {
         throw error;

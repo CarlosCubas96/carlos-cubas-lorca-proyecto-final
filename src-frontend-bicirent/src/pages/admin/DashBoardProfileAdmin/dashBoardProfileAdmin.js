@@ -235,7 +235,7 @@ export default class DashBoardProfileAdmin extends Component {
                                             name="password"
                                             value={currentUserProfile.password}
                                             onChange={this.onChange}
-                                            disabled={!editable}
+                                            disabled={true}
                                             validations={[required, vpassword]}
                                         />
                                     </div>

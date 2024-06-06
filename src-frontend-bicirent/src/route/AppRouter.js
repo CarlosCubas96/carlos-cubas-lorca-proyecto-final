@@ -19,6 +19,10 @@ import DashBoardMainAdmin from '../pages/admin/DashBoardMainAdmin/dashBoardMainA
 import DashBoardMainUser from '../pages/user/DashBoardMainUser/dashBoardMainUser';
 import DashBoardProfileUser from '../pages/user/DashBoardProfileUser/dashBoardProfileUser';
 import ViewAddPostUser from '../pages/user/ViewAddPostUser/viewAddPostUser';
+import ViewAddBicycleUser from '../pages/user/ViewAddBicycleUser/viewAddBicycleUser';
+import ViewCatalogUser from '../pages/user/ViewCatalogUser/viewCatalogUser';
+import ViewPostUser from '../pages/user/ViewPostUser/viewPostUser';
+
 
 
 const AppRouter = () => {
@@ -38,7 +42,10 @@ const AppRouter = () => {
             <Route path="/admin/perfil" element={<DashBoardProfileAdmin />} />
             <Route path="/user/perfil" element={<DashBoardProfileUser />} />
 
-            <Route path="/user/publicaciones/add" element={<ViewAddPostUser />} />
+            <Route path="/user/publicaciones/add/post" element={<ViewAddPostUser />} />
+            <Route path="/user/publicaciones/add/bicicleta/:id" element={<ViewAddBicycleUser />} />
+            <Route path="/publicaciones" element={<ViewCatalogUser />} />
+            <Route path="/publicaciones/reserva/:id" element={<ViewPostUser />} />
 
             <Route path="/admin/usuarios" element={<DashBoardUsersAdmin />} />
             <Route path="/admin/alquileres" element={<DashBoardRentalsAdmin />} />
@@ -51,7 +58,7 @@ const AppRouter = () => {
             <Route path="/admin/bicicletas/edit/:id" element={<DashBoardEditBicycleAdmin />} />
 
             <Route path="/user/publicaciones/edit/:id" element={<DashBoardEditPostUser />} />
-            
+
 
             <Route path="/no-access" element={<NoPermissionPage />} />
         </Routes>

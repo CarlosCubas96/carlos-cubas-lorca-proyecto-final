@@ -50,10 +50,10 @@ public class RentalController {
 				.orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
-	@PostMapping
+	@PostMapping("/reserve")
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
-	public ResponseEntity<Rental> createRental(@RequestBody Rental rental) {
-		Rental createdRental = rentalService.createRental(rental);
+	public ResponseEntity<Rental> reserveBicycle(@RequestBody Rental rentalRequest) {
+		Rental createdRental = rentalService.reserveBicycle(rentalRequest);
 		return new ResponseEntity<>(createdRental, HttpStatus.CREATED);
 	}
 

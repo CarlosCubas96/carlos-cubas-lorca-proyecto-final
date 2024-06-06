@@ -550,6 +550,8 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  border: none;
+  background-color: inherit;
 }
 
 .dash-board-edit-post-admin-tagname {

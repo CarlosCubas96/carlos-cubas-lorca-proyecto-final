@@ -5,7 +5,6 @@ import bicycleService from "../../../services/bicycle/bicycle.service";
 import authService from "../../../services/auth/auth.service";
 import SidebarsectionAdmin from "../../../components/admin/aside/sidebarsectionAdmin";
 import Form from "react-validation/build/form";
-import { isEmail } from "validator";
 import './dashBoardEditBicycleAdmin.css';
 import EditFormInput from "../../../components/UI/inputs/EditFormInput/editFormInput";
 import SelectFormInput from "../../../components/UI/inputs/SelectFormInput/selectFormInput";
@@ -23,16 +22,6 @@ const required = value => {
     }
 };
 
-const vemail = value => {
-    if (!isEmail(value)) {
-        return (
-            <div className="login-text-error">
-                Este no es un correo electrónico válido.
-            </div>
-        );
-    }
-};
-
 const vusername = value => {
     if (value.length < 3 || value.length > 20) {
         return (
@@ -43,35 +32,6 @@ const vusername = value => {
     }
 };
 
-const vpassword = value => {
-    if (value.length < 6 || value.length > 40) {
-        return (
-            <div className="login-text-error">
-                La contraseña debe tener entre 6 y 40 caracteres.
-            </div>
-        );
-    }
-};
-
-const vfirstname = value => {
-    if (value.length < 2 || value.length > 30) {
-        return (
-            <div className="login-text-error">
-                El nombre debe tener entre 2 y 30 caracteres.
-            </div>
-        );
-    }
-};
-
-const vlastname = value => {
-    if (value.length < 2 || value.length > 30) {
-        return (
-            <div className="login-text-error">
-                El apellido debe tener entre 2 y 30 caracteres.
-            </div>
-        );
-    }
-};
 
 const DashBoardEditBicycleAdmin = () => {
     const [currentUser, setCurrentUser] = useState(undefined);
@@ -174,7 +134,7 @@ const DashBoardEditBicycleAdmin = () => {
     const handleUpdateBicycle = () => {
         const { id, ...bicycleData } = currentEditBicycle;
 
-        
+
 
         bicycleService.updateBicycle(id, bicycleData)
             .then(updatedBicycle => {

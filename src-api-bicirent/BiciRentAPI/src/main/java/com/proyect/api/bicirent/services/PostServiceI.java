@@ -7,6 +7,7 @@ import com.proyect.api.bicirent.models.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,4 +26,13 @@ public interface PostServiceI {
 	List<Category> getAllCategories();
 
 	Page<PostResponse> getAllPostsByUserId(Long userId, String searchTerm, Pageable pageable);
+
+	Page<Post> getAllPostsByTagName(String tagName, Pageable pageable);
+
+	Page<PostResponse> getAllPostsByCategoryId(Long categoryId, Pageable pageable);
+
+	Page<Post> getPostsByRentalPriceRange(Integer price, int page, int size);
+
+	Page<PostResponse> getAllPostsByDateRange(LocalDate fromDate, LocalDate toDate, Pageable pageable);
+
 }

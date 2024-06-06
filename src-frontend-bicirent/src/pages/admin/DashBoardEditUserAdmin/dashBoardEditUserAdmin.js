@@ -209,7 +209,7 @@ const DashBoardEditUserAdmin = () => {
                                             name="password"
                                             value={currentEditUserProfile.password}
                                             onChange={onChange}
-                                            disabled={!editable}
+                                            disabled={true}
                                             validations={[required, vpassword]}
                                         />
                                     </div>

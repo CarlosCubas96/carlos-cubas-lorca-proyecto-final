@@ -4,9 +4,10 @@ import './dashBoardPostsUser.css';
 import Header from "../../../components/common/layout/header/header";
 import Icon from "../../../components/UI/icon/icon";
 import FormButtom from "../../../components/UI/Button/FormButton/formButton";
-import ModalDelete from "../../../components/UI/Modal/modalDelete";
+import ModalDelete from "../../../components/UI/Modal/ModalDelete/modalDelete";
 import authService from "../../../services/auth/auth.service";
 import PostService from "../../../services/post/post.service";
+import { Link } from "react-router-dom";
 
 export default class DashBoardPostsUser extends Component {
 
@@ -74,6 +75,7 @@ export default class DashBoardPostsUser extends Component {
             showDeleteModal: true,
             postToDeleteId: id
         });
+
     }
 
     confirmDeletePost = () => {
@@ -92,6 +94,8 @@ export default class DashBoardPostsUser extends Component {
                 console.error('Error deleting post:', error);
             });
     }
+
+
 
     handleGoBack = () => {
         window.history.back();
@@ -121,9 +125,9 @@ export default class DashBoardPostsUser extends Component {
                             <div className="dash-board-posts-user-containermainsection">
                                 <div className="dash-board-posts-user-containermainsectiontitle">
                                     <div className="dash-board-posts-user-containersectionbuttomback">
-                                        <button style={{ border: 'none', background: 'inherit' }} onClick={() => this.handleGoBack()}>
+                                        <Link to="/user" >
                                             <Icon name="ArrowExit" size="30px"></Icon>
-                                        </button>
+                                        </Link>
                                     </div>
                                     <div className="dash-board-posts-user-containersectiontitle">
                                         <span className="dash-board-posts-user-text12">
@@ -143,7 +147,7 @@ export default class DashBoardPostsUser extends Component {
                                         />
                                     </div>
                                     <div className="dash-board-posts-user-containerbuttomedit">
-                                        <FormButtom color="#F5F5F5" to={`/user/publicaciones/add`}>Añadir</FormButtom>
+                                        <FormButtom color="#F5F5F5" to={`/user/publicaciones/add/post/`}>Añadir</FormButtom>
                                     </div>
                                 </div>
 

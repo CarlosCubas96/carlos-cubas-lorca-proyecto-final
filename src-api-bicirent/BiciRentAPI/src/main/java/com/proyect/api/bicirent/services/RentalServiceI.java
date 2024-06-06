@@ -16,7 +16,7 @@ public interface RentalServiceI {
 
 	Optional<Rental> getRentalById(Long id);
 
-	Rental createRental(Rental rental);
+	Rental reserveBicycle (Rental rental);
 
 	Rental updateRental(Long id, Rental rental);
 

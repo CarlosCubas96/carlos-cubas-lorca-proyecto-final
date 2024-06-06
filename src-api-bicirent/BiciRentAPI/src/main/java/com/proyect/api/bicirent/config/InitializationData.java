@@ -110,8 +110,7 @@ public class InitializationData implements CommandLineRunner {
 			int randomIndex = faker.number().numberBetween(0, categories.size());
 			Category randomCategory = categories.get(randomIndex);
 
-			Post post = new Post(faker.book().title(), faker.lorem().sentence(),
-					PostStatus.values()[faker.number().numberBetween(0, PostStatus.values().length)], LocalDate.now(),
+			Post post = new Post(faker.book().title(), faker.lorem().sentence(), PostStatus.DISPONIBLE, LocalDate.now(),
 					faker.lorem().paragraph(), admin, randomCategory);
 
 			// Asociar etiquetas aleatorias a la publicación

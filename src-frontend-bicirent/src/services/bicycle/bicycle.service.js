@@ -12,8 +12,18 @@ const BicycleService = {
       });
   },
 
+  
+
   getBicycleById: (id) => {
     return AxiosService.get(`bicycles/${id}`)
+      .then(response => response.data)
+      .catch(error => {
+        throw error;
+      });
+  },
+
+  getBicycleByPostId: (postId) => {
+    return AxiosService.get(`bicycles/post/${postId}`)
       .then(response => response.data)
       .catch(error => {
         throw error;
@@ -72,8 +82,6 @@ const BicycleService = {
   },
 
   uploadImage: (imageFile) => {
-
-
     return AxiosService.post('images/upload', imageFile, {
     })
       .then(response => response.data)

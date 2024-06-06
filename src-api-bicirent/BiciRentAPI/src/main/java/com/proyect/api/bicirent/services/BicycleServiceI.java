@@ -25,4 +25,6 @@ public interface BicycleServiceI {
 	void deleteBicycle(Long id);
 
 	List<Category> getAllCategories();
+
+	Optional<Bicycle> getBicycleByPostId(Long postId);
 }
