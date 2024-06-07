@@ -1,5 +1,7 @@
 import React from 'react'
 
+import img from '../../../../assets/images/varias/movilidad-eficicente.jpg'
+
 import './feature.css'
 import SearchBoxButton from '../../Button/SearchBoxButton/searchBoxButton'
 
@@ -7,7 +9,7 @@ const Feauture = (props) => {
   return (
     <div className="feautre-container">
       <div className="feautre-containersectionfeaure">
-        <div className="feautre-containerfeautreimg"></div>
+        <img alt='movilidad' src={img} className="feautre-containerfeautreimg"></img>
         <div className="feautre-containerfeautreinfo">
           <div className="feautre-containerinfomain">
             <span className="feautre-text">

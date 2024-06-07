@@ -33,7 +33,7 @@ const Newsletter = (props) => {
                         </div>
                     </div>
                     <div className="newsletter-containernewsletterbuttoms">
-                        <PrimaryButton to="/suscribe" >Suscríbete</PrimaryButton>
+                        <PrimaryButton to="/" >Suscríbete</PrimaryButton>
                     </div>
                 </div>
             </div>

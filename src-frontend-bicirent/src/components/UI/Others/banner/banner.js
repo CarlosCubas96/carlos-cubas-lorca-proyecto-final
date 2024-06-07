@@ -30,7 +30,7 @@ const Banner = () => {
                 placeholder="¿Necesitas una bicicleta?"
               />
             </div>
-            <SearchBoxButton to="/inicio">Buscar</SearchBoxButton>
+            <SearchBoxButton to="/">Buscar</SearchBoxButton>
           </form>
         </div>
 

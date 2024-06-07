@@ -1,6 +1,7 @@
-import React from 'react'
+import React from "react";
 
-import './feature-list.css'
+import "./feature-list.css";
+import Icon from "../../icon/icon";
 
 const FeatureList = (props) => {
   return (
@@ -8,11 +9,7 @@ const FeatureList = (props) => {
       <div className="feature-list-containersectionfeaurelist">
         <div className="feature-list-containerfeaturelist">
           <div className="feature-list-containerfeaturelisticons">
-            <img
-              src="https://play.teleporthq.io/static/svg/default-img.svg"
-              alt="containerfeaturelisticon3612"
-              className="feature-list-containerfeaturelisticon"
-            />
+            <Icon name="Bici"></Icon>
           </div>
           <div className="feature-list-containerfeaturelisttexts">
             <div className="feature-list-containerfeaturelisttitle">
@@ -33,11 +30,7 @@ const FeatureList = (props) => {
         </div>
         <div className="feature-list-containerfeaturelist1">
           <div className="feature-list-containerfeaturelisticons1">
-            <img
-              src="https://play.teleporthq.io/static/svg/default-img.svg"
-              alt="containerfeaturelisticon3612"
-              className="feature-list-containerfeaturelisticon1"
-            />
+            <Icon name="Billete"></Icon>
           </div>
           <div className="feature-list-containerfeaturelisttexts1">
             <div className="feature-list-containerfeaturelisttitle1">
@@ -58,11 +51,7 @@ const FeatureList = (props) => {
         </div>
         <div className="feature-list-containerfeaturelist2">
           <div className="feature-list-containerfeaturelisticons2">
-            <img
-              src="https://play.teleporthq.io/static/svg/default-img.svg"
-              alt="containerfeaturelisticon3612"
-              className="feature-list-containerfeaturelisticon2"
-            />
+            <Icon name="Reloj"></Icon>
           </div>
           <div className="feature-list-containerfeaturelisttext">
             <div className="feature-list-containerfeaturelisttitle2">
@@ -83,7 +72,7 @@ const FeatureList = (props) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default FeatureList
+export default FeatureList;

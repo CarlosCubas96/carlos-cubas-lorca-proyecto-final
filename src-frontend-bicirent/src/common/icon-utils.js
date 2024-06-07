@@ -15,6 +15,10 @@ import { IoImagesOutline } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
 import { RiFolder6Line } from "react-icons/ri";
 import { IoMdArrowBack } from "react-icons/io";
+import { CiClock2 } from "react-icons/ci";
+import { PiMoneyThin } from "react-icons/pi";
+
+
 
 
 
@@ -35,5 +39,7 @@ export const icons = {
     Imagen: IoImagesOutline,
     Close: IoMdClose,
     Carpeta: RiFolder6Line,
-    ArrowExit: IoMdArrowBack
+    ArrowExit: IoMdArrowBack,
+    Reloj: CiClock2,
+    Billete: PiMoneyThin
 };

@@ -17,15 +17,15 @@
 .feautre-containerfeautreimg {
   top: 16px;
   left: 15px;
-  width: 445px;
-  height: 395px;
+  width: 450px;
+  height: auto;
   display: flex;
   overflow: hidden;
   position: absolute;
   align-items: flex-start;
   flex-shrink: 0;
   border-radius: 12px;
-  background-size: cover;
+  background-size: auto;
   background-image: url("https://play.teleporthq.io/static/svg/default-img.svg");
 }
 .feautre-containerfeautreinfo {
