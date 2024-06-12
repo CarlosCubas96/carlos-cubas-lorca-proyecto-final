@@ -2418,3 +2418,37 @@ input[type="range"]::-webkit-slider-thumb {
     background: black; /* Color del círculo */
     cursor: pointer; /* Cambia el cursor al puntero al pasar sobre el círculo */
 }
+
+/* Remove default checkbox appearance */
+.custom-checkbox {
+    -webkit-appearance: none; /* Removes default webkit styles */
+    -moz-appearance: none; /* Removes default Mozilla styles */
+    appearance: none; /* Removes default styles */
+    width: 20px; /* Width of the checkbox */
+    height: 20px; /* Height of the checkbox */
+    border: 2px solid #000; /* Black border */
+    border-radius: 3px; /* Optional: rounded corners */
+    background-color: white; /* Initial background color */
+    cursor: pointer; /* Cursor on hover */
+    position: relative;
+}
+
+/* Style the checkbox when checked */
+.custom-checkbox:checked {
+    background-color: black; /* Background color when checked */
+    border: 2px solid black; /* Border color when checked */
+}
+
+/* Create the checkmark/indicator */
+.custom-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 12px;
+    border: solid white; /* Color of the checkmark */
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -50%) rotate(45deg);
+}

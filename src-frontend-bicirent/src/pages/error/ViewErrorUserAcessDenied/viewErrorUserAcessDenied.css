@@ -1,0 +1,191 @@
+.view-error-user-acess-denied-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .view-error-user-acess-denied-view-error-user-acess-denied {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .view-error-user-acess-denied-containerheader {
+    gap: 180px;
+    width: 1280px;
+    border: 2px dashed rgba(120, 120, 120, 0.4);
+    height: 65px;
+    display: flex;
+    padding: 12px 40px;
+    align-items: center;
+    flex-shrink: 0;
+    border-color: rgba(229, 232, 234, 1);
+    border-style: solid;
+    border-width: 0 0 1px;
+  }
+  .view-error-user-acess-denied-containerdashboardadmin {
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-shrink: 0;
+    justify-content: space-between;
+  }
+  .view-error-user-acess-denied-containeraccesssectionmain {
+    width: 100%;
+    height: 925px;
+    display: flex;
+    padding: 20px 0;
+    align-items: center;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .view-error-user-acess-denied-containersectionaccesstitle {
+    width: 512px;
+    height: 76px;
+    display: flex;
+    padding: 24px 16px 12px;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .view-error-user-acess-denied-containeraccesstitle {
+    display: flex;
+    align-self: stretch;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .view-error-user-acess-denied-text {
+    color: rgba(12, 20, 28, 1);
+    height: auto;
+    font-size: 32px;
+    font-style: Bold;
+    text-align: left;
+    font-family: Plus Jakarta Sans;
+    font-weight: 700;
+    line-height: 40px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-error-user-acess-denied-containersectionaccesssubtitle {
+    width: 512px;
+    height: 40px;
+    display: flex;
+    padding: 4px 16px 12px;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .view-error-user-acess-denied-containersectionsubtitle {
+    display: flex;
+    align-self: stretch;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .view-error-user-acess-denied-text2 {
+    color: rgba(12, 20, 28, 1);
+    height: auto;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Plus Jakarta Sans;
+    font-weight: 400;
+    line-height: 24px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-error-user-acess-denied-containersectionaccessbuttom {
+    width: 512px;
+    height: 64px;
+    display: flex;
+    z-index: 10;
+    padding: 12px 16px;
+    align-items: flex-start;
+    flex-shrink: 0;
+    border: none;
+    outline: none;
+    text-decoration: none;
+  }
+  .view-error-user-acess-denied-containersectionbuttom {
+    width: 480px;
+    height: 40px;
+    display: flex;
+    padding: 0 16px;
+    overflow: hidden;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 12px;
+    justify-content: center;
+    background-color: rgba(20, 20, 20, 1);
+  }
+  .view-error-user-acess-denied-containersectionbuttomtext {
+    width: 188.609375px;
+    height: 21px;
+    display: flex;
+    overflow: hidden;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+    background-color: rgba(20, 20, 20, 1);
+  }
+  .view-error-user-acess-denied-text4 {
+    color: rgba(255, 255, 255, 1);
+    height: auto;
+    font-size: 14px;
+    font-style: Bold;
+    text-align: left;
+    font-family: Plus Jakarta Sans;
+    font-weight: 700;
+    line-height: 21px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-error-user-acess-denied-containersectionaccesssuport {
+    width: 512px;
+    height: 37px;
+    display: flex;
+    padding: 4px 16px 12px;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .view-error-user-acess-denied-containerbuttomtext {
+    display: flex;
+    align-self: stretch;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .view-error-user-acess-denied-text6 {
+    color: rgba(73, 112, 155, 1);
+    height: auto;
+    font-size: 14px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Plus Jakarta Sans;
+    font-weight: 400;
+    line-height: 21px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .view-error-user-acess-denied-image5c62dd56cf304ddcb5f2d4e3a2c24a1e-photoroom1 {
+    top: 11%;
+    position: absolute;
+    width: 500px;
+    height: auto;
+  }
+  .view-error-user-acess-denied-image7935541removebgpreview1 {
+    top: -20px;
+    left: -120px;
+    width: 800px;
+    height: auto;
+    z-index: 1;
+    position: absolute;
+  }
+  

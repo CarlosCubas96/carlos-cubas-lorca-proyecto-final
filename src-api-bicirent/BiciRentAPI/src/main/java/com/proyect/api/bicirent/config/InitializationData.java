@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.github.javafaker.Faker;
 import com.proyect.api.bicirent.models.*;
 import com.proyect.api.bicirent.repository.*;
 
@@ -25,8 +24,6 @@ public class InitializationData implements CommandLineRunner {
 	private final CategoryRepository categoryRepository;
 	private final RentalRepository rentalRepository;
 	private final TagRepository tagRepository;
-
-	private final Faker faker = new Faker(new Locale("es"));
 
 	@Value("${demo.user.password}")
 	private String userPassword;
@@ -49,25 +46,31 @@ public class InitializationData implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-
-		// Verificar si hay roles existentes
-		if (roleRepository.count() == 0) {
-			// Crear roles si no existen
-			Role userRole = roleRepository.save(new Role(ERole.ROLE_USER));
-			Role adminRole = roleRepository.save(new Role(ERole.ROLE_ADMIN));
-
-			// Crear usuarios
-			createUser("user", "Carlos", "Cubas", "carloscubaf12@gmail.com", userPassword, userRole);
-			createUser("admin", "Pablo", "Jimenez", "pabloj32@gmail.com", adminPassword, adminRole);
-
-			// Agregar 20 usuarios más de ejemplo
-			for (int i = 1; i <= 20; i++) {
-				createUser("user" + i, "FirstName" + i, "LastName" + i, "user" + i + "@example.com", userPassword,
-						userRole);
-			}
-		}
-
+		initializeRoles();
+		initializeUsers();
+		initializeCategories();
+		initializeTags();
 		initializeBicyclesAndPosts();
+		initializeRentals();
+	}
+
+	private void initializeRoles() {
+		if (roleRepository.count() == 0) {
+			roleRepository.save(new Role(ERole.ROLE_USER));
+			roleRepository.save(new Role(ERole.ROLE_ADMIN));
+		}
+	}
+
+	private void initializeUsers() {
+		Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+				.orElseThrow(() -> new IllegalStateException("User role not found."));
+		Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
+				.orElseThrow(() -> new IllegalStateException("Admin role not found."));
+
+		createUser("admin1", "Carlos", "Cubas", "carloscubaf12@gmail.com", adminPassword, adminRole);
+		createUser("user1", "Pablo", "Calvo", "pabloc90@gmail.com", userPassword, userRole);
+		createUser("admin2", "Alba", "Jimenez", "albaj14@gmail.com", adminPassword, adminRole);
+
 	}
 
 	private void createUser(String username, String firstname, String lastname, String email, String password,
@@ -85,55 +88,66 @@ public class InitializationData implements CommandLineRunner {
 		}
 	}
 
+	private void initializeCategories() {
+		if (categoryRepository.count() == 0) {
+			categoryRepository.save(new Category("Montaña", CategoryType.MONTAÑA));
+			categoryRepository.save(new Category("Trabajo", CategoryType.TRABAJO));
+			categoryRepository.save(new Category("Viajes", CategoryType.VIAJES));
+			categoryRepository.save(new Category("Paseo", CategoryType.PASEO));
+			categoryRepository.save(new Category("Reparto", CategoryType.REPARTO));
+		}
+	}
+
+	private void initializeTags() {
+		if (tagRepository.count() == 0) {
+			tagRepository.save(new Tag("rápida"));
+			tagRepository.save(new Tag("ligera"));
+			tagRepository.save(new Tag("resistente"));
+			tagRepository.save(new Tag("confortable"));
+			tagRepository.save(new Tag("elegante"));
+		}
+	}
+
 	private void initializeBicyclesAndPosts() {
-		User admin = userRepository.findByUsername("admin").orElseThrow();
+		User admin = userRepository.findByUsername("admin1")
+				.orElseThrow(() -> new IllegalStateException("Admin user 'admin1' not found."));
 
-		// Asegurarte de que todas las categorías estén presentes en la lista
 		List<Category> categories = categoryRepository.findAll();
-		if (categories.isEmpty()) {
-			for (CategoryType categoryType : CategoryType.values()) {
-				Category newCategory = new Category(categoryType.name(), categoryType);
-				Category savedCategory = categoryRepository.save(newCategory);
-				categories.add(savedCategory);
-			}
-		}
+		List<Tag> tags = tagRepository.findAll();
 
-		// Crear y guardar etiquetas
-		List<String> tagNames = Arrays.asList("rápida", "ligera", "resistente", "confortable", "elegante");
-		List<Tag> tags = new ArrayList<>();
-		for (String tagName : tagNames) {
-			Tag tag = new Tag(tagName);
-			tags.add(tagRepository.save(tag));
-		}
+		for (int i = 0; i < 10; i++) {
+			Category randomCategory = categories.get(i % categories.size());
 
-		for (int i = 0; i < 50; i++) {
-			int randomIndex = faker.number().numberBetween(0, categories.size());
-			Category randomCategory = categories.get(randomIndex);
-
-			Post post = new Post(faker.book().title(), faker.lorem().sentence(), PostStatus.DISPONIBLE, LocalDate.now(),
-					faker.lorem().paragraph(), admin, randomCategory);
+			Post post = new Post("Bicicleta " + (i + 1), "Descripción de la bicicleta " + (i + 1),
+					PostStatus.DISPONIBLE, LocalDate.now(), "Detalles adicionales de la bicicleta " + (i + 1), admin,
+					randomCategory);
 
 			// Asociar etiquetas aleatorias a la publicación
 			Set<Tag> postTags = new HashSet<>();
-			int numberOfTags = faker.number().numberBetween(1, tags.size());
-			Collections.shuffle(tags);
-			for (int j = 0; j < numberOfTags; j++) {
-				postTags.add(tags.get(j));
-			}
+			postTags.add(tags.get(i % tags.size()));
 			post.setTags(postTags);
 
 			postRepository.save(post);
 
 			String randomImageUrl = "https://picsum.photos/200/300";
 
-			Bicycle bicycle = new Bicycle(faker.company().name(), post, faker.commerce().productName(),
-					faker.number().randomDouble(2, 10, 100), admin, randomCategory, randomImageUrl);
+			Bicycle bicycle = new Bicycle("Marca " + (i + 1), post, "Modelo " + (i + 1), 10.0 + i, admin,
+					randomCategory, randomImageUrl);
 			bicycleRepository.save(bicycle);
+		}
+	}
 
-			Rental rental = new Rental(admin, admin, bicycle,
-					LocalDate.now().minusDays(faker.number().numberBetween(1, 30)),
-					LocalDate.now().plusDays(faker.number().numberBetween(1, 15)),
-					RentalStatus.values()[faker.number().numberBetween(0, RentalStatus.values().length)]);
+	private void initializeRentals() {
+		List<Bicycle> bicycles = bicycleRepository.findAll();
+		List<User> users = userRepository.findAll();
+
+		for (int i = 0; i < 10; i++) {
+			Bicycle bicycle = bicycles.get(i % bicycles.size());
+			User landlord = bicycle.getOwner();
+			User tenant = users.get((i + 1) % users.size());
+
+			Rental rental = new Rental(landlord, tenant, bicycle, LocalDate.now().minusDays(i + 1),
+					LocalDate.now().plusDays(i + 1), RentalStatus.values()[i % RentalStatus.values().length]);
 			rentalRepository.save(rental);
 		}
 	}

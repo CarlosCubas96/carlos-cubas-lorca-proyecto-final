@@ -79,7 +79,7 @@ export default class ViewCatalogUser extends Component {
             currentPage: 0,
             fromDate: null,
             toDate: new Date(),
-            selectedDateFilter: '' // Restablecer el filtro de fecha
+            selectedDateFilter: ''
         }, () => {
             this.retrievesPosts();
         });
@@ -351,6 +351,7 @@ export default class ViewCatalogUser extends Component {
                                         <div className="view-catalog-user-containerfiltercheckbox">
                                             <div className="view-catalog-user-containerfiltercheckboxbuttom">
                                                 <input
+                                                    className="custom-checkbox"
                                                     type="checkbox"
                                                     checked={selectedDateFilter === 'last24Hours'}
                                                     onChange={() => this.handleFilterByDate('last24Hours')}
@@ -367,6 +368,7 @@ export default class ViewCatalogUser extends Component {
                                         <div className="view-catalog-user-containerfiltercheckbox1">
                                             <div className="view-catalog-user-containerfiltercheckboxbuttom1">
                                                 <input
+                                                    className="custom-checkbox"
                                                     type="checkbox"
                                                     checked={selectedDateFilter === 'lastWeek'}
                                                     onChange={() => this.handleFilterByDate('lastWeek')}
@@ -383,6 +385,7 @@ export default class ViewCatalogUser extends Component {
                                         <div className="view-catalog-user-containerfiltercheckbox2">
                                             <div className="view-catalog-user-containerfiltercheckboxbuttom2">
                                                 <input
+                                                    className="custom-checkbox"
                                                     type="checkbox"
                                                     checked={selectedDateFilter === 'lastMonth'}
                                                     onChange={() => this.handleFilterByDate('lastMonth')}

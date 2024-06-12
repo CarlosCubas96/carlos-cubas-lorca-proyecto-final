@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authHeader from '../services/auth/auth.header';
 
-const BASE_URL = 'http://localhost:8081/api';
+const BASE_URL = 'http://ec2-54-234-29-153.compute-1.amazonaws.com:8080/api';
 
 class AxiosService {
   constructor() {

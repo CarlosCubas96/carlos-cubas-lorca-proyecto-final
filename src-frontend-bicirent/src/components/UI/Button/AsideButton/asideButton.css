@@ -1,6 +1,8 @@
 .containersidebarsection-containerpanelmenusection {
   gap: 12px;
+  background-color: inherit;
   width: 275px;
+  border: none;
   height: 40px;
   display: flex;
   padding: 8px 12px;
