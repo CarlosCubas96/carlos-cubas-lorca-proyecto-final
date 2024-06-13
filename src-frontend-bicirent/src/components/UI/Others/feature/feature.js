@@ -25,7 +25,7 @@ const Feauture = (props) => {
                 Juntos, podemos hacer una diferencia significativa.
               </span>
             </span>
-            <SearchBoxButton to="/inicio">Buscar</SearchBoxButton>
+            <SearchBoxButton to="/">Buscar</SearchBoxButton>
           </div>
         </div>
       </div>

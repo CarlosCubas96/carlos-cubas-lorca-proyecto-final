@@ -21,6 +21,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class PostServiceImpl implements PostServiceI {
@@ -49,6 +50,12 @@ public class PostServiceImpl implements PostServiceI {
 
 		}
 		return postsPage.map(this::mapToPostResponse);
+	}
+
+	@Override
+	public List<PostResponse> getLatestPosts() {
+		List<Post> latestPosts = postRepository.findTop4ByOrderByCreationDateDesc();
+		return latestPosts.stream().map(this::mapToPostResponse).collect(Collectors.toList());
 	}
 
 	@Override

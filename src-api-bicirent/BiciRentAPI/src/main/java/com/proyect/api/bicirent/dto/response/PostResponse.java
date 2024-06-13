@@ -10,7 +10,19 @@ public class PostResponse {
 	private String description;
 	private LocalDate creationDate;
 	private String postStatus;
-	private String imageUrl; // Nuevo campo
+	private String imageUrl;
+	private Double rentalPrice;
+
+	public PostResponse(Long id, String userName, String postName, String description, LocalDate creationDate,
+			String postStatus, Double rentalPrice) {
+		this.id = id;
+		this.userName = userName;
+		this.postName = postName;
+		this.description = description;
+		this.creationDate = creationDate;
+		this.postStatus = postStatus;
+		this.rentalPrice = rentalPrice;
+	}
 
 	public PostResponse(Long id, String userName, String postName, String description, LocalDate creationDate,
 			String postStatus) {
@@ -20,6 +32,7 @@ public class PostResponse {
 		this.description = description;
 		this.creationDate = creationDate;
 		this.postStatus = postStatus;
+
 	}
 
 	public String getImageUrl() {
@@ -76,5 +89,13 @@ public class PostResponse {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Double getRentalPrice() {
+		return rentalPrice;
+	}
+
+	public void setRentalPrice(Double rentalPrice) {
+		this.rentalPrice = rentalPrice;
 	}
 }

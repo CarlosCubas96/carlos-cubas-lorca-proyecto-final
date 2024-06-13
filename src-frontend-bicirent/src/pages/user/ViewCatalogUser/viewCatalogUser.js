@@ -26,12 +26,15 @@ export default class ViewCatalogUser extends Component {
             fromDate: null,
             toDate: new Date(),
             selectedDateFilter: '',
+            showButton: false,
         };
+
+
     }
 
     componentDidMount() {
         const user = authService.getCurrentUser();
-        if (user && user.roles.includes('ROLE_USER')) {
+        if (user) {
             this.setState({
                 currentUser: user,
             }, () => {
@@ -115,12 +118,11 @@ export default class ViewCatalogUser extends Component {
             fromDate: fromDateISO,
             toDate: toDateISO,
             currentPage: 0,
-            selectedDateFilter: selectedOption // Añadir esto para guardar el filtro de fecha seleccionado
+            selectedDateFilter: selectedOption
         }, () => {
             this.getAllPostsByDateRange();
         });
     }
-
 
 
     retrievesPosts() {
@@ -132,13 +134,13 @@ export default class ViewCatalogUser extends Component {
                     if (data && data.content) {
                         this.setState({
                             posts: data.content,
-                            totalPages: data.totalPages
+                            totalPages: data.totalPages,
                         });
-                        if (data.content.length > 0) {
-                            data.content.forEach(post => {
-                                this.getBicycleByPostId(post.id);
-                            });
-                        }
+                        data.content.forEach(post => {
+                            this.getBicycleByPostId(post.id);
+                        });
+                    } else {
+                        this.setState({ showToast: true });  // Mostrar el toast si no hay contenido en la respuesta
                     }
                 })
                 .catch(error => {
@@ -146,6 +148,7 @@ export default class ViewCatalogUser extends Component {
                 });
         }
     }
+
 
     getBicycleByPostId(postId) {
         BicycleService.getBicycleByPostId(postId)
@@ -251,17 +254,20 @@ export default class ViewCatalogUser extends Component {
     }
 
     loadMorePosts = () => {
-        const { currentPage, posts } = this.state;
+        const { currentPage, posts, searchQuery, selectedTag } = this.state;
         const nextPage = currentPage + 1;
         const pageSize = 6;
 
-        PostService.getAllPosts(this.state.searchQuery, nextPage, pageSize, this.state.selectedTag)
+        
+
+        PostService.getAllPosts(searchQuery, nextPage, pageSize, selectedTag)
             .then(data => {
                 const updatedPosts = [...posts, ...data.content];
                 this.setState({
                     posts: updatedPosts,
                     currentPage: nextPage,
-                    totalPages: data.totalPages
+                    totalPages: data.totalPages,
+                    showButton: nextPage <= data.totalPages
                 });
                 data.content.forEach(post => {
                     this.getBicycleByPostId(post.id);
@@ -271,6 +277,8 @@ export default class ViewCatalogUser extends Component {
                 console.error('Error fetching posts:', error);
             });
     }
+
+
 
     getAllPostsByDateRange() {
         const { fromDate, toDate, currentPage } = this.state;
@@ -514,15 +522,11 @@ export default class ViewCatalogUser extends Component {
                                         ) : (
                                             <div className="view-catalog-user-no-posts">No hay publicaciones disponibles</div>
                                         )}
-
-
-
-
                                         <div className="view-catalog-user-containercatalogsectionbuttom">
                                             <div className="view-catalog-user-containerbuttomcatalogshowmore">
                                                 <div className="view-catalog-user-containerbuttomshowmore">
                                                     <div className="view-catalog-user-containerbuttomtextshowmore">
-                                                        <button className="view-catalog-user-buttomshowmore" onClick={this.loadMorePosts}>
+                                                        <button disabled={this.state.showButton} className="view-catalog-user-buttomshowmore" onClick={this.loadMorePosts}>
                                                             <span className="view-catalog-user-text086">
                                                                 <span>Ver Más</span>
                                                             </span>

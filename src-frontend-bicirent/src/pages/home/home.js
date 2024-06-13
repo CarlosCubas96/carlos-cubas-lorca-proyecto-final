@@ -25,9 +25,19 @@ export default class Home extends Component {
   render() {
     const { currentUser } = this.state;
 
+    if (!currentUser) {
+      return (
+        <div>
+          <Header currentUser={currentUser} />
+          <Main />
+          <Footer />
+        </div>
+      );
+    }
+
     return (
       <div>
-        {currentUser && currentUser.roles.includes("ROLE_ADMIN") ? (
+        {currentUser.roles.includes("ROLE_ADMIN") ? (
           <DashBoardMainAdmin />
         ) : (
           <>

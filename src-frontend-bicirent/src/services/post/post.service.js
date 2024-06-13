@@ -10,6 +10,14 @@ const PostService = {
       });
   },
 
+  getLatestPosts: () => {
+    return AxiosService.get('posts/latest')
+      .then(response => response.data)
+      .catch(error => {
+        throw error;
+      });
+  },
+
   getAllPostsByTagName: (tagName, pageNumber, pageSize) => {
     const url = `posts/tags/${tagName}?pageNumber=${pageNumber}&pageSize=${pageSize}`;
     return AxiosService.get(url)

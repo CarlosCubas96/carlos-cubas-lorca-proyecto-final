@@ -9,6 +9,8 @@ import LoginFormInput from "../../UI/inputs/loginFormInput/loginFormInput";
 import AuthButtom from "../../UI/Button/AuthButtom/authButtom";
 
 import authService from "../../../services/auth/auth.service";
+import { Link } from "react-router-dom";
+import Icon from "../../UI/icon/icon";
 
 const required = value => {
   if (!value) {
@@ -97,6 +99,9 @@ class Login extends Component {
                   <span className="login-text">
                     <span>Bienvenido a BiciRent</span>
                   </span>
+                  <Link to={"/"} style={{ border: 'none', background: 'inherit' }}>
+                    <Icon name="ArrowExit" size="30px"></Icon>
+                  </Link>
                 </div>
               </div>
               <div className="login-containersigninsubtext">

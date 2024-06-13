@@ -28,7 +28,7 @@ const DashBoardMainUser = () => {
 
     useEffect(() => {
         const user = authService.getCurrentUser();
-        if (user && user.roles.includes('ROLE_USER')) {
+        if (user) {
             setCurrentUser(user);
             retrieveRentals(user.id, rentalStatus);
         }
@@ -80,7 +80,7 @@ const DashBoardMainUser = () => {
                             <div className="dash-board-main-user-containermainsectioncards">
                                 <Link to={"/user/perfil"} className="dash-board-main-user-containersectioncard">
                                     <div className="dash-board-main-user-containersectioncardicon">
-                                        <Icon name="Carpeta" />
+                                        <Icon name="User" />
                                     </div>
                                     <div className="dash-board-main-user-containersectioncardbody">
                                         <div className="dash-board-main-user-containercardbodytitle">

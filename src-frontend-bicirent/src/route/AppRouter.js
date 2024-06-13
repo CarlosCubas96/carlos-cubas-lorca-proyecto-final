@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Home from '../pages/home/home';
 import Login from '../components/common/login/login';
 import Register from '../components/common/register/register';
@@ -25,13 +25,25 @@ import ViewCatalogUser from '../pages/user/ViewCatalogUser/viewCatalogUser';
 import ViewPostUser from '../pages/user/ViewPostUser/viewPostUser';
 import authService from '../services/auth/auth.service';
 
-
 const AppRouter = () => {
     const currentUser = authService.getCurrentUser();
     const userRole = currentUser ? currentUser.roles[0] : '';
 
-    const isAdmin = userRole === 'ROLE_ADMIN';
-    const isUser = userRole === 'ROLE_USER';
+    // Función para comprobar si el usuario tiene acceso de acuerdo a su rol
+    const checkAccess = (allowedRoles, component) => {
+        if (currentUser && allowedRoles.includes(userRole)) {
+            return component;
+        } else if (currentUser && userRole === 'ROLE_ADMIN') {
+            // Si es admin, se le permite acceso a todas las rutas
+            return component;
+
+        } else if (currentUser && userRole === 'ROLE_USER') {
+            return <Navigate to="/no-access" />;
+        } else {
+            // Si no hay usuario logueado, redirigir a la página de inicio de sesión
+            return <Navigate to="/login" />;
+        }
+    };
 
     return (
         <Routes>
@@ -40,48 +52,38 @@ const AppRouter = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/registro" element={<Register />} />
 
-            {isAdmin && (
-                <>
-                    {/* Rutas específicas para el rol de administrador */}
-                    <Route path="/admin" element={<DashBoardMainAdmin />} />
+            {/* Rutas específicas para el rol de administrador */}
+            <Route path="/admin" element={checkAccess(['ROLE_ADMIN'], <DashBoardMainAdmin />)} />
 
-                    <Route path="/admin/perfil" element={<DashBoardProfileAdmin />} />
-                    <Route path="/admin/usuarios" element={<DashBoardUsersAdmin />} />
-                    <Route path="/admin/alquileres" element={<DashBoardRentalsAdmin />} />
-                    <Route path="/admin/bicicletas" element={<DashBoardBicyclesAdmin />} />
-                    <Route path="/admin/publicaciones" element={<DashBoardPostsAdmin />} />
+            <Route path="/admin/perfil" element={checkAccess(['ROLE_ADMIN'], <DashBoardProfileAdmin />)} />
+            <Route path="/admin/usuarios" element={checkAccess(['ROLE_ADMIN'], <DashBoardUsersAdmin />)} />
+            <Route path="/admin/alquileres" element={checkAccess(['ROLE_ADMIN'], <DashBoardRentalsAdmin />)} />
+            <Route path="/admin/bicicletas" element={checkAccess(['ROLE_ADMIN'], <DashBoardBicyclesAdmin />)} />
+            <Route path="/admin/publicaciones" element={checkAccess(['ROLE_ADMIN'], <DashBoardPostsAdmin />)} />
 
-                    <Route path="/admin/usuarios/edit/:id" element={<DashBoardEditUserAdmin />} />
-                    <Route path="/admin/alquileres/edit/:id" element={<DashBoardEditRentalAdmin />} />
-                    <Route path="/admin/publicaciones/edit/:id" element={<DashBoardEditPostAdmin />} />
-                    <Route path="/admin/bicicletas/edit/:id" element={<DashBoardEditBicycleAdmin />} />
-                </>
-            )}
+            <Route path="/admin/usuarios/edit/:id" element={checkAccess(['ROLE_ADMIN'], <DashBoardEditUserAdmin />)} />
+            <Route path="/admin/alquileres/edit/:id" element={checkAccess(['ROLE_ADMIN'], <DashBoardEditRentalAdmin />)} />
+            <Route path="/admin/publicaciones/edit/:id" element={checkAccess(['ROLE_ADMIN'], <DashBoardEditPostAdmin />)} />
+            <Route path="/admin/bicicletas/edit/:id" element={checkAccess(['ROLE_ADMIN'], <DashBoardEditBicycleAdmin />)} />
 
-            {isUser && (
-                <>
-                    <Route path="/user" element={<DashBoardMainUser />} />
-                    <Route path="/user/perfil" element={<DashBoardProfileUser />} />
+            {/* Rutas específicas para el rol de usuario */}
+            <Route path="/user" element={checkAccess(['ROLE_USER'], <DashBoardMainUser />)} />
+            <Route path="/user/perfil" element={checkAccess(['ROLE_USER'], <DashBoardProfileUser />)} />
 
-                    <Route path="/user/publicaciones" element={<DashBoardPostsUser />} />
-                    <Route path="/user/publicaciones/edit/:id" element={<DashBoardEditPostUser />} />
+            <Route path="/user/publicaciones" element={checkAccess(['ROLE_USER'], <DashBoardPostsUser />)} />
+            <Route path="/user/publicaciones/edit/:id" element={checkAccess(['ROLE_USER'], <DashBoardEditPostUser />)} />
 
-                    <Route path="/user/publicaciones/add/post" element={<ViewAddPostUser />} />
-                    <Route path="/user/publicaciones/add/bicicleta/:id" element={<ViewAddBicycleUser />} />
+            <Route path="/user/publicaciones/add/post" element={checkAccess(['ROLE_USER'], <ViewAddPostUser />)} />
+            <Route path="/user/publicaciones/add/bicicleta/:id" element={checkAccess(['ROLE_USER'], <ViewAddBicycleUser />)} />
 
-                    <Route path="/publicaciones" element={<ViewCatalogUser />} />
-                    <Route path="/publicaciones/reserva/:id" element={<ViewPostUser />} />
-                </>
-            )}
-
-            {/* Si el usuario intenta acceder a otras páginas, lo redirigimos a la página de acceso denegado */}
-            <Route path="*" element={<NoPermissionPage />} />
+            <Route path="/publicaciones" element={checkAccess(['ROLE_USER'], <ViewCatalogUser />)} />
+            <Route path="/publicaciones/reserva/:id" element={checkAccess(['ROLE_USER'], <ViewPostUser />)} />
 
             {/* Ruta para la página de acceso denegado */}
             <Route path="/no-access" element={<NoPermissionPage />} />
 
             {/* Ruta para la página no encontrada */}
-            <Route path="/no-found" element={<NoFoundPage />} />
+            <Route path="*" element={<NoFoundPage />} />
         </Routes>
     );
 };

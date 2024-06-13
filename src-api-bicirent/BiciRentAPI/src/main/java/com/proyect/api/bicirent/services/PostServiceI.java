@@ -35,4 +35,6 @@ public interface PostServiceI {
 
 	Page<PostResponse> getAllPostsByDateRange(LocalDate fromDate, LocalDate toDate, Pageable pageable);
 
+	List<PostResponse> getLatestPosts();
+
 }

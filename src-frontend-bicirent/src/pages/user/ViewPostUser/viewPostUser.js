@@ -32,7 +32,7 @@ const ViewPostUser = () => {
 
   useEffect(() => {
     const user = authService.getCurrentUser();
-    if (user && user.roles.includes('ROLE_USER')) {
+    if (user) {
       setCurrentUser(user);
       loadBicycleAndPostData(id);
     }
@@ -55,7 +55,7 @@ const ViewPostUser = () => {
     Promise.all([
       BicycleService.getBicycleByPostId(postId),
       PostService.getPostById(postId)
-      
+
     ]).then(([bicycleData, postData]) => {
       setBicycle(bicycleData);
       setPost(postData);

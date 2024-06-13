@@ -144,7 +144,6 @@ export default class DashBoardProfileAdmin extends Component {
 
         UserService.updateUser(id, userData)
             .then(updatedUser => {
-                console.log("Perfil actualizado:", updatedUser);
                 this.setState({
                     editable: false,
                     message: "¡Perfil actualizado exitosamente!",

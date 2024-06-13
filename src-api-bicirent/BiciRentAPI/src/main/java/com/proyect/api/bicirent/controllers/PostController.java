@@ -42,6 +42,15 @@ public class PostController {
 		return new ResponseEntity<>(postsPage, HttpStatus.OK);
 	}
 
+	@GetMapping("/latest")
+	public ResponseEntity<List<PostResponse>> getLatestPosts() {
+		List<PostResponse> latestPosts = postService.getLatestPosts();
+		if (latestPosts.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<>(latestPosts, HttpStatus.OK);
+	}
+
 	@GetMapping("/tags/{tagName}")
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Page<Post>> getAllPostsByTagName(@PathVariable String tagName,
@@ -93,7 +102,6 @@ public class PostController {
 	}
 
 	@GetMapping("/categories")
-	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	public ResponseEntity<List<Category>> getAllCategories() {
 		List<Category> categories = postService.getAllCategories();
 		if (categories.isEmpty()) {
@@ -162,7 +170,5 @@ public class PostController {
 		}
 		return new ResponseEntity<>(tags, HttpStatus.OK);
 	}
-	
-	
 
 }

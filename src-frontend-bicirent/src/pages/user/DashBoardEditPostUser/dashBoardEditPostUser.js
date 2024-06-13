@@ -76,7 +76,7 @@ const DashBoardEditPostUser = () => {
 
     useEffect(() => {
         const user = authService.getCurrentUser();
-        if (user && user.roles.includes('ROLE_USER')) {
+        if (user) {
             setCurrentUser(user);
             getPostId(id);
             getAllCategories();

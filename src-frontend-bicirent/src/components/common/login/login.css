@@ -40,7 +40,7 @@
 
 .login-containersignintitle {
     width: 512px;
-    height: 58px;
+    height: auto;
     display: flex;
     padding: 20px 16px 8px;
     align-items: center;
@@ -51,9 +51,8 @@
 .login-containerregistersectiontitle {
     display: flex;
     align-self: stretch;
-    align-items: flex-start;
-    flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .login-text {

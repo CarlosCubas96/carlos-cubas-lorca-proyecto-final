@@ -26,7 +26,7 @@ export default class DashBoardPostsUser extends Component {
 
     componentDidMount() {
         const user = authService.getCurrentUser();
-        if (user && user.roles.includes('ROLE_USER')) {
+        if (user) {
             this.setState({
                 currentUser: user,
             }, () => {

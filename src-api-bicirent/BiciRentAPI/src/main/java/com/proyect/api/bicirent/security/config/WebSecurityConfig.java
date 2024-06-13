@@ -63,9 +63,10 @@ public class WebSecurityConfig {
 		http.csrf(csrf -> csrf.disable())
 				.exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.authorizeHttpRequests(
-						auth -> auth.requestMatchers("/api/auth/**", "/api/bicycles/images/*", "/api/bicycles/upload").permitAll()
-								.anyRequest().authenticated());
+				.authorizeHttpRequests(auth -> auth
+						.requestMatchers("/api/auth/**", "/api/posts/latest", "/api/posts/categories",
+								"/api/bicycles/images/*", "/api/bicycles/post/{postId}", "/api/bicycles/upload")
+						.permitAll().anyRequest().authenticated());
 
 		http.authenticationProvider(authenticationProvider());
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

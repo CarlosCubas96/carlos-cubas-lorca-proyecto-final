@@ -63,7 +63,7 @@ const ViewAddBicycleUser = () => {
 
     useEffect(() => {
         const user = authService.getCurrentUser();
-        if (user && user.roles.includes('ROLE_USER')) {
+        if (user) {
             setNewBicycle(prevState => ({
                 ...prevState,
                 owner: { id: user.id },
@@ -161,7 +161,7 @@ const ViewAddBicycleUser = () => {
                 <div className="view-add-post-user-containersectionsprogress">
                     <div className="view-add-post-user-containerprogressbuttomclose">
                         <div className="view-add-post-user-containerbuttomtext">
-                            <Link to="/user/publicaciones" >
+                            <Link to="/" >
                                 <Icon name={"Close"} size="30px"></Icon>
                             </Link>
                         </div>

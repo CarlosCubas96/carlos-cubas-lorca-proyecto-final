@@ -113,7 +113,6 @@ const DashBoardEditRentalAdmin = () => {
     const handleUpdateRental = () => {
         RentalService.updateRental(id, currentEditRental)
             .then(currentEditRental => {
-                console.log(currentEditRental);
                 setEditable(false);
                 setMessage("Alquiler actualizado exitosamente!");
                 setErrorMessage(null);

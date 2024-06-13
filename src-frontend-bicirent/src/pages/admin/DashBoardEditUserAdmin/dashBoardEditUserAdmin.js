@@ -123,7 +123,6 @@ const DashBoardEditUserAdmin = () => {
 
         UserService.updateUser(id, userData)
             .then(updatedUser => {
-                console.log("Usuario actualizado:", updatedUser);
                 setEditable(false);
                 setMessage("Usuario actualizado exitosamente!");
                 setErrorMessage(null);

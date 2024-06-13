@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, Navigate } from 'react-router-dom';
 import './sidebarsectionAdmin.css';
 import AsideButton from '../../UI/Button/AsideButton/asideButton';
 import authService from "../../../services/auth/auth.service";
@@ -7,14 +7,14 @@ import EventBus from '../../../common/EventBus';
 
 const SidebarsectionAdmin = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState(undefined);
 
   const logOut = useCallback(() => {
     authService.logout();
     setCurrentUser(undefined);
-    navigate("/login");
-  }, [navigate]);
+    window.location.reload();
+    <Navigate to="/" />;
+  }, []);
 
   useEffect(() => {
     const user = authService.getCurrentUser();
@@ -53,9 +53,9 @@ const SidebarsectionAdmin = () => {
             </div>
             <div className="containersidebarsection-containersidebarpanelmenu">
               <AsideButton
-                to="/admin"
+                to="/"
                 icon="Home"
-                style={{ backgroundColor: isActive('/admin') ? '#38E078' : 'inherit' }}
+                style={{ backgroundColor: isActive('/') || isActive('/admin') ? '#38E078' : 'inherit' }}
               >
                 Panel de administrador
               </AsideButton>

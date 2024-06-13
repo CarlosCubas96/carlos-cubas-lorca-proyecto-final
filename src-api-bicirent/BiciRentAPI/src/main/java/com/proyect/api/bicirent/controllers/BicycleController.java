@@ -59,7 +59,6 @@ public class BicycleController {
 	}
 
 	@GetMapping("/post/{postId}")
-	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Bicycle> getBicycleByPostId(@PathVariable("postId") Long postId) {
 	    return bicycleServiceImpl.getBicycleByPostId(postId)
 	            .map(bicycle -> new ResponseEntity<>(bicycle, HttpStatus.OK))

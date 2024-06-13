@@ -1,6 +1,6 @@
 import { RiSettings3Line } from "react-icons/ri";
 import { AiOutlineUser } from "react-icons/ai";
-import { CiBellOn } from "react-icons/ci";
+import { GoBell } from "react-icons/go";
 import { IoMenuOutline } from "react-icons/io5";
 import { HiMiniMagnifyingGlass } from "react-icons/hi2";
 import { FaUsers } from "react-icons/fa6";
@@ -28,7 +28,7 @@ export const icons = {
     Question: CiCircleQuestion,
     Altavoz: HiOutlineSpeakerphone,
     Menu: IoMenuOutline,
-    Bell: CiBellOn,
+    Bell: GoBell,
     Bici: LiaBicycleSolid,
     Settings: RiSettings3Line,
     User: AiOutlineUser,

@@ -4,7 +4,7 @@ import './viewErrorUserAcessDenied.css'
 
 import React, { useState, useEffect } from "react";
 
-import manImg from "../../../assets/images/varias/hombre.png";
+import manImg from "../../../assets/images/varias/noAccess.png";
 import bike from "../../../assets/images/varias/bicicleta.png";
 import Header from '../../../components/common/layout/header/header';
 import authService from '../../../services/auth/auth.service';
@@ -63,6 +63,7 @@ const ViewErrorUserAcessDenied = (props) => {
               alt="IMAGE5c62dd56cf304ddcb5f2d4e3a2c24a1ePhotoroom13661"
               className="view-error-user-acess-denied-image5c62dd56cf304ddcb5f2d4e3a2c24a1e-photoroom1"
             />
+            
           </div>
           <img
             src={manImg}

@@ -20,6 +20,12 @@ export default class DashBoardUsersAdmin extends Component {
             showDeleteModal: false,
             userToDeleteId: null,
         };
+
+        this.onChangeSearchQuery = this.onChangeSearchQuery.bind(this);
+        this.handlePageChange = this.handlePageChange.bind(this);
+        this.retrieveUsers = this.retrieveUsers.bind(this);
+        this.handleDeleteUser = this.handleDeleteUser.bind(this);
+        this.confirmDeleteUser = this.confirmDeleteUser.bind(this);
     }
 
     componentDidMount() {
@@ -82,7 +88,6 @@ export default class DashBoardUsersAdmin extends Component {
                     showDeleteModal: false,
                     userToDeleteId: null
                 }), () => {
-
                     this.retrieveUsers();
                 });
             })
@@ -90,7 +95,6 @@ export default class DashBoardUsersAdmin extends Component {
                 console.error('Error deleting user:', error);
             });
     }
-
 
     render() {
         const { currentUser, users, searchQuery, currentPage, totalPages, showDeleteModal } = this.state;
@@ -113,14 +117,13 @@ export default class DashBoardUsersAdmin extends Component {
                                     </div>
                                     <div className="admin-dashboard-users-containermainsectionsearch-box">
                                         <div className="admin-dashboard-users-containersectionsearch-box">
-
                                             <Icon name="Lupa" color="#637887" />
                                             <input
                                                 type="text"
                                                 placeholder="Buscar usuarios por usuario, nombre o correo electrónico"
                                                 className="admin-dashboard-users-sectioninputsearch-box"
                                                 value={searchQuery}
-                                                onChange={(e) => this.onChangeSearchQuery(e)}
+                                                onChange={this.onChangeSearchQuery}
                                             />
                                         </div>
                                     </div>

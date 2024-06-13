@@ -156,7 +156,6 @@ const DashBoardEditPostAdmin = () => {
             // Llamada al servicio para agregar la etiqueta al post
             PostService.addTagToPost(currentEditPost.id, { tagName: newTag })
                 .then(response => {
-                    console.log(response);
                     // Actualizar la lista de etiquetas del post después de agregar la nueva etiqueta
                     setCurrentEditPost(prevState => ({
                         ...prevState,

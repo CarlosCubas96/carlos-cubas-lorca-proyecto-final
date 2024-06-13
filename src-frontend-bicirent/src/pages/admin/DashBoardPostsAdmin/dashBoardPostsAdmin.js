@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import './dashBoardPostsAdmin.css';
 import Header from "../../../components/common/layout/header/header";
 import SidebarsectionAdmin from "../../../components/admin/aside/sidebarsectionAdmin";
@@ -9,9 +8,7 @@ import ModalDelete from "../../../components/UI/Modal/ModalDelete/modalDelete";
 import authService from "../../../services/auth/auth.service";
 import PostService from "../../../services/post/post.service";
 
-
 export default class DashBoardPostsAdmin extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -23,11 +20,18 @@ export default class DashBoardPostsAdmin extends Component {
             showDeleteModal: false,
             postToDeleteId: null,
         };
+
+        // Enlazar los métodos al contexto de `this`
+        this.onChangeSearchQuery = this.onChangeSearchQuery.bind(this);
+        this.handlePageChange = this.handlePageChange.bind(this);
+        this.retrievesPosts = this.retrievesPosts.bind(this);
+        this.handleDeletePost = this.handleDeletePost.bind(this);
+        this.confirmDeletePost = this.confirmDeletePost.bind(this);
     }
 
     componentDidMount() {
         const user = authService.getCurrentUser();
-        if (user && user.roles.includes('ROLE_ADMIN')) {
+        if (user) {
             this.setState({
                 currentUser: user,
             });
@@ -58,7 +62,6 @@ export default class DashBoardPostsAdmin extends Component {
         const pageSize = 6;
         PostService.getAllPosts(searchQuery, currentPage, pageSize)
             .then(data => {
-                console.log(data);
                 this.setState({
                     posts: data.content,
                     totalPages: data.totalPages
@@ -81,12 +84,11 @@ export default class DashBoardPostsAdmin extends Component {
         PostService.deletePost(postToDeleteId)
             .then(() => {
                 this.setState(prevState => ({
-                    posts: prevState.bicycles.filter(post => post.id !== postToDeleteId),
+                    posts: prevState.posts.filter(post => post.id !== postToDeleteId),
                     showDeleteModal: false,
                     postToDeleteId: null
                 }), () => {
-
-                    this.retrieveBicycles();
+                    this.retrievesPosts();
                 });
             })
             .catch(error => {
@@ -96,12 +98,10 @@ export default class DashBoardPostsAdmin extends Component {
 
     formatDate(dateArray) {
         const [year, month, day] = dateArray;
-        // Convert month and day to two digits
         const formattedMonth = month.toString().padStart(2, '0');
         const formattedDay = day.toString().padStart(2, '0');
         return `${formattedDay}/${formattedMonth}/${year}`;
     }
-    
 
     render() {
         const { currentUser, posts, searchQuery, currentPage, totalPages, showDeleteModal } = this.state;
@@ -124,14 +124,13 @@ export default class DashBoardPostsAdmin extends Component {
                                     </div>
                                     <div className="admin-dashboard-posts-containermainsectionsearch-box">
                                         <div className="admin-dashboard-posts-containersectionsearch-box">
-
                                             <Icon name="Lupa" color="#637887" />
                                             <input
                                                 type="text"
                                                 placeholder="Buscar publicaciones por nombre de publicación "
                                                 className="admin-dashboard-posts-sectioninputsearch-box"
                                                 value={searchQuery}
-                                                onChange={(e) => this.onChangeSearchQuery(e)}
+                                                onChange={this.onChangeSearchQuery}
                                             />
                                         </div>
                                     </div>
@@ -174,7 +173,6 @@ export default class DashBoardPostsAdmin extends Component {
                                                         </span>
                                                     </div>
                                                 </th>
-
                                                 <th className="admin-dashboard-posts-sectionheadertable6">
                                                     <div className="admin-dashboard-posts-textheadertable6">
                                                         <span className="admin-dashboard-posts-text12">
@@ -185,7 +183,6 @@ export default class DashBoardPostsAdmin extends Component {
                                             </tr>
                                         </thead>
                                         <tbody className="admin-dashboard-posts-containersectionmaintable">
-                                          
                                             {Array.isArray(posts) && posts.map(post => (
                                                 <tr key={post.id} className="admin-dashboard-posts-sectiontabletr">
                                                     <td className="admin-dashboard-posts-sectiontabletd">
@@ -209,11 +206,10 @@ export default class DashBoardPostsAdmin extends Component {
                                                             </span>
                                                         </div>
                                                     </td>
-
                                                     <td className="admin-dashboard-posts-sectiontabletd4">
                                                         <div className="admin-dashboard-posts-td4">
                                                             <span className="admin-dashboard-posts-text22">
-                                                                <span>{post.creationDate}</span>
+                                                                <span>{this.formatDate(post.creationDate)}</span>
                                                             </span>
                                                         </div>
                                                     </td>
@@ -224,7 +220,6 @@ export default class DashBoardPostsAdmin extends Component {
                                                             </span>
                                                         </div>
                                                     </td>
-
                                                     <td className="admin-dashboard-posts-sectiontabletd5">
                                                         <FormButtom to={`/admin/publicaciones/edit/${post.id}`}>Editar</FormButtom>
                                                     </td>
@@ -233,7 +228,6 @@ export default class DashBoardPostsAdmin extends Component {
                                                     </td>
                                                 </tr>
                                             ))}
-
                                         </tbody>
                                         <tfoot className="admin-dashboard-posts-containersectionmainpagination">
                                             <tr>
@@ -264,7 +258,6 @@ export default class DashBoardPostsAdmin extends Component {
                                         onHide={() => this.setState({ showDeleteModal: false })}
                                         onConfirm={this.confirmDeletePost}
                                     />
-
                                 </div>
                             </div>
                         </div>

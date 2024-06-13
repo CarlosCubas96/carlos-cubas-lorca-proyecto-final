@@ -8,6 +8,8 @@ import RegisterFormInput from "../../UI/inputs/registerFormInput/registerFormInp
 import AuthButton from "../../UI/Button/AuthButtom/authButtom";
 
 import authService from "../../../services/auth/auth.service";
+import { Link } from "react-router-dom";
+import Icon from "../../UI/icon/icon";
 
 const required = value => {
     if (!value) {
@@ -85,7 +87,8 @@ export default class Register extends Component {
             password: "",
             firstname: "",
             lastName: "",
-            message: ""
+            message: "",
+            successful: false
         };
     }
 
@@ -124,6 +127,7 @@ export default class Register extends Component {
 
         this.setState({
             message: "",
+            successful: false
         });
 
         this.form.validateAll();
@@ -137,13 +141,17 @@ export default class Register extends Component {
                 this.state.lastName,
             ).then(
                 response => {
-                    this.setState({
-                        message: response.data.message,
-                    });
-                },
-                () => {
-                    this.props.router.navigate("/");
-                    window.location.reload()
+                    if (response.data.message === '¡Usuario registrado exitosamente!') {
+                        this.setState({
+                            message: response.data.message,
+                            successful: true
+                        });
+                    } else {
+                        this.setState({
+                            message: response.data.message,
+                            successful: false
+                        });
+                    }
                 },
                 error => {
                     const resMessage =
@@ -153,9 +161,9 @@ export default class Register extends Component {
                         error.message ||
                         error.toString();
 
-
                     this.setState({
-                        message: resMessage
+                        message: resMessage,
+                        successful: false
                     });
                 }
             );
@@ -164,15 +172,18 @@ export default class Register extends Component {
 
     render() {
         return (
-            <div className="register-container">
+            <div className={"register-container"}>
                 <div className="register-dash-board-signin">
                     <div className="register-containermainsignin">
                         <div className="register-containersignin">
                             <div className="register-containersignintitle">
                                 <div className="register-containerregistersectiontitle">
                                     <span className="register-text">
-                                        <span>Create una cuenta</span>
+                                        <span>Crea una cuenta</span>
                                     </span>
+                                    <Link to={"/"} style={{ border: 'none', background: 'inherit' }}>
+                                        <Icon name="ArrowExit" size="30px"></Icon>
+                                    </Link>
                                 </div>
                             </div>
                             <Form
@@ -238,10 +249,9 @@ export default class Register extends Component {
                                     </div>
 
                                 </>
-
-                                {this.state.message && (
-                                    <div className="form-group">
-                                        <div className={"register-containererror-message-error"}>
+                                {this.state.message && !this.state.successful && (
+                                    <div className={"form-group register-containererror-message-error"}>
+                                        <div>
                                             {this.state.message}
                                         </div>
                                     </div>
@@ -275,11 +285,18 @@ export default class Register extends Component {
                                     Iniciar Sesión
                                 </AuthButton>
                             </div>
+                            {this.state.message && this.state.successful && (
+                                <div className={"form-group register-containererror-message-success"}>
+                                    <div>
+                                        {this.state.message}
+                                    </div>
+                                </div>
+                            )}
                         </div>
+
                     </div>
                 </div>
             </div>
-
         );
     }
 }

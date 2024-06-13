@@ -1,325 +1,355 @@
 .publicaciones-container {
-    width: 100%;
-    display: flex;
-    position: relative;
-    align-items: flex-start;
-    flex-direction: column;
-  }
-  .publicaciones-containersectioncategories {
-    gap: 40px;
-    width: 100%;
-    height: auto;
-    display: flex;
-    padding: 40px 16px;
-    align-items: flex-start;
-    flex-shrink: 0;
-    flex-direction: column;
-  }
-  .publicaciones-containercategoriestitle {
-    gap: 24px;
-    width: 928px;
-    height: 85px;
-    display: flex;
-    align-items: flex-start;
-    flex-shrink: 0;
-    flex-direction: column;
-  }
-  .publicaciones-containercategoriestitleh1 {
-    width: 720px;
-    height: 45px;
-    display: flex;
-    align-items: flex-start;
-    flex-shrink: 0;
-    flex-direction: column;
-  }
-  .publicaciones-text {
-    color: rgba(20, 20, 20, 1);
-    height: auto;
-    font-size: 36px;
-    font-style: ExtraBold;
-    text-align: left;
-    font-family: Plus Jakarta Sans;
-    font-weight: 800;
-    line-height: 45px;
-    font-stretch: normal;
-    text-decoration: none;
-  }
-  .publicaciones-containercategoriessubtitle {
-    width: 720px;
-    height: 24px;
-    display: flex;
-    align-items: flex-start;
-    flex-shrink: 0;
-    flex-direction: column;
-  }
-  .publicaciones-text02 {
-    color: rgba(20, 20, 20, 1);
-    height: auto;
-    font-size: 16px;
-    font-style: Regular;
-    text-align: left;
-    font-family: Plus Jakarta Sans;
-    font-weight: 400;
-    line-height: 24px;
-    font-stretch: normal;
-    text-decoration: none;
-  }
-  .publicaciones-containercategorieslist {
-    gap: 12px;
-    width: 928px;
-    height: 238.5px;
-    display: flex;
-    position: relative;
-    align-items: flex-start;
-    flex-shrink: 0;
-  }
-  .publicaciones-containercardcategorie {
-    gap: 12px;
-    top: 0px;
-    left: 0px;
-    width: 301px;
-    height: 238.5px;
-    display: flex;
-    position: absolute;
-    align-items: flex-start;
-    flex-shrink: 0;
-    flex-direction: column;
-  }
-  .publicaciones-containercategorieimg {
-    width: 301.328125px;
-    height: 169.484375px;
-    display: flex;
-    align-items: flex-start;
-    flex-shrink: 0;
-    flex-direction: column;
-  }
-  .publicaciones-categorieimg3 {
-    width: 301.328125px;
-    height: 169.484375px;
-    display: flex;
-    overflow: hidden;
-    position: relative;
-    align-items: flex-start;
-    flex-shrink: 0;
-    border-radius: 12px;
-    background-size: cover;
-    background-image: url("https://play.teleporthq.io/static/svg/default-img.svg");
-  }
-  .publicaciones-containercategorietext {
-    width: 301.328125px;
-    height: 57px;
-    display: flex;
-    padding: 0 0 12px;
-    align-items: flex-start;
-    flex-shrink: 0;
-    flex-direction: column;
-  }
-  .publicaciones-containercategorietexttitle {
-    width: 301.328125px;
-    height: 24px;
-    display: flex;
-    align-items: flex-start;
-    flex-shrink: 0;
-    flex-direction: column;
-  }
-  .publicaciones-text04 {
-    color: rgba(20, 20, 20, 1);
-    height: auto;
-    font-size: 16px;
-    align-self: stretch;
-    font-style: Medium;
-    text-align: left;
-    font-family: Plus Jakarta Sans;
-    font-weight: 500;
-    line-height: 24px;
-    font-stretch: normal;
-    text-decoration: none;
-  }
-  .publicaciones-containercategorietextsubtitle {
-    width: 301.328125px;
-    height: 21px;
-    display: flex;
-    align-items: flex-start;
-    flex-shrink: 0;
-    flex-direction: column;
-  }
-  .publicaciones-text06 {
-    color: rgba(114, 114, 114, 1);
-    height: auto;
-    font-size: 14px;
-    align-self: stretch;
-    font-style: Regular;
-    text-align: left;
-    font-family: Plus Jakarta Sans;
-    font-weight: 400;
-    line-height: 21px;
-    font-stretch: normal;
-    text-decoration: none;
-  }
-  .publicaciones-containercardcategorie1 {
-    gap: 12px;
-    top: 0px;
-    left: 313px;
-    width: 301px;
-    height: 238.5px;
-    display: flex;
-    position: absolute;
-    align-items: flex-start;
-    flex-shrink: 0;
-    flex-direction: column;
-  }
-  .publicaciones-containercategorieimg1 {
-    width: 301.328125px;
-    height: 169.484375px;
-    display: flex;
-    align-items: flex-start;
-    flex-shrink: 0;
-    flex-direction: column;
-  }
-  .publicaciones-categorieimg2 {
-    width: 301.328125px;
-    height: 169.484375px;
-    display: flex;
-    overflow: hidden;
-    position: relative;
-    align-items: flex-start;
-    flex-shrink: 0;
-    border-radius: 12px;
-    background-size: cover;
-    background-image: url("https://play.teleporthq.io/static/svg/default-img.svg");
-  }
-  .publicaciones-containercategorietext1 {
-    width: 301.328125px;
-    height: 57px;
-    display: flex;
-    padding: 0 0 12px;
-    align-items: flex-start;
-    flex-shrink: 0;
-    flex-direction: column;
-  }
-  .publicaciones-containercategorietexttitle1 {
-    width: 301.328125px;
-    height: 24px;
-    display: flex;
-    align-items: flex-start;
-    flex-shrink: 0;
-    flex-direction: column;
-  }
-  .publicaciones-text08 {
-    color: rgba(20, 20, 20, 1);
-    height: auto;
-    font-size: 16px;
-    align-self: stretch;
-    font-style: Medium;
-    text-align: left;
-    font-family: Plus Jakarta Sans;
-    font-weight: 500;
-    line-height: 24px;
-    font-stretch: normal;
-    text-decoration: none;
-  }
-  .publicaciones-containercategorietextsubtitle1 {
-    width: 301.328125px;
-    height: 21px;
-    display: flex;
-    align-items: flex-start;
-    flex-shrink: 0;
-    flex-direction: column;
-  }
-  .publicaciones-text10 {
-    color: rgba(114, 114, 114, 1);
-    height: auto;
-    font-size: 14px;
-    align-self: stretch;
-    font-style: Regular;
-    text-align: left;
-    font-family: Plus Jakarta Sans;
-    font-weight: 400;
-    line-height: 21px;
-    font-stretch: normal;
-    text-decoration: none;
-  }
-  .publicaciones-containercardcategorie2 {
-    gap: 12px;
-    top: 0px;
-    left: 627px;
-    width: 301px;
-    height: 238.5px;
-    display: flex;
-    position: absolute;
-    align-items: flex-start;
-    flex-shrink: 0;
-    flex-direction: column;
-  }
-  .publicaciones-containercategorieimg2 {
-    width: 301.34375px;
-    height: 169.5px;
-    display: flex;
-    align-items: flex-start;
-    flex-shrink: 0;
-    flex-direction: column;
-  }
-  .publicaciones-categorieimg1 {
-    width: 301.34375px;
-    height: 169.5px;
-    display: flex;
-    overflow: hidden;
-    position: relative;
-    align-items: flex-start;
-    flex-shrink: 0;
-    border-radius: 12px;
-    background-size: cover;
-    background-image: url("https://play.teleporthq.io/static/svg/default-img.svg");
-  }
-  .publicaciones-containercategorietext2 {
-    width: 301.34375px;
-    height: 57px;
-    display: flex;
-    padding: 0 0 12px;
-    align-items: flex-start;
-    flex-shrink: 0;
-    flex-direction: column;
-  }
-  .publicaciones-containercategorietexttitle2 {
-    width: 301.34375px;
-    height: 24px;
-    display: flex;
-    align-items: flex-start;
-    flex-shrink: 0;
-    flex-direction: column;
-  }
-  .publicaciones-text14 {
-    color: rgba(20, 20, 20, 1);
-    height: auto;
-    font-size: 16px;
-    align-self: stretch;
-    font-style: Medium;
-    text-align: left;
-    font-family: Plus Jakarta Sans;
-    font-weight: 500;
-    line-height: 24px;
-    font-stretch: normal;
-    text-decoration: none;
-  }
-  .publicaciones-containercategorietextsubtitle2 {
-    width: 301.34375px;
-    height: 21px;
-    display: flex;
-    align-items: flex-start;
-    flex-shrink: 0;
-    flex-direction: column;
-  }
-  .publicaciones-text16 {
-    color: rgba(114, 114, 114, 1);
-    height: auto;
-    font-size: 14px;
-    align-self: stretch;
-    font-style: Regular;
-    text-align: left;
-    font-family: Plus Jakarta Sans;
-    font-weight: 400;
-    line-height: 21px;
-    font-stretch: normal;
-    text-decoration: none;
-  }
-  
+  width: 100%;
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.publicaciones-containersectioncategories {
+  gap: 40px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  padding: 40px 16px;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.publicaciones-containercategoriestitle {
+  gap: 24px;
+  width: 928px;
+  height: 85px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.publicaciones-containercategoriestitleh1 {
+  width: 720px;
+  height: 45px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.publicaciones-text {
+  color: rgba(20, 20, 20, 1);
+  height: auto;
+  font-size: 36px;
+  font-style: ExtraBold;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 800;
+  line-height: 45px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.publicaciones-containercategoriessubtitle {
+  width: 720px;
+  height: 24px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.publicaciones-text02 {
+  color: rgba(20, 20, 20, 1);
+  height: auto;
+  font-size: 16px;
+  font-style: Regular;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 400;
+  line-height: 24px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.publicaciones-containercategorieslist {
+  gap: 12px;
+  width: 928px;
+  height: 238.5px;
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.publicaciones-containercardcategorie {
+  gap: 12px;
+  top: 0px;
+  left: 0px;
+  width: 301px;
+  height: 238.5px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.publicaciones-containercategorieimg {
+  width: 301.328125px;
+  height: 169.484375px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.publicaciones-categorieimg3 {
+  width: 301.328125px;
+  height: 169.484375px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background-size: cover;
+  background-image: url("https://play.teleporthq.io/static/svg/default-img.svg");
+}
+
+.publicaciones-containercategorietext {
+  width: 301.328125px;
+  height: 57px;
+  display: flex;
+  padding: 0 0 12px;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.publicaciones-containercategorietexttitle {
+  width: 301.328125px;
+  height: 24px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.publicaciones-text04 {
+  color: rgba(20, 20, 20, 1);
+  height: auto;
+  font-size: 16px;
+  align-self: stretch;
+  font-style: Medium;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 500;
+  line-height: 24px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.publicaciones-containercategorietextsubtitle {
+  width: 301.328125px;
+  height: 21px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.publicaciones-text06 {
+  color: rgba(114, 114, 114, 1);
+  height: auto;
+  font-size: 14px;
+  align-self: stretch;
+  font-style: Regular;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 400;
+  line-height: 21px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.publicaciones-containercardcategorie1 {
+  gap: 12px;
+  top: 0px;
+  left: 313px;
+  width: 301px;
+  height: 238.5px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.publicaciones-containercategorieimg1 {
+  width: 301.328125px;
+  height: 169.484375px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.publicaciones-categorieimg2 {
+  width: 301.328125px;
+  height: 169.484375px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background-size: cover;
+  background-image: url("https://play.teleporthq.io/static/svg/default-img.svg");
+}
+
+.publicaciones-containercategorietext1 {
+  width: 301.328125px;
+  height: 57px;
+  display: flex;
+  padding: 0 0 12px;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.publicaciones-containercategorietexttitle1 {
+  width: 301.328125px;
+  height: 24px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.publicaciones-text08 {
+  color: rgba(20, 20, 20, 1);
+  height: auto;
+  font-size: 16px;
+  align-self: stretch;
+  font-style: Medium;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 500;
+  line-height: 24px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.publicaciones-containercategorietextsubtitle1 {
+  width: 301.328125px;
+  height: 21px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.publicaciones-text10 {
+  color: rgba(114, 114, 114, 1);
+  height: auto;
+  font-size: 14px;
+  align-self: stretch;
+  font-style: Regular;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 400;
+  line-height: 21px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.publicaciones-containercardcategorie2 {
+  gap: 12px;
+  top: 0px;
+  left: 627px;
+  width: 301px;
+  height: 238.5px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.publicaciones-containercategorieimg2 {
+  width: 301.34375px;
+  height: 169.5px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.publicaciones-categorieimg1 {
+  width: 301.34375px;
+  height: 169.5px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background-size: cover;
+  background-image: url("https://play.teleporthq.io/static/svg/default-img.svg");
+}
+
+.publicaciones-containercategorietext2 {
+  width: 301.34375px;
+  height: 57px;
+  display: flex;
+  padding: 0 0 12px;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.publicaciones-containercategorietexttitle2 {
+  width: 301.34375px;
+  height: 24px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.publicaciones-text14 {
+  color: rgba(20, 20, 20, 1);
+  height: auto;
+  font-size: 16px;
+  align-self: stretch;
+  font-style: Medium;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 500;
+  line-height: 24px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.publicaciones-containercategorietextsubtitle2 {
+  width: 301.34375px;
+  height: 21px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.publicaciones-text16 {
+  color: rgba(114, 114, 114, 1);
+  height: auto;
+  font-size: 14px;
+  align-self: stretch;
+  font-style: Regular;
+  text-align: left;
+  font-family: Plus Jakarta Sans;
+  font-weight: 400;
+  line-height: 21px;
+  font-stretch: normal;
+  text-decoration: none;
+}

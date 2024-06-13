@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import './dashBoardBicyclesAdmin.css';
 import Header from "../../../components/common/layout/header/header";
 import SidebarsectionAdmin from "../../../components/admin/aside/sidebarsectionAdmin";
@@ -10,9 +9,7 @@ import authService from "../../../services/auth/auth.service";
 import BicycleService from "../../../services/bicycle/bicycle.service";
 import Utils from "../../../common/utils";
 
-
 export default class DashBoardBicyclesAdmin extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -24,6 +21,13 @@ export default class DashBoardBicyclesAdmin extends Component {
             showDeleteModal: false,
             bicycleToDeleteId: null,
         };
+
+        // Enlazar los métodos al contexto de `this`
+        this.onChangeSearchQuery = this.onChangeSearchQuery.bind(this);
+        this.handlePageChange = this.handlePageChange.bind(this);
+        this.retrieveBicycles = this.retrieveBicycles.bind(this);
+        this.handleDeleteBicycle = this.handleDeleteBicycle.bind(this);
+        this.confirmDeleteBicycle = this.confirmDeleteBicycle.bind(this);
     }
 
     componentDidMount() {
@@ -85,7 +89,6 @@ export default class DashBoardBicyclesAdmin extends Component {
                     showDeleteModal: false,
                     bicycleToDeleteId: null
                 }), () => {
-
                     this.retrieveBicycles();
                 });
             })
@@ -93,7 +96,6 @@ export default class DashBoardBicyclesAdmin extends Component {
                 console.error('Error deleting user:', error);
             });
     }
-
 
     render() {
         const { currentUser, bicycles, searchQuery, currentPage, totalPages, showDeleteModal } = this.state;
@@ -116,14 +118,13 @@ export default class DashBoardBicyclesAdmin extends Component {
                                     </div>
                                     <div className="admin-dashboard-rentals-containermainsectionsearch-box">
                                         <div className="admin-dashboard-rentals-containersectionsearch-box">
-
                                             <Icon name="Lupa" color="#637887" />
                                             <input
                                                 type="text"
                                                 placeholder="Buscar alquileres por usuario o modelo de bicicleta"
                                                 className="admin-dashboard-rentals-sectioninputsearch-box"
                                                 value={searchQuery}
-                                                onChange={(e) => this.onChangeSearchQuery(e)}
+                                                onChange={this.onChangeSearchQuery}
                                             />
                                         </div>
                                     </div>
@@ -166,7 +167,6 @@ export default class DashBoardBicyclesAdmin extends Component {
                                                         </span>
                                                     </div>
                                                 </th>
-
                                                 <th className="admin-dashboard-rentals-sectionheadertable6">
                                                     <div className="admin-dashboard-rentals-textheadertable6">
                                                         <span className="admin-dashboard-rentals-text12">
@@ -178,7 +178,6 @@ export default class DashBoardBicyclesAdmin extends Component {
                                         </thead>
                                         <tbody className="admin-dashboard-rentals-containersectionmaintable">
                                             {/* Cuerpo de la tabla */}
-
                                             {Array.isArray(bicycles) && bicycles.map(bicycle => (
                                                 <tr key={bicycle.id} className="admin-dashboard-rentals-sectiontabletr">
                                                     <td className="admin-dashboard-rentals-sectiontabletd">
@@ -202,7 +201,6 @@ export default class DashBoardBicyclesAdmin extends Component {
                                                             </span>
                                                         </div>
                                                     </td>
-
                                                     <td className="admin-dashboard-rentals-sectiontabletd4">
                                                         <div className="admin-dashboard-rentals-td4">
                                                             <span className="admin-dashboard-rentals-text22">
@@ -217,7 +215,6 @@ export default class DashBoardBicyclesAdmin extends Component {
                                                             </span>
                                                         </div>
                                                     </td>
-
                                                     <td className="admin-dashboard-rentals-sectiontabletd5">
                                                         <FormButtom to={`/admin/bicicletas/edit/${bicycle.id}`}>Editar</FormButtom>
                                                     </td>
@@ -226,7 +223,6 @@ export default class DashBoardBicyclesAdmin extends Component {
                                                     </td>
                                                 </tr>
                                             ))}
-
                                         </tbody>
                                         <tfoot className="admin-dashboard-rentals-containersectionmainpagination">
                                             <tr>
@@ -257,7 +253,6 @@ export default class DashBoardBicyclesAdmin extends Component {
                                         onHide={() => this.setState({ showDeleteModal: false })}
                                         onConfirm={this.confirmDeleteBicycle}
                                     />
-
                                 </div>
                             </div>
                         </div>

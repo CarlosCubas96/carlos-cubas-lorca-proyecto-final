@@ -33,6 +33,7 @@
 }
 
 .header-container__nav-items {
+  gap: 10px;
   display: flex;
   align-items: center;
   margin-right: 2%;

@@ -2,6 +2,12 @@ import React from 'react'
 
 import './post.css'
 
+import montaña from '../../../../assets/images/varias/montaña.png'
+import carretera from '../../../../assets/images/varias/carretera.png'
+import paseo from '../../../../assets/images/varias/paseo.png'
+
+import { Link } from 'react-router-dom'
+
 const Post = () => {
   return (
     <div className="publicaciones-container">
@@ -20,9 +26,9 @@ const Post = () => {
         </div>
         <div className="publicaciones-containercategorieslist">
           <div className="publicaciones-containercardcategorie">
-            <div className="publicaciones-containercategorieimg">
-              <div className="publicaciones-categorieimg3"></div>
-            </div>
+            <Link to={"/publicaciones"} className="publicaciones-containercategorieimg">
+              <img alt='' src={montaña} className="publicaciones-categorieimg3"></img>
+            </Link>
             <div className="publicaciones-containercategorietext">
               <div className="publicaciones-containercategorietexttitle">
                 <span className="publicaciones-text04">
@@ -37,9 +43,9 @@ const Post = () => {
             </div>
           </div>
           <div className="publicaciones-containercardcategorie1">
-            <div className="publicaciones-containercategorieimg1">
-              <div className="publicaciones-categorieimg2"></div>
-            </div>
+            <Link to={"/publicaciones"} className="publicaciones-containercategorieimg1">
+              <img alt='' src={paseo} className="publicaciones-categorieimg2"></img>
+            </Link>
             <div className="publicaciones-containercategorietext1">
               <div className="publicaciones-containercategorietexttitle1">
                 <span className="publicaciones-text08">
@@ -56,9 +62,9 @@ const Post = () => {
             </div>
           </div>
           <div className="publicaciones-containercardcategorie2">
-            <div className="publicaciones-containercategorieimg2">
-              <div className="publicaciones-categorieimg1"></div>
-            </div>
+            <Link to={"/publicaciones"} className="publicaciones-containercategorieimg2">
+              <img alt='' src={carretera} className="publicaciones-categorieimg1"></img>
+            </Link>
             <div className="publicaciones-containercategorietext2">
               <div className="publicaciones-containercategorietexttitle2">
                 <span className="publicaciones-text14">

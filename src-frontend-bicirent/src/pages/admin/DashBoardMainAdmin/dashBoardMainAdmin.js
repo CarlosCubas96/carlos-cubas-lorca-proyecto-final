@@ -33,8 +33,8 @@ export default class HomeAdmin extends Component {
         this.loadRentalData();
 
         try {
-            await this.loadGeneralStats(); // Esperar a que los stats generales sean cargados
-            await this.loadBicyclesByCategory(); // Solo se llama después de que loadGeneralStats ha completado
+            await this.loadGeneralStats(); 
+            await this.loadBicyclesByCategory(); 
         } catch (error) {
             console.error("Error loading data: ", error);
         }
@@ -120,7 +120,7 @@ export default class HomeAdmin extends Component {
                                     <div className="admin-dashboard-main-containermainsectiontitle">
                                         <div className="admin-dashboard-main-containersectiontitle">
                                             <span className="admin-dashboard-main-text18">
-                                                <span>Panel de Adminitrador</span>
+                                                <span>Panel de Administrador</span>
                                             </span>
                                         </div>
                                     </div>

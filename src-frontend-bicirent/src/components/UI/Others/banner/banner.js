@@ -1,9 +1,9 @@
-import React from 'react'
-
-import './banner.css'
-import SearchBoxButton from '../../Button/SearchBoxButton/searchBoxButton'
+import React from "react";
+import './banner.css';
+import SearchBoxButton from '../../Button/SearchBoxButton/searchBoxButton';
 
 const Banner = () => {
+
   return (
     <div className="banner-containerbannermain">
       <div className="banner-containerbannerbackground">
@@ -14,32 +14,24 @@ const Banner = () => {
         </div>
         <div className="banner-containerbannersubtitle">
           <span className="banner-text2">
-            <span>
-              ¡Alquila una bici cerca de ti o comparte la tuyo cuando no lo
-              utilices!
-            </span>
+            <span>¡Alquila una bici cerca de ti o comparte la tuyo cuando no lo utilices!</span>
           </span>
         </div>
-
         <div className="banner-containerbannersearchbox">
           <form className="banner-containerbannersearchbox1">
             <div className="input-group">
               <input
                 type="text"
-                className="form-control banner-containerbannersearchboxplaceholder"
+                className="form-control banner-searchbox-placeholder"
                 placeholder="¿Necesitas una bicicleta?"
               />
             </div>
-            <SearchBoxButton to="/">Buscar</SearchBoxButton>
+            <SearchBoxButton to={`/publicaciones`}>Buscar</SearchBoxButton>
           </form>
         </div>
-
-
-
-
       </div>
     </div>
-  )
+  );
 }
 
-export default Banner
+export default Banner;

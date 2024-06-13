@@ -309,6 +309,8 @@
 }
 
 .dash-board-main-user-containermainsectionsubtitle {
+  width: 100%;
+  height: auto;
   gap: 10px;
   display: flex;
   padding: 12px 16px;
@@ -317,8 +319,8 @@
 }
 
 .dash-board-main-user-containersectionsubitle {
-  width: 171px;
-  height: 28px;
+  width: 100%;
+  height: auto;
   display: flex;
   align-items: flex-start;
   flex-shrink: 0;

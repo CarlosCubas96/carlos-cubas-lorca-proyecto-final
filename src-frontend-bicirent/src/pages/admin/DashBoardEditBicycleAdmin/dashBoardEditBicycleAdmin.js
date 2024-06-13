@@ -138,7 +138,6 @@ const DashBoardEditBicycleAdmin = () => {
 
         bicycleService.updateBicycle(id, bicycleData)
             .then(updatedBicycle => {
-                console.log(updatedBicycle);
                 setEditable(false);
                 setMessage("Bicicleta actualizada exitosamente!");
                 setErrorMessage(null);
