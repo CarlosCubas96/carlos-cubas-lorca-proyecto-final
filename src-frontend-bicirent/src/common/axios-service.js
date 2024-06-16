@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authHeader from '../services/auth/auth.header';
 
-const BASE_URL = 'http://localhost:8080/api';
+const BASE_URL = 'http://ec2-44-194-55-167.compute-1.amazonaws.com:8080/api';
 
 class AxiosService {
   constructor() {
@@ -29,8 +29,6 @@ class AxiosService {
       }
     );
   }
-
-  // Métodos para realizar las solicitudes HTTP
 
   get(url, params) {
     return this.axiosInstance.get(url, { params });

@@ -22,8 +22,8 @@ const ViewPostUser = () => {
   const [isRentalCreated, setIsRentalCreated] = useState(false);
   const [newRental, setNewRental] = useState({
     rentedBicycle: {},
-    landlord: { id: null },
-    tenant: { id: null },
+    landlord: { id: null }, // Cambiará después de cargar los datos
+    tenant: { id: null },   // Viene del post
     startDate: "",
     endDate: ""
   });
@@ -42,8 +42,8 @@ const ViewPostUser = () => {
     if (post.owner && newRental.startDate === "" && newRental.endDate === "") {
       setNewRental(prevState => ({
         ...prevState,
-        landlord: { id: post.owner.id },
-        tenant: { id: currentUser?.id },
+        landlord: { id: currentUser?.id },
+        tenant: { id: post.owner.id },
         rentedBicycle: bicycle,
         startDate: "",
         endDate: ""
@@ -84,8 +84,8 @@ const ViewPostUser = () => {
   const handleCreateRental = () => {
     const rentalData = {
       rentedBicycle: bicycle,
-      landlord: { id: post.owner.id },
-      tenant: { id: currentUser?.id },
+      landlord: { id: currentUser?.id }, 
+      tenant: { id: post.owner.id },    
       startDate: newRental.startDate,
       endDate: newRental.endDate
     };

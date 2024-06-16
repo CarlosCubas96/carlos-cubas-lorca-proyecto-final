@@ -86,6 +86,7 @@ const DashBoardEditBicycleAdmin = () => {
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
+        console.log(file);
 
         bicycleService.getImageByName(file.name)
             .then(imageName => {
@@ -237,7 +238,8 @@ const DashBoardEditBicycleAdmin = () => {
                                                                 id="upload-button"
                                                                 accept="image/*"
                                                                 style={{ display: 'none' }}
-                                                                onChange={handleImageChange}
+                                                                onChange={handleImageChange} ç
+                                                                disabled
                                                             />
                                                             <button
                                                                 type="button"

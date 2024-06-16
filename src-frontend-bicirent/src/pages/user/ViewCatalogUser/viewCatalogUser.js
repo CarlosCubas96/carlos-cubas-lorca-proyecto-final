@@ -65,13 +65,20 @@ export default class ViewCatalogUser extends Component {
     }
 
     onCategorySelect = (categoryName) => {
-        this.setState({
-            selectedCategory: categoryName,
-            currentPage: 0
-        }, () => {
-            this.retrievesPosts();
-        });
+        // Buscar el categoryId correspondiente al categoryName seleccionado
+        const selectedCategory = this.state.categories.find(category => category.categoryName === categoryName);
+
+        // Verificar que se encontró la categoría
+        if (selectedCategory) {
+            this.setState({
+                selectedCategory: categoryName,
+                currentPage: 0
+            }, () => {
+                this.getAllPostsByCategoryId(selectedCategory.id); // Pasar el categoryId
+            });
+        }
     }
+
 
     resetFilters = () => {
         this.setState({
@@ -140,7 +147,7 @@ export default class ViewCatalogUser extends Component {
                             this.getBicycleByPostId(post.id);
                         });
                     } else {
-                        this.setState({ showToast: true });  // Mostrar el toast si no hay contenido en la respuesta
+                        this.setState({ showToast: true });
                     }
                 })
                 .catch(error => {
@@ -149,26 +156,6 @@ export default class ViewCatalogUser extends Component {
         }
     }
 
-
-    getBicycleByPostId(postId) {
-        BicycleService.getBicycleByPostId(postId)
-            .then(response => {
-                this.setState(prevState => ({
-                    posts: prevState.posts.map(post => {
-                        if (post.id === postId) {
-                            return {
-                                ...post,
-                                imageUrl: response.bicycleImage
-                            };
-                        }
-                        return post;
-                    })
-                }));
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    }
 
     getAllCategories = () => {
         PostService.getAllCategories()
@@ -224,18 +211,32 @@ export default class ViewCatalogUser extends Component {
     getAllPostsByTagName(tagName) {
         PostService.getAllPostsByTagName(tagName, this.state.currentPage, 6)
             .then(data => {
-                this.setState({
-                    posts: data.content,
-                    totalPages: data.totalPages
-                });
-                data.content.forEach(post => {
-                    this.getBicycleByPostId(post.id);
-                });
+                console.log(tagName);
+                console.log(data.content);
+                if (data && data.content && data.content.length > 0) {
+                    this.setState({
+                        posts: data.content,
+                        totalPages: data.totalPages
+                    });
+                    data.content.forEach(post => {
+                        this.getBicycleByPostId(post.id);
+                    });
+                } else {
+                    this.setState({
+                        posts: [],
+                        totalPages: 0
+                    });
+                }
             })
             .catch(error => {
                 console.error('Error fetching posts by tag:', error);
+                this.setState({
+                    posts: [],
+                    totalPages: 0
+                });
             });
     }
+
 
     getAllPostsByCategoryId(categoryId) {
         PostService.getAllPostsByCategoryId(categoryId, this.state.currentPage, 6)
@@ -258,17 +259,27 @@ export default class ViewCatalogUser extends Component {
         const nextPage = currentPage + 1;
         const pageSize = 6;
 
-        
-
         PostService.getAllPosts(searchQuery, nextPage, pageSize, selectedTag)
             .then(data => {
-                const updatedPosts = [...posts, ...data.content];
+                const updatedPosts = [...posts]; // Crear una copia de las publicaciones existentes
+
+                data.content.forEach(post => {
+                    // Verificar si la publicación ya existe en el estado actual
+                    const existingPostIndex = updatedPosts.findIndex(p => p.id === post.id);
+                    if (existingPostIndex === -1) {
+                        // Si no existe, agregar la nueva publicación
+                        updatedPosts.push(post);
+                    }
+                });
+
                 this.setState({
                     posts: updatedPosts,
                     currentPage: nextPage,
                     totalPages: data.totalPages,
                     showButton: nextPage <= data.totalPages
                 });
+
+                // Cargar las imágenes de las bicicletas para las nuevas publicaciones
                 data.content.forEach(post => {
                     this.getBicycleByPostId(post.id);
                 });
@@ -277,6 +288,29 @@ export default class ViewCatalogUser extends Component {
                 console.error('Error fetching posts:', error);
             });
     }
+
+    getBicycleByPostId(postId) {
+        BicycleService.getBicycleByPostId(postId)
+            .then(response => {
+                this.setState(prevState => ({
+                    posts: prevState.posts.map(post => {
+                        if (post.id === postId && !post.imageUrl) {
+                            return {
+                                ...post,
+                                imageUrl: response.bicycleImage
+                            };
+                        }
+                        return post;
+                    })
+                }));
+
+
+            })
+            .catch(e => {
+                console.error('Error fetching bicycle image:', e);
+            });
+    }
+
 
 
 
@@ -481,7 +515,7 @@ export default class ViewCatalogUser extends Component {
                                             </span>
                                         </button>
                                     </div>
-                                    {tags.slice(0, 4).map((tag, index) => (
+                                    {tags.slice(0, 8).map((tag, index) => (
                                         <div key={index} className="dash-board-edit-post-admin-containersectiontag1">
                                             <button className="dash-board-edit-post-admin-containertagname" onClick={() => this.getAllPostsByTagName(tag.tagName)}>
                                                 <div className={`dash-board-edit-post-admin-tagname ${selectedTag === tag.tagName ? 'selected' : ''}`}>

@@ -50,8 +50,7 @@ El repositorio del proyecto se organizará de la siguiente manera:
 
 - [Prototipo de Figma (Prototitpo)](https://www.figma.com/file/pMZuOd8qOY0CCM65OJv1se/Bicirent_prototype?type=design&node-id=32%3A271&mode=design&t=e4oYr9R17TUVv18j-1)
 
-- [Trello (Gestión de Tareas)](#)
-  
+
 - **Front-end**:: React: Utilizamos React como el framework principal para el desarrollo del frontend de la aplicación. React nos permite crear interfaces de usuario interactivas y dinámicas de manera eficiente, facilitando la creación de una experiencia de usuario fluida.
 
 - **Back-end**:: Java Spring Boot: Java Spring Boot se utilizó para desarrollar el backend de la aplicación. Spring Boot proporciona una estructura robusta y escalable para construir aplicaciones web, permitiendo una fácil configuración y desarrollo de servicios RESTful.
@@ -90,9 +89,9 @@ La adición de [changelog.md](CHANGELOG.md) en la estructura te permite llevar u
 ```bash
 Proyecto Final de Grado
 ├── docs
-│   ├── Manuales de Usuario
-│   ├── Guías de Instalación
-│   └── Otros documentos
+│   └── Documentacion_Funcional
+│  
+│   
 ├── src-api
 │   └── Backend de la aplicación de alquiler de bicicletas
 └── src-frontend

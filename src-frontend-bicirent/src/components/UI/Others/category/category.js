@@ -18,7 +18,6 @@ export default class Category extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    // Verificar si las propiedades han cambiado (por ejemplo, si volvemos a esta página)
     if (prevProps !== this.props) {
       this.retrievesPosts();
     }
@@ -88,11 +87,11 @@ export default class Category extends Component {
             {loading ? (
               <p>Cargando...</p> // Indicador de carga mientras se obtienen los datos
             ) : (
-              posts.slice(0, 4).map((post, index) => (
+              posts.map((post, index) => (
                 <div key={index} className="category-depth5-frame0">
                   <div className="category-depth6-frame0">
                     <Link to={`/publicaciones/reserva/${post.id}`}>
-                      <img src={post.imageUrl} className="category-depth7-frame0" alt="post" />
+                      <img src={post.imageUrl} className="category-depth7-frame0" alt="Publicacion" />
                     </Link>
                   </div>
                   <div className="category-depth6-frame1">

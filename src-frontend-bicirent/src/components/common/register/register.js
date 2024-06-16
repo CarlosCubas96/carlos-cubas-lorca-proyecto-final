@@ -141,7 +141,7 @@ export default class Register extends Component {
                 this.state.lastName,
             ).then(
                 response => {
-                    if (response.data.message === '¡Usuario registrado exitosamente!') {
+                    if (response.data.message.toLowerCase().includes('registrado exitosamente')) {
                         this.setState({
                             message: response.data.message,
                             successful: true

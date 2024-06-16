@@ -54,7 +54,7 @@ public class PostServiceImpl implements PostServiceI {
 
 	@Override
 	public List<PostResponse> getLatestPosts() {
-		List<Post> latestPosts = postRepository.findTop4ByOrderByCreationDateDesc();
+		List<Post> latestPosts = postRepository.findByOrderByCreationDateAsc(PageRequest.of(0, 4));
 		return latestPosts.stream().map(this::mapToPostResponse).collect(Collectors.toList());
 	}
 

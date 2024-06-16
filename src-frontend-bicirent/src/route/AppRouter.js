@@ -24,10 +24,17 @@ import ViewAddBicycleUser from '../pages/user/ViewAddBicycleUser/viewAddBicycleU
 import ViewCatalogUser from '../pages/user/ViewCatalogUser/viewCatalogUser';
 import ViewPostUser from '../pages/user/ViewPostUser/viewPostUser';
 import authService from '../services/auth/auth.service';
+import AuthVerify from '../common/auth-verify';  // Importa AuthVerify
 
 const AppRouter = () => {
     const currentUser = authService.getCurrentUser();
     const userRole = currentUser ? currentUser.roles[0] : '';
+
+    // Define la función logOut
+    const logOut = () => {
+        authService.logout(); // Asegúrate de tener este método en authService
+        window.location.reload();
+    };
 
     // Función para comprobar si el usuario tiene acceso de acuerdo a su rol
     const checkAccess = (allowedRoles, component) => {
@@ -36,7 +43,6 @@ const AppRouter = () => {
         } else if (currentUser && userRole === 'ROLE_ADMIN') {
             // Si es admin, se le permite acceso a todas las rutas
             return component;
-
         } else if (currentUser && userRole === 'ROLE_USER') {
             return <Navigate to="/no-access" />;
         } else {
@@ -46,45 +52,42 @@ const AppRouter = () => {
     };
 
     return (
-        <Routes>
-            <Route path="/" element={<Home />} />
+        <>
+            <AuthVerify logOut={logOut} /> {/* Agrega AuthVerify aquí */}
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/registro" element={<Register />} />
 
-            <Route path="/login" element={<Login />} />
-            <Route path="/registro" element={<Register />} />
+                {/* Rutas específicas para el rol de administrador */}
+                <Route path="/admin" element={checkAccess(['ROLE_ADMIN'], <DashBoardMainAdmin />)} />
+                <Route path="/admin/perfil" element={checkAccess(['ROLE_ADMIN'], <DashBoardProfileAdmin />)} />
+                <Route path="/admin/usuarios" element={checkAccess(['ROLE_ADMIN'], <DashBoardUsersAdmin />)} />
+                <Route path="/admin/alquileres" element={checkAccess(['ROLE_ADMIN'], <DashBoardRentalsAdmin />)} />
+                <Route path="/admin/bicicletas" element={checkAccess(['ROLE_ADMIN'], <DashBoardBicyclesAdmin />)} />
+                <Route path="/admin/publicaciones" element={checkAccess(['ROLE_ADMIN'], <DashBoardPostsAdmin />)} />
+                <Route path="/admin/usuarios/edit/:id" element={checkAccess(['ROLE_ADMIN'], <DashBoardEditUserAdmin />)} />
+                <Route path="/admin/alquileres/edit/:id" element={checkAccess(['ROLE_ADMIN'], <DashBoardEditRentalAdmin />)} />
+                <Route path="/admin/publicaciones/edit/:id" element={checkAccess(['ROLE_ADMIN'], <DashBoardEditPostAdmin />)} />
+                <Route path="/admin/bicicletas/edit/:id" element={checkAccess(['ROLE_ADMIN'], <DashBoardEditBicycleAdmin />)} />
 
-            {/* Rutas específicas para el rol de administrador */}
-            <Route path="/admin" element={checkAccess(['ROLE_ADMIN'], <DashBoardMainAdmin />)} />
+                {/* Rutas específicas para el rol de usuario */}
+                <Route path="/user" element={checkAccess(['ROLE_USER'], <DashBoardMainUser />)} />
+                <Route path="/user/perfil" element={checkAccess(['ROLE_USER'], <DashBoardProfileUser />)} />
+                <Route path="/user/publicaciones" element={checkAccess(['ROLE_USER'], <DashBoardPostsUser />)} />
+                <Route path="/user/publicaciones/edit/:id" element={checkAccess(['ROLE_USER'], <DashBoardEditPostUser />)} />
+                <Route path="/user/publicaciones/add/post" element={checkAccess(['ROLE_USER'], <ViewAddPostUser />)} />
+                <Route path="/user/publicaciones/add/bicicleta/:id" element={checkAccess(['ROLE_USER'], <ViewAddBicycleUser />)} />
+                <Route path="/publicaciones" element={checkAccess(['ROLE_USER'], <ViewCatalogUser />)} />
+                <Route path="/publicaciones/reserva/:id" element={checkAccess(['ROLE_USER'], <ViewPostUser />)} />
 
-            <Route path="/admin/perfil" element={checkAccess(['ROLE_ADMIN'], <DashBoardProfileAdmin />)} />
-            <Route path="/admin/usuarios" element={checkAccess(['ROLE_ADMIN'], <DashBoardUsersAdmin />)} />
-            <Route path="/admin/alquileres" element={checkAccess(['ROLE_ADMIN'], <DashBoardRentalsAdmin />)} />
-            <Route path="/admin/bicicletas" element={checkAccess(['ROLE_ADMIN'], <DashBoardBicyclesAdmin />)} />
-            <Route path="/admin/publicaciones" element={checkAccess(['ROLE_ADMIN'], <DashBoardPostsAdmin />)} />
+                {/* Ruta para la página de acceso denegado */}
+                <Route path="/no-access" element={<NoPermissionPage />} />
 
-            <Route path="/admin/usuarios/edit/:id" element={checkAccess(['ROLE_ADMIN'], <DashBoardEditUserAdmin />)} />
-            <Route path="/admin/alquileres/edit/:id" element={checkAccess(['ROLE_ADMIN'], <DashBoardEditRentalAdmin />)} />
-            <Route path="/admin/publicaciones/edit/:id" element={checkAccess(['ROLE_ADMIN'], <DashBoardEditPostAdmin />)} />
-            <Route path="/admin/bicicletas/edit/:id" element={checkAccess(['ROLE_ADMIN'], <DashBoardEditBicycleAdmin />)} />
-
-            {/* Rutas específicas para el rol de usuario */}
-            <Route path="/user" element={checkAccess(['ROLE_USER'], <DashBoardMainUser />)} />
-            <Route path="/user/perfil" element={checkAccess(['ROLE_USER'], <DashBoardProfileUser />)} />
-
-            <Route path="/user/publicaciones" element={checkAccess(['ROLE_USER'], <DashBoardPostsUser />)} />
-            <Route path="/user/publicaciones/edit/:id" element={checkAccess(['ROLE_USER'], <DashBoardEditPostUser />)} />
-
-            <Route path="/user/publicaciones/add/post" element={checkAccess(['ROLE_USER'], <ViewAddPostUser />)} />
-            <Route path="/user/publicaciones/add/bicicleta/:id" element={checkAccess(['ROLE_USER'], <ViewAddBicycleUser />)} />
-
-            <Route path="/publicaciones" element={checkAccess(['ROLE_USER'], <ViewCatalogUser />)} />
-            <Route path="/publicaciones/reserva/:id" element={checkAccess(['ROLE_USER'], <ViewPostUser />)} />
-
-            {/* Ruta para la página de acceso denegado */}
-            <Route path="/no-access" element={<NoPermissionPage />} />
-
-            {/* Ruta para la página no encontrada */}
-            <Route path="*" element={<NoFoundPage />} />
-        </Routes>
+                {/* Ruta para la página no encontrada */}
+                <Route path="*" element={<NoFoundPage />} />
+            </Routes>
+        </>
     );
 };
 

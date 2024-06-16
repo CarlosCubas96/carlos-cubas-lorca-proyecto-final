@@ -12,7 +12,7 @@ const BicycleService = {
       });
   },
 
-  
+
 
   getBicycleById: (id) => {
     return AxiosService.get(`bicycles/${id}`)
@@ -82,8 +82,10 @@ const BicycleService = {
   },
 
   uploadImage: (imageFile) => {
-    return AxiosService.post('images/upload', imageFile, {
-    })
+    const formData = new FormData();
+    formData.append('file', imageFile);
+
+    return AxiosService.post('/images/upload', formData)
       .then(response => response.data)
       .catch(error => {
         throw error;

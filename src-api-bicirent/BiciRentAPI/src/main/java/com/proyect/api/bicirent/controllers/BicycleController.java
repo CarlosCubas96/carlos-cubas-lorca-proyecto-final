@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -30,13 +31,12 @@ import java.util.List;
 @RequestMapping("/api/bicycles")
 public class BicycleController {
 
-	private static final String UPLOAD_FOLDER = System.getProperty("user.home") + "/Desktop/images/";
+	private static final String UPLOAD_FOLDER = System.getProperty("user.dir") + "/images/";
 
 	private final BicycleServiceImpl bicycleServiceImpl;
 
 	public BicycleController(BicycleServiceImpl bicycleServiceImpl) {
 		this.bicycleServiceImpl = bicycleServiceImpl;
-		;
 	}
 
 	@GetMapping
@@ -60,11 +60,10 @@ public class BicycleController {
 
 	@GetMapping("/post/{postId}")
 	public ResponseEntity<Bicycle> getBicycleByPostId(@PathVariable("postId") Long postId) {
-	    return bicycleServiceImpl.getBicycleByPostId(postId)
-	            .map(bicycle -> new ResponseEntity<>(bicycle, HttpStatus.OK))
-	            .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+		return bicycleServiceImpl.getBicycleByPostId(postId)
+				.map(bicycle -> new ResponseEntity<>(bicycle, HttpStatus.OK))
+				.orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
-
 
 	@PostMapping
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
@@ -106,12 +105,36 @@ public class BicycleController {
 
 			org.springframework.http.HttpHeaders headers = new org.springframework.http.HttpHeaders();
 			headers.setContentType(org.springframework.http.MediaType.IMAGE_JPEG);
-
 			return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
 		} catch (IOException e) {
 			e.printStackTrace();
 			return ResponseEntity.notFound().build();
 		}
 	}
+    private static String UPLOADED_FOLDER = System.getProperty("user.dir") + "/images";
+
+	@PostMapping("/images/upload")
+    public String handleFileUpload(@RequestParam("file") MultipartFile file) {
+        if (file.isEmpty()) {
+            return "Archivo no seleccionado";
+        }
+
+        try {
+            byte[] bytes = file.getBytes();
+            Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+            System.out.println("Path");
+            System.out.println(path);
+            
+            System.out.println("UPLOADED_FOLDER");
+            System.out.println(path);
+            
+            Files.write(path, bytes);
+            return "Archivo subido exitosamente a: " + path.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "Error al subir el archivo";
+        }
+    }
+
 
 }
