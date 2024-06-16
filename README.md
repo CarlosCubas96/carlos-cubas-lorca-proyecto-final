@@ -50,6 +50,7 @@ El repositorio del proyecto se organizará de la siguiente manera:
 
 - [Prototipo de Figma (Prototitpo)](https://www.figma.com/file/pMZuOd8qOY0CCM65OJv1se/Bicirent_prototype?type=design&node-id=32%3A271&mode=design&t=e4oYr9R17TUVv18j-1)
 
+- [Enlace a la Aplicación (Bicirent)](http://bicirentawsbucket.s3-website-us-east-1.amazonaws.com/)
 
 - **Front-end**:: React: Utilizamos React como el framework principal para el desarrollo del frontend de la aplicación. React nos permite crear interfaces de usuario interactivas y dinámicas de manera eficiente, facilitando la creación de una experiencia de usuario fluida.
 
