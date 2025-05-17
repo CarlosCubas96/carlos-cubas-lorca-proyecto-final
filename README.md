@@ -48,7 +48,7 @@ El repositorio del proyecto se organizará de la siguiente manera:
 
 ## Herramientas Utilizadas
 
-- [Prototipo de Figma (Prototitpo)](#)
+- [Prototipo de Figma (Prototitpo)](https://www.figma.com/design/pMZuOd8qOY0CCM65OJv1se/Bicirent_prototype?node-id=197-1045&t=xxVzMf5deck2Mo5i-1)
 
 - [Trello (Gestión de Tareas)](https://trello.com/b/gd5xitKt/ud01-actividad-evaluable-01-metodolog%C3%ADatiendajabones)
   
